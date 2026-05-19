@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Billing & Invoices | NexusDigital</title>
+    <meta name="description" content="Audit active packages, credit cards, and invoice logs.">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
+            background: var(--gradient-bg);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            border-right: 1px solid var(--glass-border);
+            padding: 2.2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+        }
+
+        .sidebar-menu {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .sidebar-link:hover, .sidebar-link.active {
+            color: var(--primary);
+            background: rgba(124, 58, 237, 0.08);
+        }
+
+        .sidebar-link.active {
+            box-shadow: inset 0 0 0 1px rgba(124, 58, 237, 0.15);
+        }
+
+        /* Main Content Area */
+        .dashboard-content {
+            padding: 2.5rem 3rem;
+            overflow-y: auto;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+        }
+
+        .billing-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 2rem;
+        }
+
+        .payment-card {
+            background: var(--gradient-primary);
+            color: #fff;
+            padding: 2rem;
+            border-radius: 24px;
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        @media (max-width: 992px) {
+            .billing-grid {
+                grid-template-columns: 1fr;
+            }
+            .dashboard-container {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                display: none;
+            }
+        }
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="light-theme">
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar">
+            <div>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon-wrap">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <span class="logo-text">Nexus<span>Digital</span></span>
+                </a>
+
+                <div class="sidebar-menu">
+                    <a href="user-dashboard.html" class="sidebar-link">
+                        <i class="fa-solid fa-gauge"></i> Dashboard Overview
+                    </a>
+                    <a href="campaign-analytics.html" class="sidebar-link">
+                        <i class="fa-solid fa-chart-simple"></i> Campaign Analytics
+                    </a>
+                    <a href="service-details.html" class="sidebar-link">
+                        <i class="fa-solid fa-magnifying-glass"></i> SEO Reports
+                    </a>
+                    <a href="content-approval.html" class="sidebar-link">
+                        <i class="fa-solid fa-share-nodes"></i> Social Media Performance
+                    </a>
+                    <a href="user-dashboard.html" class="sidebar-link">
+                        <i class="fa-solid fa-percent"></i> ROI Tracking
+                    </a>
+                    <a href="content-approval.html" class="sidebar-link">
+                        <i class="fa-regular fa-calendar-days"></i> Content Calendar
+                    </a>
+                    <a href="support-tickets.html" class="sidebar-link">
+                        <i class="fa-solid fa-circle-question"></i> Support Tickets
+                    </a>
+                    <a href="billing.html" class="sidebar-link active">
+                        <i class="fa-solid fa-wallet"></i> Billing
+                    </a>
+                    <a href="settings.html" class="sidebar-link">
+                        <i class="fa-solid fa-bell"></i> Notifications
+                    </a>
+                    <a href="settings.html" class="sidebar-link">
+                        <i class="fa-solid fa-sliders"></i> Settings
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Info Widget -->
+            <div style="background: rgba(255, 255, 255, 0.7); border-radius: 16px; padding: 12px; border: 1px solid var(--glass-border); display:flex; align-items:center; gap:12px;">
+                <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Client User" style="width:38px; height:38px; border-radius:50%; object-fit:cover;">
+                <div>
+                    <h5 style="font-size:0.85rem; margin:0;">Alex Rivera</h5>
+                    <p style="font-size:0.72rem; color:var(--text-muted); margin:0;">Client Account</p>
+                </div>
+                <a href="login.html" style="margin-left:auto; color:var(--text-muted);"><i class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="dashboard-content">
+            <!-- Top bar -->
+            <div class="dashboard-header">
+                <div>
+                    <span class="badge">Billing Retainers</span>
+                    <h1 style="font-size: 2.2rem; margin-top: 0.2rem;">Payments & <span class="text-gradient">Invoices</span></h1>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <a href="user-dashboard.html" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.82rem; border-radius: 12px;"><i class="fa-solid fa-chevron-left"></i> Back to Console</a>
+                </div>
+            </div>
+
+            <div class="billing-grid">
+                <!-- Left: Credit card and invoice history -->
+                <div style="display:flex; flex-direction:column; gap:2rem;">
+                    <!-- Premium Glass credit card -->
+                    <div class="payment-card">
+                        <div style="display:flex; justify-content:space-between; align-items:center;">
+                            <span style="font-size:0.85rem; font-weight:700; letter-spacing:1px; opacity:0.9;">NexusDigital Retainer Wallet</span>
+                            <i class="fa-brands fa-cc-visa" style="font-size:2rem;"></i>
+                        </div>
+
+                        <div>
+                            <span style="font-size: 1.4rem; font-family: monospace; letter-spacing: 2px;">•••• •••• •••• 4289</span>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; opacity:0.9;">
+                            <div>
+                                <span style="font-size:0.65rem; text-transform:uppercase; display:block;">Holder Name</span>
+                                <span style="font-size:0.85rem; font-weight:700;">Alex Rivera</span>
+                            </div>
+                            <div>
+                                <span style="font-size:0.65rem; text-transform:uppercase; display:block;">Expiration</span>
+                                <span style="font-size:0.85rem; font-weight:700;">08/28</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Invoices list -->
+                    <div class="glass-card" style="padding:2rem;">
+                        <h4 style="margin-bottom:1.5rem; font-size:1.1rem;">Invoice Logs</h4>
+                        
+                        <div style="display:flex; flex-direction:column; gap:1.2rem;">
+                            <!-- Invoice 1 -->
+                            <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,0.03); padding-bottom:12px;">
+                                <div>
+                                    <h5 style="font-size:0.9rem; margin:0;">Invoiced Retainer - May 2026</h5>
+                                    <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">Transaction ID: #ND-9842</p>
+                                </div>
+                                <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; text-align:center; width:fit-content; font-weight:700;">Paid</span>
+                                <span style="text-align:right; font-weight:700; font-size:0.9rem; color:var(--primary); cursor:pointer;"><i class="fa-solid fa-file-arrow-down"></i> Download</span>
+                            </div>
+
+                            <!-- Invoice 2 -->
+                            <div style="display:grid; grid-template-columns: 2fr 1fr 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,0.03); padding-bottom:12px;">
+                                <div>
+                                    <h5 style="font-size:0.9rem; margin:0;">Invoiced Retainer - April 2026</h5>
+                                    <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">Transaction ID: #ND-9483</p>
+                                </div>
+                                <span style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; text-align:center; width:fit-content; font-weight:700;">Paid</span>
+                                <span style="text-align:right; font-weight:700; font-size:0.9rem; color:var(--primary); cursor:pointer;"><i class="fa-solid fa-file-arrow-down"></i> Download</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: active subscription outline -->
+                <div class="glass-card" style="padding:2rem; height:fit-content;">
+                    <h4 style="margin-bottom:1.2rem; font-size:1.1rem;">Active Subscriptions</h4>
+                    <p style="color:var(--text-muted); font-size:0.88rem; line-height:1.5;">You are currently retaining our Professional Marketing Plan.</p>
+                    
+                    <div style="background:rgba(124, 58, 237, 0.04); border:1px solid rgba(124, 58, 237, 0.15); border-radius:16px; padding:1.2rem; margin:1.5rem 0;">
+                        <h4 style="margin:0; font-size:1.3rem;">$4,500<span style="font-size:0.85rem; font-weight:500; color:var(--text-muted);">/mo</span></h4>
+                        <span style="font-size:0.75rem; color:var(--primary); font-weight:700; display:block; margin-top:4px;">Next renewal date: June 1, 2026</span>
+                    </div>
+
+                    <button class="btn btn-primary glow-btn w-100" style="padding:12px; font-size:0.82rem; border-radius:10px;">Upgrade Retainer Tier</button>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+
+</html>

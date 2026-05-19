@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | NexusDigital</title>
+    <meta name="description"
+        content="Explore the premium digital marketing, SEO, web development, and branding services offered by NexusDigital.">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Light Mode Fixes: Services Page -->
+    <style>
+      /* Planner / Calculator box */
+      [data-theme="light"] .services-planner-box {
+          background: rgba(255,255,255,0.6) !important;
+          border: 1px solid rgba(0,0,0,0.08) !important;
+      }
+      /* Inline text overrides for inline color:#94a3b8 across this page */
+      [data-theme="light"] .info-card ul li,
+      [data-theme="light"] .info-card p,
+      [data-theme="light"] [style*="color:#94a3b8"] {
+          color: #475569 !important;
+      }
+      [data-theme="light"] [style*="color:#e2e8f0"] {
+          color: #1e293b !important;
+      }
+      /* Planner inline range label values */
+      [data-theme="light"] #trafficVal { color: #2563eb !important; }
+      [data-theme="light"] #convVal { color: #7c3aed !important; }
+      /* Chart card bars */
+      [data-theme="light"] .chart-card {
+          background: rgba(255,255,255,0.85) !important;
+          border: 1px solid rgba(0,0,0,0.08) !important;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.05) !important;
+      }
+      [data-theme="light"] .chart-card h4 { color: #0f172a !important; }
+      /* skill track */
+      [data-theme="light"] .skill-track { background: #e2e8f0 !important; }
+      [data-theme="light"] .skill-bar-label span:last-child { color: #2563eb !important; }
+    </style>
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header sticky" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- Mobile-only CTA inside nav panel -->
+                <a href="contact.html" class="header-cta mobile-nav-cta" style="display:none">
+                    <i class="fa-solid fa-bolt"></i> Get Started
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <!-- Profile / Account Button -->
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> User Dashboard</a>
+                        <a href="admin-dashboard.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i
+                        class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-orb banner-orb-1"></div>
+        <div class="banner-orb banner-orb-2"></div>
+        <div class="container">
+            <div class="page-banner-content" data-reveal>
+                <span class="badge">What We Do</span>
+                <h1>Our Premium <span class="text-gradient">Digital Services</span></h1>
+                <p>We deliver high-end, custom growth strategies and next-gen development solutions to elevate your digital presence.</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span>Services</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Services Grid -->
+    <section class="inner-section">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">Core Excellence</span>
+                <h2 class="section-title">Growth-Oriented <span class="text-gradient">Solutions</span></h2>
+                <p class="section-desc">From visual brand identity to deep technical search engine optimization, our team delivers results that transform your business.</p>
+            </div>
+
+            <div class="services-grid" data-reveal>
+                <div class="info-card" style="border-top: 2px solid #00e1ff;">
+                    <div class="icon-box"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3>SEO Optimization</h3>
+                    <p style="color:#94a3b8; font-size:.95rem; margin-bottom:1rem;">Dominate search engine results, drive targeted organic traffic, and establish sustainable online presence with our data-backed search strategies.</p>
+                    <ul style="color:#94a3b8; font-size:0.88rem; margin-bottom:1.5rem; padding-left:0; list-style:none;">
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#00e1ff; margin-right:8px;"></i> Technical Site Auditing</li>
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#00e1ff; margin-right:8px;"></i> On-Page & Content Strategy</li>
+                        <li><i class="fa-solid fa-check" style="color:#00e1ff; margin-right:8px;"></i> Premium Backlink Building</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline w-100" style="padding: 8px 20px;">Learn More</a>
+                </div>
+
+                <div class="info-card" style="border-top: 2px solid #0051ff;">
+                    <div class="icon-box" style="background:rgba(0,81,255,0.1); color:#0051ff;"><i class="fa-solid fa-share-nodes"></i></div>
+                    <h3>Social Media Marketing</h3>
+                    <p style="color:#94a3b8; font-size:.95rem; margin-bottom:1rem;">Build viral brand authority and highly engaged communities across all major social networks through bespoke content and target marketing.</p>
+                    <ul style="color:#94a3b8; font-size:0.88rem; margin-bottom:1.5rem; padding-left:0; list-style:none;">
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#0051ff; margin-right:8px;"></i> Creative Content Production</li>
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#0051ff; margin-right:8px;"></i> Community Management</li>
+                        <li><i class="fa-solid fa-check" style="color:#0051ff; margin-right:8px;"></i> Influencer Partnerships</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline w-100" style="padding: 8px 20px;">Learn More</a>
+                </div>
+
+                <div class="info-card" style="border-top: 2px solid #7c3aed;">
+                    <div class="icon-box" style="background:rgba(124,58,237,0.1); color:#7c3aed;"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3>Web Development</h3>
+                    <p style="color:#94a3b8; font-size:.95rem; margin-bottom:1rem;">Stunning, immersive, and custom-designed web applications optimized for speed, search engines, responsiveness, and premium user experience.</p>
+                    <ul style="color:#94a3b8; font-size:0.88rem; margin-bottom:1.5rem; padding-left:0; list-style:none;">
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#7c3aed; margin-right:8px;"></i> Custom UI/UX Interface Design</li>
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#7c3aed; margin-right:8px;"></i> Next-Gen Performance Specs</li>
+                        <li><i class="fa-solid fa-check" style="color:#7c3aed; margin-right:8px;"></i> E-Commerce & Web Platforms</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline w-100" style="padding: 8px 20px;">Learn More</a>
+                </div>
+
+                <div class="info-card" style="border-top: 2px solid #00e1ff;">
+                    <div class="icon-box"><i class="fa-solid fa-rectangle-ad"></i></div>
+                    <h3>PPC Advertising</h3>
+                    <p style="color:#94a3b8; font-size:.95rem; margin-bottom:1rem;">Generate instant lead flow and high returns on investment with precisely targeted search, social, and programmatic ad campaigns.</p>
+                    <ul style="color:#94a3b8; font-size:0.88rem; margin-bottom:1.5rem; padding-left:0; list-style:none;">
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#00e1ff; margin-right:8px;"></i> Google & Bing Ads Management</li>
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#00e1ff; margin-right:8px;"></i> Paid Social Ad Creative</li>
+                        <li><i class="fa-solid fa-check" style="color:#00e1ff; margin-right:8px;"></i> A/B Testing & Bid Management</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline w-100" style="padding: 8px 20px;">Learn More</a>
+                </div>
+
+                <div class="info-card" style="border-top: 2px solid #0051ff;">
+                    <div class="icon-box" style="background:rgba(0,81,255,0.1); color:#0051ff;"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3>Branding Strategy</h3>
+                    <p style="color:#94a3b8; font-size:.95rem; margin-bottom:1rem;">Define your voice, values, and visual assets to establish lasting luxury brand presence and recognition among high-end audiences.</p>
+                    <ul style="color:#94a3b8; font-size:0.88rem; margin-bottom:1.5rem; padding-left:0; list-style:none;">
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#0051ff; margin-right:8px;"></i> Logo & Visual Guidelines</li>
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#0051ff; margin-right:8px;"></i> Brand Architecture & Identity</li>
+                        <li><i class="fa-solid fa-check" style="color:#0051ff; margin-right:8px;"></i> Corporate Positioning & Pitch</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline w-100" style="padding: 8px 20px;">Learn More</a>
+                </div>
+
+                <div class="info-card" style="border-top: 2px solid #7c3aed;">
+                    <div class="icon-box" style="background:rgba(124,58,237,0.1); color:#7c3aed;"><i class="fa-solid fa-chart-line"></i></div>
+                    <h3>Analytics & BI</h3>
+                    <p style="color:#94a3b8; font-size:.95rem; margin-bottom:1rem;">Visualize your performance and unlock hidden optimizations with enterprise-grade data dashboards and reporting dashboards.</p>
+                    <ul style="color:#94a3b8; font-size:0.88rem; margin-bottom:1.5rem; padding-left:0; list-style:none;">
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#7c3aed; margin-right:8px;"></i> Real-Time Analytics Integrations</li>
+                        <li style="margin-bottom:0.4rem;"><i class="fa-solid fa-check" style="color:#7c3aed; margin-right:8px;"></i> Custom Dashboard Reporting</li>
+                        <li><i class="fa-solid fa-check" style="color:#7c3aed; margin-right:8px;"></i> Marketing Funnel Tracking</li>
+                    </ul>
+                    <a href="contact.html" class="btn btn-outline w-100" style="padding: 8px 20px;">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Comparison Table Section -->
+    <section class="inner-section bg-alt">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">Deep Comparison</span>
+                <h2 class="section-title">Why We Outperform <span class="text-gradient">Traditional Agencies</span></h2>
+                <p class="section-desc">We combine next-gen engineering with creative strategy to deliver unmatched ROI.</p>
+            </div>
+
+            <div style="overflow-x:auto;" data-reveal>
+                <table class="compare-table">
+                    <thead>
+                        <tr>
+                            <th>Capabilities</th>
+                            <th>NexusDigital</th>
+                            <th>Freelancers</th>
+                            <th>Average Agency</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Data-Driven Strategy & AI Auditing</td>
+                            <td class="highlight"><i class="fa-solid fa-check check"></i> Included</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> No</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> Basic Only</td>
+                        </tr>
+                        <tr>
+                            <td>Interactive & Immersive Web Apps</td>
+                            <td class="highlight"><i class="fa-solid fa-check check"></i> Yes (Premium)</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> Static Only</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> Templates Only</td>
+                        </tr>
+                        <tr>
+                            <td>Dedicated Professional Squad</td>
+                            <td class="highlight"><i class="fa-solid fa-check check"></i> Yes</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> Single Person</td>
+                            <td><i class="fa-solid fa-check check"></i> Yes</td>
+                        </tr>
+                        <tr>
+                            <td>Performance-Driven Optimization</td>
+                            <td class="highlight"><i class="fa-solid fa-check check"></i> Daily Checks</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> None</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> Monthly Only</td>
+                        </tr>
+                        <tr>
+                            <td>Total Transparent Reporting</td>
+                            <td class="highlight"><i class="fa-solid fa-check check"></i> Real-time Portal</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> Email screenshots</td>
+                            <td><i class="fa-solid fa-xmark cross"></i> PDF Monthly</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Strategy Section (JavaScript-driven mockup) -->
+    <section class="inner-section">
+        <div class="container">
+            <div class="why-container" style="display:grid; grid-template-columns:1fr 1fr; gap:4rem; align-items:center;">
+                <div data-reveal>
+                    <span class="badge">Interactive Planner</span>
+                    <h2 class="section-title">Calculate Your <span class="text-gradient">Growth Potential</span></h2>
+                    <p style="color:#94a3b8; margin-bottom:2rem;">Use our custom strategy matrix estimator to see the estimated increase in performance when partnering with NexusDigital.</p>
+                    
+                    <div style="background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.05); padding:2rem; border-radius:16px;">
+                        <div style="margin-bottom:1.5rem;">
+                            <label style="display:block; font-size:0.9rem; margin-bottom:0.5rem; color:#94a3b8;">Current Monthly Web Traffic</label>
+                            <input type="range" id="trafficRange" min="1000" max="100000" step="1000" value="10000" style="width:100%; accent-color:#00e1ff;">
+                            <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:0.4rem; color:#e2e8f0;">
+                                <span>1,000 visitors</span>
+                                <span style="color:#00e1ff; font-weight:700;" id="trafficVal">10,000</span>
+                                <span>100,000 visitors</span>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom:1.5rem;">
+                            <label style="display:block; font-size:0.9rem; margin-bottom:0.5rem; color:#94a3b8;">Current Conversion Rate</label>
+                            <input type="range" id="convRange" min="0.5" max="10" step="0.1" value="1.5" style="width:100%; accent-color:#0051ff;">
+                            <div style="display:flex; justify-content:space-between; font-size:0.85rem; margin-top:0.4rem; color:#e2e8f0;">
+                                <span>0.5%</span>
+                                <span style="color:#0051ff; font-weight:700;" id="convVal">1.5%</span>
+                                <span>10%</span>
+                            </div>
+                        </div>
+
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem; text-align:center;">
+                            <div class="glass-card" style="padding:1rem;">
+                                <h4 style="font-size:1.4rem; color:#ff4f4f;" id="currLeads">150</h4>
+                                <p style="font-size:0.75rem; color:#94a3b8; margin:0;">Current Monthly Leads</p>
+                            </div>
+                            <div class="glass-card" style="padding:1rem; border-color:rgba(0,225,255,0.3); box-shadow:0 0 15px rgba(0,225,255,0.1);">
+                                <h4 style="font-size:1.4rem; color:#00e1ff;" id="nexusLeads">368</h4>
+                                <p style="font-size:0.75rem; color:#e2e8f0; margin:0;">Projected Leads (+145%)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div data-reveal data-delay="2" style="position:relative;">
+                    <div class="chart-card glass-card" style="width:100%; max-width:480px; margin:0 auto; padding:2rem; position:relative; z-index:2;">
+                        <h4 style="margin-bottom:1.5rem; display:flex; justify-content:space-between; align-items:center;">
+                            <span>Nexus Growth Curve</span>
+                            <span style="font-size:0.8rem; background:rgba(0,225,255,0.1); color:#00e1ff; padding:3px 10px; border-radius:20px;">Live Simulation</span>
+                        </h4>
+                        
+                        <div style="display:flex; justify-content:space-between; align-items:flex-end; height:180px; margin-bottom:1.5rem; border-bottom:1px solid rgba(255,255,255,0.1); padding-bottom:10px;">
+                            <div style="text-align:center; width:15%;">
+                                <div style="background:rgba(255,255,255,0.1); height:40px; border-radius:4px; margin-bottom:8px; transition:all 0.3s ease;"></div>
+                                <span style="font-size:0.75rem; color:#94a3b8;">Month 1</span>
+                            </div>
+                            <div style="text-align:center; width:15%;">
+                                <div style="background:rgba(255,255,255,0.1); height:55px; border-radius:4px; margin-bottom:8px; transition:all 0.3s ease;"></div>
+                                <span style="font-size:0.75rem; color:#94a3b8;">Month 2</span>
+                            </div>
+                            <div style="text-align:center; width:15%;">
+                                <div style="background:rgba(0,225,255,0.2); height:90px; border-radius:4px; margin-bottom:8px; transition:all 0.3s ease;"></div>
+                                <span style="font-size:0.75rem; color:#94a3b8;">Month 3</span>
+                            </div>
+                            <div style="text-align:center; width:15%;">
+                                <div style="background:rgba(0,225,255,0.4); height:120px; border-radius:4px; margin-bottom:8px; transition:all 0.3s ease;"></div>
+                                <span style="font-size:0.75rem; color:#94a3b8;">Month 4</span>
+                            </div>
+                            <div style="text-align:center; width:15%;">
+                                <div style="background:var(--gradient-primary); height:170px; border-radius:4px; margin-bottom:8px; transition:all 0.3s ease; box-shadow:0 0 15px rgba(0,225,255,0.3);"></div>
+                                <span style="font-size:0.75rem; color:#00e1ff; font-weight:700;">Month 5</span>
+                            </div>
+                        </div>
+
+                        <div style="display:flex; justify-content:space-between; align-items:center; font-size:0.85rem;">
+                            <span style="color:#94a3b8;"><i class="fa-solid fa-arrow-trend-up" style="color:#00e1ff; margin-right:6px;"></i> Average Campaign Growth</span>
+                            <span style="font-weight:700; color:#00e1ff;">+245% Overall</span>
+                        </div>
+                    </div>
+                    <div style="position:absolute; width:100%; height:100%; top:20px; left:20px; border:1px solid rgba(0,225,255,0.08); border-radius:16px; z-index:1;"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-strip">
+        <div class="container" data-reveal>
+            <span class="badge">Ignite Growth</span>
+            <h2>Ready to Elevate <span class="text-gradient">Your Digital Presence?</span></h2>
+            <p>Get in touch with our creative squads today to outline a custom campaign architecture and design system.</p>
+            <div class="btn-group">
+                <a href="contact.html" class="btn btn-primary glow-btn">Get Free Consultation</a>
+                <a href="portfolio.html" class="btn btn-outline">View Our Case Studies</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Social Media</a></li>
+                        <li><a href="services.html">PPC Advertising</a></li>
+                        <li><a href="services.html">Content Creation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+    <script>
+        // Custom Planner simulation for services page
+        document.addEventListener('DOMContentLoaded', () => {
+            const tr = document.getElementById('trafficRange');
+            const cr = document.getElementById('convRange');
+            const tv = document.getElementById('trafficVal');
+            const cv = document.getElementById('convVal');
+            const cl = document.getElementById('currLeads');
+            const nl = document.getElementById('nexusLeads');
+
+            function recalc() {
+                const traffic = parseInt(tr.value);
+                const conv = parseFloat(cr.value);
+                
+                tv.textContent = traffic.toLocaleString();
+                cv.textContent = conv.toFixed(1) + '%';
+                
+                const curLeadsNum = Math.round(traffic * (conv / 100));
+                cl.textContent = curLeadsNum.toLocaleString();
+                
+                // projected leads is +145% or 2.45x conversion optimization increase
+                const projectedLeadsNum = Math.round(traffic * ((conv * 2.45) / 100));
+                nl.textContent = projectedLeadsNum.toLocaleString();
+            }
+
+            if(tr && cr) {
+                tr.addEventListener('input', recalc);
+                cr.addEventListener('input', recalc);
+                recalc();
+            }
+        });
+    </script>
+</body>
+
+</html>

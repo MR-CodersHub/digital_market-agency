@@ -1,0 +1,322 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us | NexusDigital</title>
+    <meta name="description"
+        content="Get in touch with the creative squads at NexusDigital to start your brand development campaign today.">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Light Mode Fixes: Contact Page -->
+    <style>
+      [data-theme="light"] .contact-container > div h2 { color: #0f172a !important; }
+      [data-theme="light"] .contact-container > div p { color: #475569 !important; }
+      /* Form inputs (inline styled) */
+      [data-theme="light"] #contact-form input,
+      [data-theme="light"] #contact-form textarea {
+          background: #f8fafc !important;
+          border: 1px solid #cbd5e1 !important;
+          color: #0f172a !important;
+      }
+      [data-theme="light"] #contact-form input:focus,
+      [data-theme="light"] #contact-form textarea:focus {
+          background: #ffffff !important;
+          border-color: #2563eb !important;
+          box-shadow: 0 0 0 4px rgba(37,99,235,0.1) !important;
+      }
+      [data-theme="light"] #contact-form select {
+          background: #f8fafc !important;
+          border: 1px solid #cbd5e1 !important;
+          color: #0f172a !important;
+      }
+      /* Form wrapper */
+      [data-theme="light"] .contact-form-wrapper {
+          background: #ffffff !important;
+          border: 1px solid #e2e8f0 !important;
+          box-shadow: 0 15px 35px rgba(0,0,0,0.05) !important;
+      }
+      [data-theme="light"] .contact-form-wrapper h3 { color: #0f172a !important; }
+      [data-theme="light"] .contact-form-wrapper p { color: #475569 !important; }
+      /* Office cards section bg */
+      [data-theme="light"] .contact-container .bg-alt {
+          background: #f8fafc !important;
+      }
+      /* Map placeholder */
+      [data-theme="light"] .map-placeholder {
+          background: linear-gradient(135deg, #f8fafc, #eff6ff) !important;
+          border-top: 1px solid #e2e8f0 !important;
+          border-bottom: 1px solid #e2e8f0 !important;
+      }
+      [data-theme="light"] .map-placeholder i { color: #2563eb !important; }
+      [data-theme="light"] .map-placeholder h3 { color: #0f172a !important; }
+      [data-theme="light"] .map-placeholder p { color: #64748b !important; }
+    </style>
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header sticky" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- Mobile-only CTA inside nav panel -->
+                <a href="contact.html" class="header-cta mobile-nav-cta" style="display:none">
+                    <i class="fa-solid fa-bolt"></i> Get Started
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <!-- Profile / Account Button -->
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> User Dashboard</a>
+                        <a href="admin-dashboard.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i
+                        class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-orb banner-orb-1"></div>
+        <div class="banner-orb banner-orb-2"></div>
+        <div class="container">
+            <div class="page-banner-content" data-reveal>
+                <span class="badge">Get in Touch</span>
+                <h1>Connect With <span class="text-gradient">Our Specialists</span></h1>
+                <p>Start a collaboration, project, or general consultation to accelerate your digital milestones.</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span>Contact Us</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Core Area -->
+    <section class="inner-section bg-alt">
+        <div class="container">
+            <div class="contact-container" style="display:grid; grid-template-columns:1fr 1fr; gap:4rem;" data-reveal>
+                <!-- Left: Details & Office Cards -->
+                <div style="display:flex; flex-direction:column; gap:1.5rem;">
+                    <div style="margin-bottom:1.5rem;">
+                        <span class="badge">Inquiries</span>
+                        <h2 style="font-size:2.2rem; margin-bottom:1rem; font-family:'Outfit',sans-serif;">Let's Map Out Your <span class="text-gradient">Next Goal</span></h2>
+                        <p style="color:#94a3b8; font-size:0.95rem; line-height:1.6;">Our client managers reply within 1 business day with actionable strategies, budget outlines, and milestone calendars.</p>
+                    </div>
+
+                    <!-- NYC -->
+                    <div class="office-card">
+                        <div class="office-icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <h4>New York Headquarters</h4>
+                        <p>123 Digital Avenue, Chelsea, NY 10001<br>
+                        Phone: +1 (555) 123-4567<br>
+                        Email: nyc@nexusdigital.com</p>
+                    </div>
+
+                    <!-- London -->
+                    <div class="office-card">
+                        <div class="office-icon" style="background:rgba(0,81,255,0.1); color:#0051ff;"><i class="fa-solid fa-location-dot"></i></div>
+                        <h4>London Office</h4>
+                        <p>45 Innovation Way, Shoreditch, EC1A 1BB<br>
+                        Phone: +44 20 7946 0958<br>
+                        Email: london@nexusdigital.com</p>
+                    </div>
+
+                    <!-- Singapore -->
+                    <div class="office-card">
+                        <div class="office-icon" style="background:rgba(124,58,237,0.1); color:#7c3aed;"><i class="fa-solid fa-location-dot"></i></div>
+                        <h4>Singapore Hub</h4>
+                        <p>8 Marina Boulevard, Tower 1, 018981<br>
+                        Phone: +65 6789 0123<br>
+                        Email: sg@nexusdigital.com</p>
+                    </div>
+                </div>
+
+                <!-- Right: Glass Form -->
+                <div class="contact-form-wrapper glass-card" style="padding:3rem;">
+                    <h3 style="font-size:1.6rem; margin-bottom:0.5rem; font-family:'Outfit',sans-serif;">Send Us a Message</h3>
+                    <p style="color:#94a3b8; margin-bottom:2rem; font-size:0.9rem;">Fill out the retainer calculator form and we'll reply shortly.</p>
+                    
+                    <form id="contact-form" class="contact-form">
+                        <div class="form-group" style="margin-bottom:1.5rem;">
+                            <input type="text" id="name" placeholder="Your Name" required style="width:100%; padding:14px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); color:#fff; outline:none; font-family:'Inter',sans-serif;">
+                            <span class="error-msg" id="name-error" style="display:none; color:#ff4f4f; font-size:0.8rem; margin-top:4px;">Name is required (at least 2 letters)</span>
+                        </div>
+                        <div class="form-group" style="margin-bottom:1.5rem;">
+                            <input type="email" id="email" placeholder="Your Email" required style="width:100%; padding:14px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); color:#fff; outline:none; font-family:'Inter',sans-serif;">
+                            <span class="error-msg" id="email-error" style="display:none; color:#ff4f4f; font-size:0.8rem; margin-top:4px;">Please enter a valid email</span>
+                        </div>
+                        <div class="form-group" style="margin-bottom:1.5rem;">
+                            <select id="subject" required style="width:100%; padding:14px; border-radius:8px; background:rgba(15,23,42,0.95); border:1px solid rgba(255,255,255,0.08); color:#fff; outline:none; font-family:'Inter',sans-serif;">
+                                <option value="" disabled selected>Select Subject</option>
+                                <option value="seo">SEO Optimization</option>
+                                <option value="web">Web Development</option>
+                                <option value="marketing">Digital Marketing</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <span class="error-msg" id="subject-error" style="display:none; color:#ff4f4f; font-size:0.8rem; margin-top:4px;">Please select a subject</span>
+                        </div>
+                        <div class="form-group" style="margin-bottom:1.5rem;">
+                            <textarea id="message" rows="5" placeholder="Your Message" required style="width:100%; padding:14px; border-radius:8px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); color:#fff; outline:none; font-family:'Inter',sans-serif; resize:none;"></textarea>
+                            <span class="error-msg" id="message-error" style="display:none; color:#ff4f4f; font-size:0.8rem; margin-top:4px;">Message is required (at least 10 letters)</span>
+                        </div>
+                        <button type="submit" class="btn btn-primary glow-btn w-100" style="padding:14px 28px;">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+                        <div class="success-msg" id="success-msg" style="display:none; margin-top:1.5rem; text-align:center; color:#10b981; font-weight:600;">Message sent successfully! We'll get back to you soon.</div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section Placeholder -->
+    <section class="inner-section" style="padding: 0;">
+        <div class="map-area" style="height: 420px; position:relative; overflow:hidden;">
+            <div class="map-placeholder" style="width:100%; height:100%; display:flex; flex-direction:column; justify-content:center; align-items:center; background:#020617; border-top:1px solid rgba(255,255,255,0.05); border-bottom:1px solid rgba(255,255,255,0.05);">
+                <i class="fa-solid fa-map-location-dot" style="font-size:3.5rem; color:#00e1ff; margin-bottom:1rem;"></i>
+                <h3 style="font-family:'Outfit',sans-serif;">Interactive Map Coordinates</h3>
+                <p style="color:#94a3b8; font-size:0.9rem; margin-top:0.3rem;">Chelsea Hub — London Tech City — Marina Bay Sands Square</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Social Media</a></li>
+                        <li><a href="services.html">PPC Advertising</a></li>
+                        <li><a href="services.html">Content Creation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+    <style>
+        .form-group.error input,
+        .form-group.error select,
+        .form-group.error textarea {
+            border-color: #ff4f4f !important;
+            box-shadow: 0 0 10px rgba(255, 79, 79, 0.15) !important;
+        }
+        .form-group.error .error-msg {
+            display: block !important;
+        }
+    </style>
+</body>
+
+</html>

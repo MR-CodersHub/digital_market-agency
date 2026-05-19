@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusDigital | Tech & Analytics Driven Digital Agency</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+    
+    <!-- Redesigned Home 2 Custom Styles -->
+    <style>
+        /* Shared variables & overrides specifically tuned for Analytics Focus */
+        :root {
+            --widget-header: rgba(15, 23, 42, 0.4);
+            --widget-border: rgba(255, 255, 255, 0.05);
+            --accent-glow: rgba(0, 225, 255, 0.15);
+            --neon-blue: #00e1ff;
+            --neon-purple: #7c3aed;
+        }
+        
+        [data-theme="light"] {
+            --widget-header: rgba(241, 245, 249, 0.7);
+            --widget-border: rgba(15, 23, 42, 0.06);
+            --accent-glow: rgba(124, 58, 237, 0.08);
+            --neon-blue: #2563eb;
+            --neon-purple: #7c3aed;
+        }
+
+        /* ── Hero Customization ── */
+        .hero-section {
+            position: relative;
+            padding: 140px 0 100px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            background: var(--gradient-bg);
+            z-index: 1;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        /* Terminal & Dashboard Mockup */
+        .dashboard-mockup {
+            border-radius: 24px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            overflow: hidden;
+            transition: var(--transition-slow);
+        }
+        
+        .dashboard-mockup:hover {
+            transform: translateY(-5px) scale(1.01);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.4), 0 0 30px var(--accent-glow);
+        }
+        
+        .mockup-header {
+            background: var(--widget-header);
+            border-bottom: 1px solid var(--widget-border);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .window-dots {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .win-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .win-dot.red { background: #ff5f56; }
+        .win-dot.yellow { background: #ffbd2e; }
+        .win-dot.green { background: #27c93f; }
+        
+        .mockup-title {
+            font-family: var(--font-body);
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--widget-border);
+            padding: 4px 14px;
+            border-radius: 20px;
+        }
+        
+        .mockup-body {
+            padding: 1.8rem;
+        }
+        
+        /* Terminal output lines simulation */
+        .terminal-stream {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            padding: 1rem;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 0.78rem;
+            color: #27c93f;
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--widget-border);
+            height: 110px;
+            overflow-y: hidden;
+            position: relative;
+        }
+
+        .terminal-stream::before {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 40px;
+            background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+            pointer-events: none;
+        }
+        
+        .terminal-line {
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .terminal-line.cyan { color: #00e1ff; }
+        .terminal-line.purple { color: #a78bfa; }
+        .terminal-line.yellow { color: #ffbd2e; }
+        
+        /* Custom Live Chart Bars */
+        .projected-chart-wrapper {
+            margin-bottom: 1.5rem;
+            border: 1px solid var(--widget-border);
+            border-radius: 16px;
+            padding: 1.2rem;
+            background: rgba(255, 255, 255, 0.01);
+        }
+        
+        .projected-chart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.2rem;
+        }
+        
+        .projected-chart-header h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+        
+        .chart-legend {
+            font-size: 0.72rem;
+            color: var(--neon-blue);
+            background: rgba(0, 225, 255, 0.08);
+            border: 1px solid rgba(0, 225, 255, 0.2);
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 600;
+        }
+        
+        .chart-bars-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            height: 140px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid var(--widget-border);
+        }
+        
+        .bar-wrapper {
+            width: 14%;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .bar-fill {
+            width: 100%;
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 6px;
+            position: relative;
+            min-height: 10px;
+            overflow: hidden;
+            display: flex;
+            align-items: flex-end;
+        }
+        
+        .bar-progress {
+            width: 100%;
+            background: var(--gradient-primary);
+            border-radius: 4px;
+            height: 0;
+            transition: height 1s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+        
+        .bar-label {
+            font-size: 0.65rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        /* Stats quick grid */
+        .stats-subgrid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+        
+        .stat-badge-card {
+            padding: 1rem;
+            border-radius: 16px;
+            border: 1px solid var(--widget-border);
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            transition: var(--transition);
+        }
+        
+        .stat-badge-card:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        
+        .stat-badge-card span:first-child {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .stat-badge-card span:last-child {
+            font-size: 1.25rem;
+            color: var(--neon-blue);
+            font-weight: 800;
+            font-family: var(--font-heading);
+        }
+        
+        /* ── Core Capabilities Grid (6 items) ── */
+        .capabilities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+        
+        .cap-card {
+            position: relative;
+            padding: 2.2rem 2rem;
+            border-radius: 24px;
+            transition: var(--transition-slow);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .cap-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: linear-gradient(135deg, rgba(0, 225, 255, 0.04) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .cap-card:hover::before {
+            opacity: 1;
+        }
+        
+        .cap-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 45px -10px rgba(0, 0, 0, 0.3), 0 0 20px var(--accent-glow);
+        }
+        
+        .cap-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cap-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            background: rgba(0, 225, 255, 0.08);
+            border: 1px solid rgba(0, 225, 255, 0.15);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            color: var(--neon-blue);
+            transition: var(--transition);
+        }
+        
+        .cap-card:hover .cap-icon {
+            background: var(--gradient-primary);
+            border-color: transparent;
+            color: #fff;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+        
+        .cap-tag {
+            font-size: 0.68rem;
+            font-weight: 700;
+            background: rgba(0, 225, 255, 0.06);
+            border: 1px solid rgba(0, 225, 255, 0.12);
+            color: var(--primary);
+            padding: 4px 10px;
+            border-radius: 20px;
+            letter-spacing: 0.03em;
+        }
+        
+        .cap-card h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.8rem;
+            font-family: var(--font-heading);
+            font-weight: 700;
+        }
+        
+        .cap-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .cap-card-footer {
+            margin-top: auto;
+            border-top: 1px solid var(--widget-border);
+            padding-top: 1.2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .cap-metric-label {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .cap-metric-val {
+            font-size: 0.88rem;
+            font-weight: 700;
+            color: var(--text-main);
+        }
+        
+        .cap-arrow {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--widget-border);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            transition: var(--transition);
+        }
+        
+        .cap-card:hover .cap-arrow {
+            background: var(--neon-blue);
+            color: #000;
+            border-color: var(--neon-blue);
+            transform: translateX(3px);
+        }
+        
+        /* ── Optimization Core Simulator widget ── */
+        .optimizer-container {
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .opt-tabs {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 2rem;
+        }
+        
+        .opt-tab-btn {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            cursor: pointer;
+            text-align: left;
+            transition: var(--transition-slow);
+        }
+        
+        .opt-tab-btn:hover {
+            transform: translateX(8px);
+            border-color: var(--primary);
+        }
+        
+        .opt-tab-btn.active {
+            background: linear-gradient(90deg, var(--accent-glow) 0%, transparent 100%);
+            border-left: 4px solid var(--primary);
+            box-shadow: 0 10px 25px -10px rgba(0,0,0,0.1);
+        }
+        
+        .opt-tab-btn i {
+            font-size: 1.4rem;
+            color: var(--text-muted);
+            width: 32px;
+            transition: var(--transition);
+        }
+        
+        .opt-tab-btn.active i {
+            color: var(--primary);
+            transform: scale(1.1);
+        }
+        
+        .opt-tab-info h4 {
+            font-size: 0.98rem;
+            margin-bottom: 2px;
+        }
+        
+        .opt-tab-info p {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        
+        /* Operations Dashboard Widget */
+        .ops-dashboard {
+            padding: 2.2rem;
+            border-radius: 24px;
+        }
+        
+        .ops-status-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            border-bottom: 1px solid var(--widget-border);
+            padding-bottom: 1rem;
+        }
+        
+        .status-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(39, 201, 63, 0.08);
+            border: 1px solid rgba(39, 201, 63, 0.2);
+            color: #27c93f;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.72rem;
+            font-weight: 700;
+        }
+        
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #27c93f;
+            border-radius: 50%;
+            box-shadow: 0 0 8px #27c93f;
+            animation: pulse 1.5s infinite;
+        }
+        
+        .ops-indicators-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .metric-dial-box {
+            text-align: center;
+            border: 1px solid var(--widget-border);
+            border-radius: 20px;
+            padding: 1.5rem 1rem;
+            background: rgba(255, 255, 255, 0.01);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        /* Dial circle progress */
+        .progress-dial {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition-slow);
+        }
+        
+        .dial-track-circle {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 8px solid var(--widget-border);
+        }
+        
+        .dial-percentage {
+            font-size: 1.3rem;
+            font-weight: 800;
+            font-family: var(--font-heading);
+            color: var(--text-main);
+            position: relative;
+            z-index: 2;
+        }
+        
+        .metric-dial-box h5 {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        /* Dynamic SVG Live Traffic Graph wave */
+        .live-wave-card {
+            border: 1px solid var(--widget-border);
+            border-radius: 18px;
+            padding: 1.2rem;
+            background: rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        .live-wave-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+
+        .live-wave-title {
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .live-wave-title i {
+            color: var(--neon-blue);
+        }
+        
+        .live-ping-val {
+            font-size: 0.82rem;
+            color: #27c93f;
+            font-family: monospace;
+            font-weight: 700;
+        }
+
+        .svg-container {
+            width: 100%;
+            height: 70px;
+        }
+
+        /* SVG wave animation */
+        .wave-path {
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+            animation: drawWave 4s linear infinite;
+        }
+
+        @keyframes drawWave {
+            to { stroke-dashoffset: 0; }
+        }
+        
+        /* ── Retainer Pricing Interactive Calculator ── */
+        .calculator-card {
+            padding: 3rem 2.5rem;
+            border-radius: 28px;
+            margin-top: 3.5rem;
+        }
+        
+        .calc-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .calc-controls h3 {
+            font-size: 1.55rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Slider Styling */
+        .slider-group {
+            margin-bottom: 2.2rem;
+        }
+        
+        .slider-labels {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .slider-label-title {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+        
+        .slider-val-badge {
+            font-size: 1rem;
+            font-weight: 800;
+            color: var(--primary);
+            background: rgba(0, 225, 255, 0.08);
+            border: 1px solid rgba(0, 225, 255, 0.2);
+            padding: 4px 14px;
+            border-radius: 20px;
+            font-family: var(--font-heading);
+        }
+        
+        .custom-range {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            border-radius: 10px;
+            background: var(--widget-header);
+            border: 1px solid var(--widget-border);
+            outline: none;
+            margin-bottom: 1.5rem;
+        }
+        
+        .custom-range::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            cursor: pointer;
+            box-shadow: 0 0 12px var(--primary-glow);
+            transition: transform 0.1s ease;
+        }
+        
+        .custom-range::-webkit-slider-thumb:hover {
+            transform: scale(1.18);
+        }
+        
+        .slider-ticks {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 5px;
+        }
+        
+        .slider-tick {
+            font-size: 0.72rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .slider-tick:hover {
+            color: var(--text-main);
+        }
+        
+        /* Toggle Switch Grid */
+        .calculator-toggles-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+        
+        .toggle-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.1rem;
+            border-radius: 16px;
+            border: 1px solid var(--widget-border);
+            background: rgba(255,255,255,0.01);
+            transition: var(--transition);
+        }
+        
+        .toggle-row:hover {
+            background: rgba(255,255,255,0.02);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .toggle-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .toggle-info i {
+            font-size: 1.15rem;
+            color: var(--neon-blue);
+            width: 20px;
+        }
+        
+        .toggle-text h4 {
+            font-size: 0.88rem;
+            margin-bottom: 2px;
+            font-weight: 600;
+        }
+        
+        .toggle-text p {
+            font-size: 0.74rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+        
+        /* Premium custom switch inputs */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 46px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .switch-slider {
+            position: absolute;
+            cursor: pointer;
+            inset: 0;
+            background-color: var(--widget-header);
+            border: 1px solid var(--widget-border);
+            transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 34px;
+        }
+        
+        .switch-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: var(--text-muted);
+            transition: .3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 50%;
+        }
+        
+        .switch input:checked + .switch-slider {
+            background-image: var(--gradient-primary);
+            border-color: transparent;
+        }
+        
+        .switch input:checked + .switch-slider:before {
+            transform: translateX(22px);
+            background-color: #ffffff;
+        }
+        
+        /* Summary output display */
+        .calc-summary-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid var(--widget-border);
+            border-radius: 20px;
+            padding: 2.2rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 1px 0 0 rgba(255,255,255,0.05);
+        }
+
+        .calc-summary-panel::before {
+            content: '';
+            position: absolute;
+            top: -50%; left: -50%; width: 200%; height: 200%;
+            background: radial-gradient(circle, var(--accent-glow) 0%, transparent 60%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        .summary-header {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .summary-header p {
+            font-size: 0.88rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+        
+        .price-output-wrap {
+            position: relative;
+            z-index: 1;
+            margin-bottom: 4px;
+        }
+        
+        .calc-price {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-main);
+            font-family: var(--font-heading);
+            letter-spacing: -0.02em;
+            line-height: 1;
+        }
+        
+        .price-period {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+        
+        .summary-divider {
+            width: 100%;
+            height: 1px;
+            background: var(--widget-border);
+            position: relative;
+            z-index: 1;
+        }
+        
+        .roi-outputs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            width: 100%;
+            gap: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .roi-stat-box {
+            padding: 1rem 0.5rem;
+            border-radius: 14px;
+            background: rgba(0, 0, 0, 0.12);
+            border: 1px solid var(--widget-border);
+        }
+        
+        .roi-stat-box p {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+        
+        .roi-stat-box h4 {
+            font-size: 1.15rem;
+            color: var(--neon-blue);
+            font-weight: 800;
+            margin: 0;
+        }
+        
+        .calculator-cta-btn {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            padding: 14px 28px;
+            font-size: 0.95rem;
+        }
+        
+        /* ── Tech Stack / Integrations Strip ── */
+        .integrations-wrapper {
+            margin-top: 3.5rem;
+            border-radius: 20px;
+            padding: 2.5rem;
+            text-align: center;
+        }
+
+        .integrations-title {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .integrations-flex {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .integration-badge {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid var(--widget-border);
+            padding: 10px 22px;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .integration-badge i {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .integration-badge:hover {
+            border-color: var(--primary);
+            color: var(--text-main);
+            background: var(--glass-bg);
+            transform: translateY(-2px);
+        }
+
+        .integration-badge:hover i {
+            color: var(--neon-blue);
+            transform: scale(1.1);
+        }
+        
+        /* ── Light Theme Adjustments for Pricing Calculator ── */
+        [data-theme="light"] #calculator.inner-section {
+            background: radial-gradient(circle at 10% 20%, rgba(230, 230, 250, 0.4) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(200, 220, 255, 0.4) 0%, transparent 40%),
+                        linear-gradient(135deg, #ffffff 0%, #f1f5f9 100%);
+            position: relative;
+            z-index: 1;
+        }
+
+        [data-theme="light"] .calculator-card {
+            background: rgba(255, 255, 255, 0.7);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        [data-theme="light"] .calc-controls h3 {
+            color: #0f172a;
+        }
+
+        [data-theme="light"] .slider-label-title {
+            color: #1e293b;
+            font-weight: 700;
+        }
+
+        [data-theme="light"] .slider-val-badge {
+            background: rgba(0, 81, 255, 0.08);
+            color: #0051ff;
+            border-color: rgba(0, 81, 255, 0.2);
+            box-shadow: 0 4px 10px rgba(0, 81, 255, 0.1);
+        }
+
+        [data-theme="light"] .custom-range {
+            background: #e2e8f0;
+            border-color: #cbd5e1;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        [data-theme="light"] .custom-range::-webkit-slider-thumb {
+            background: linear-gradient(135deg, #0051ff 0%, #7c3aed 100%);
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+            border: 2px solid #ffffff;
+        }
+
+        [data-theme="light"] .slider-tick {
+            color: #64748b;
+        }
+
+        [data-theme="light"] .slider-tick:hover {
+            color: #0f172a;
+        }
+
+        [data-theme="light"] .toggle-row {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="light"] .toggle-row:hover {
+            background: #f8fafc;
+            border-color: #cbd5e1;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="light"] .toggle-info i {
+            color: #7c3aed;
+        }
+
+        [data-theme="light"] .toggle-text h4 {
+            color: #1e293b;
+        }
+
+        [data-theme="light"] .toggle-text p {
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        [data-theme="light"] .switch-slider {
+            background-color: #cbd5e1;
+            border-color: #94a3b8;
+            box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        
+        [data-theme="light"] .switch-slider:before {
+            background-color: #ffffff;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+        }
+
+        [data-theme="light"] .switch input:checked + .switch-slider {
+            background-image: linear-gradient(135deg, #0051ff 0%, #7c3aed 100%);
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.3);
+            border-color: transparent;
+        }
+
+        [data-theme="light"] .calc-summary-panel {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(248, 250, 252, 0.95) 100%);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04), inset 0 1px 0 rgba(255, 255, 255, 1);
+        }
+
+        [data-theme="light"] .calc-summary-panel::before {
+            background: radial-gradient(circle, rgba(124, 58, 237, 0.08) 0%, transparent 60%);
+        }
+
+        [data-theme="light"] .summary-header p {
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        [data-theme="light"] .calc-price {
+            color: #0f172a;
+        }
+
+        [data-theme="light"] .price-period {
+            color: #475569;
+            font-weight: 600;
+        }
+
+        [data-theme="light"] .summary-divider {
+            background: rgba(0, 0, 0, 0.08);
+        }
+
+        [data-theme="light"] .roi-stat-box {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="light"] .roi-stat-box p {
+            color: #64748b;
+            font-weight: 700;
+        }
+
+        [data-theme="light"] .roi-stat-box h4 {
+            color: #0051ff;
+        }
+
+        [data-theme="light"] .calculator-cta-btn {
+            background: linear-gradient(135deg, #0051ff 0%, #7c3aed 100%);
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+            border: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        [data-theme="light"] .calculator-cta-btn:hover {
+            box-shadow: 0 12px 25px rgba(124, 58, 237, 0.4);
+            transform: translateY(-2px);
+            color: #ffffff;
+        }
+
+        [data-theme="light"] .integrations-wrapper {
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="light"] .integrations-title {
+            color: #64748b;
+        }
+
+        [data-theme="light"] .integration-badge {
+            background: #ffffff;
+            border-color: #e2e8f0;
+            color: #475569;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="light"] .integration-badge i {
+            color: #475569;
+        }
+
+        [data-theme="light"] .integration-badge:hover {
+            border-color: #0051ff;
+            color: #0f172a;
+            box-shadow: 0 4px 10px rgba(0, 81, 255, 0.1);
+        }
+
+        [data-theme="light"] .integration-badge:hover i {
+            color: #0051ff;
+        }
+        
+        /* ── Responsive Refinements ── */
+        @media (max-width: 992px) {
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+                text-align: center;
+            }
+            
+            .hero-content p {
+                margin: 0 auto 2rem;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+            
+            .optimizer-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .calc-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 2.8rem;
+            }
+            
+            .cap-card {
+                padding: 1.8rem 1.5rem;
+            }
+            
+            .calculator-card {
+                padding: 2rem 1.5rem;
+            }
+            
+            .ops-indicators-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .roi-outputs-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .opt-tab-btn {
+                padding: 1rem;
+            }
+        }
+
+        /* Specific mobile optimization rules under 480px & 360px */
+        @media (max-width: 480px) {
+            .hero-content h1 {
+                font-size: 2.0rem !important;
+            }
+            .hero-content p {
+                font-size: 0.95rem !important;
+            }
+            .calculator-card {
+                padding: 1.5rem 1.25rem !important;
+                border-radius: 20px !important;
+            }
+            .cap-card {
+                padding: 1.5rem 1.25rem !important;
+                border-radius: 16px !important;
+            }
+            .capabilities-grid {
+                grid-template-columns: 1fr !important;
+                gap: 1.25rem !important;
+                margin-top: 2rem !important;
+            }
+            .stats-subgrid {
+                grid-template-columns: 1fr !important;
+                gap: 0.8rem !important;
+            }
+            .optimizer-container {
+                gap: 2rem !important;
+            }
+            .dashboard-mockup {
+                border-radius: 16px !important;
+            }
+            .mockup-body {
+                padding: 1rem !important;
+            }
+            .terminal-stream {
+                font-size: 0.72rem !important;
+                height: 95px !important;
+            }
+            .terminal-line {
+                white-space: normal !important;
+                flex-wrap: wrap !important;
+            }
+            .hero-buttons {
+                flex-direction: column !important;
+                width: 100% !important;
+                gap: 10px !important;
+            }
+            .hero-buttons .btn {
+                width: 100% !important;
+                justify-content: center !important;
+            }
+        }
+        
+        @media (max-width: 360px) {
+            .hero-content h1 {
+                font-size: 1.7rem !important;
+            }
+            .section-header h2 {
+                font-size: 1.45rem !important;
+            }
+            .slider-labels span {
+                font-size: 0.75rem !important;
+            }
+            .calculator-cta-btn {
+                padding: 12px 18px !important;
+                font-size: 0.85rem !important;
+            }
+            .calc-controls h3 {
+                font-size: 1.25rem !important;
+            }
+            .opt-tab-btn h4 {
+                font-size: 0.95rem !important;
+            }
+            .opt-tab-btn p {
+                font-size: 0.78rem !important;
+            }
+        }
+    </style>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- Mobile-only CTA inside nav panel -->
+                <a href="contact.html" class="header-cta mobile-nav-cta" style="display:none">
+                    <i class="fa-solid fa-bolt"></i> Get Started
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <!-- Profile / Account Button -->
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> User Dashboard</a>
+                        <a href="admin-dashboard.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Alternative Hero Section (Analytics Focus) -->
+    <section id="home" class="hero-section">
+        <!-- Animated background elements -->
+        <div class="glow-effect" style="background: radial-gradient(circle, rgba(0, 225, 255, 0.15) 0%, transparent 65%);"></div>
+        <div class="glow-effect-2" style="background: radial-gradient(circle, rgba(124, 58, 237, 0.12) 0%, transparent 65%);"></div>
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content" data-reveal>
+                    <div class="badge">📊 Enterprise Performance Focus</div>
+                    <h1>Engineering <br><span class="text-gradient">Digital Dominance</span></h1>
+                    <p>We combine advanced analytics algorithms with premium interactive design systems to generate unmatched scaling metrics for high-growth firms.</p>
+                    <div class="hero-buttons">
+                        <a href="services.html" class="btn btn-primary glow-btn"><i class="fa-solid fa-rocket"></i> Launch Campaign</a>
+                        <a href="#calculator" class="btn btn-outline">Explore Metrics <i class="fa-solid fa-arrow-trend-up"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Alternative Hero Interactive Graphic -->
+                <div class="hero-image" data-reveal data-delay="2">
+                    <div class="dashboard-mockup">
+                        <div class="mockup-header">
+                            <div class="window-dots">
+                                <span class="win-dot red"></span>
+                                <span class="win-dot yellow"></span>
+                                <span class="win-dot green"></span>
+                            </div>
+                            <span class="mockup-title">nexus_analytics_core.py</span>
+                        </div>
+
+                        <div class="mockup-body">
+                            <!-- Terminal Output Simulation -->
+                            <div class="terminal-stream" id="terminalStream">
+                                <div class="terminal-line"><span style="color:#64748b;">[12:05:42]</span> <span class="cyan">SYS_INIT_LINK...</span> SUCCESS</div>
+                                <div class="terminal-line"><span style="color:#64748b;">[12:05:43]</span> Parsing Organic Indexing shield... <span style="color:#27c93f;">OK</span></div>
+                                <div class="terminal-line"><span style="color:#64748b;">[12:05:43]</span> Calculated conversion score: <span class="yellow">6.8x ROAS</span></div>
+                                <div class="terminal-line"><span style="color:#64748b;">[12:05:44]</span> <span class="purple">CORE_SHIELD_VITAL</span> config loaded successfully.</div>
+                            </div>
+
+                            <!-- projected Graph Bars -->
+                            <div class="projected-chart-wrapper">
+                                <div class="projected-chart-header">
+                                    <h4>Projected Sales Revenue</h4>
+                                    <span class="chart-legend" id="chartLegend">+328% YoY Scale</span>
+                                </div>
+                                <div class="chart-bars-container" id="heroChartContainer">
+                                    <div class="bar-wrapper">
+                                        <div class="bar-fill" style="height: 100px;">
+                                            <div class="bar-progress" style="height: 40%;"></div>
+                                        </div>
+                                        <span class="bar-label">Q1</span>
+                                    </div>
+                                    <div class="bar-wrapper">
+                                        <div class="bar-fill" style="height: 100px;">
+                                            <div class="bar-progress" style="height: 60%;"></div>
+                                        </div>
+                                        <span class="bar-label">Q2</span>
+                                    </div>
+                                    <div class="bar-wrapper">
+                                        <div class="bar-fill" style="height: 100px;">
+                                            <div class="bar-progress" style="height: 75%;"></div>
+                                        </div>
+                                        <span class="bar-label">Q3</span>
+                                    </div>
+                                    <div class="bar-wrapper">
+                                        <div class="bar-fill" style="height: 100px;">
+                                            <div class="bar-progress" style="height: 90%;"></div>
+                                        </div>
+                                        <span class="bar-label">Q4</span>
+                                    </div>
+                                    <div class="bar-wrapper" style="width: 22%;">
+                                        <div class="bar-fill" style="height: 100px; border: 1px solid rgba(0, 225, 255, 0.3);">
+                                            <div class="bar-progress" style="height: 100%; background: linear-gradient(to top, #00e1ff, #7c3aed);"></div>
+                                        </div>
+                                        <span class="bar-label" style="font-weight: 700; color:var(--neon-blue);">TARGET</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Metric Badge Rows -->
+                            <div class="stats-subgrid">
+                                <div class="stat-badge-card">
+                                    <span>Average Campaign Spend</span>
+                                    <span id="heroROAS">6.8x ROAS</span>
+                                </div>
+                                <div class="stat-badge-card">
+                                    <span>Lead Optimization</span>
+                                    <span id="heroCPA" style="color: var(--neon-purple);">-42% CPA</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted Brands Strip -->
+    <section class="trusted-brands">
+        <div class="container">
+            <p class="section-subtitle text-center">Powering growth engines for enterprise giants</p>
+            <div class="brands-grid">
+                <i class="fa-brands fa-aws"></i>
+                <i class="fa-brands fa-google"></i>
+                <i class="fa-brands fa-microsoft"></i>
+                <i class="fa-brands fa-spotify"></i>
+                <i class="fa-brands fa-stripe"></i>
+                <i class="fa-brands fa-slack"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Capabilities Section -->
+    <section class="services section bg-darker" id="services">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">Capabilities</span>
+                <h2 class="section-title">High-Impact <span class="text-gradient">Core Services</span></h2>
+                <p class="section-desc">We offer algorithmic digital engineering to secure higher visibility, increase conversion benchmarks, and automate scaling loops.</p>
+            </div>
+            
+            <div class="capabilities-grid">
+                <!-- 1. SEO -->
+                <div class="cap-card glass-card" data-reveal data-delay="1">
+                    <div class="cap-card-header">
+                        <div class="cap-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                        <span class="cap-tag">99.2% Accuracy</span>
+                    </div>
+                    <h3>Predictive SEO Modeling</h3>
+                    <p>Harness crawl-pattern forecasting algorithms to secure rankings before keyword trends emerge. We optimize content for next-gen indexing engines.</p>
+                    <div class="cap-card-footer">
+                        <div>
+                            <span class="cap-metric-label">Est. Organic Jump</span>
+                            <div class="cap-metric-val">+245% Index Rate</div>
+                        </div>
+                        <a href="service-seo.html" class="cap-arrow" aria-label="Learn more about SEO Modeling"><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 2. Social Media Marketing -->
+                <div class="cap-card glass-card" data-reveal data-delay="2">
+                    <div class="cap-card-header">
+                        <div class="cap-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                        <span class="cap-tag">Active Monitoring</span>
+                    </div>
+                    <h3>Algorithm-Driven Social Scaler</h3>
+                    <p>Track social buzz ratios in real-time, automating viral campaigns configured to react instantly when public sentiment transitions positive.</p>
+                    <div class="cap-card-footer">
+                        <div>
+                            <span class="cap-metric-label">Engagement Goal</span>
+                            <div class="cap-metric-val">12x Viral Multiplier</div>
+                        </div>
+                        <a href="service-social.html" class="cap-arrow" aria-label="Learn more about Social Scaler"><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 3. Web Development -->
+                <div class="cap-card glass-card" data-reveal data-delay="3">
+                    <div class="cap-card-header">
+                        <div class="cap-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                        <span class="cap-tag">0.4s Speed Shield</span>
+                    </div>
+                    <h3>High-Performance Jamstack Dev</h3>
+                    <p>Deploy custom-crafted digital websites built on modern, secure Jamstack architectures with sub-second page loads and robust SEO performance.</p>
+                    <div class="cap-card-footer">
+                        <div>
+                            <span class="cap-metric-label">Core Web Vitals</span>
+                            <div class="cap-metric-val">100/100 Mobile Score</div>
+                        </div>
+                        <a href="service-web-dev.html" class="cap-arrow" aria-label="Learn more about Web Development"><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 4. PPC Advertising -->
+                <div class="cap-card glass-card" data-reveal data-delay="4">
+                    <div class="cap-card-header">
+                        <div class="cap-icon"><i class="fa-solid fa-rectangle-ad"></i></div>
+                        <span class="cap-tag">AI Bidding Core</span>
+                    </div>
+                    <h3>Algorithmic PPC Bidding</h3>
+                    <p>Eliminate ad-spend leakage. Our automated mathematical scripts adjust keywords bid targets dynamically based on target CAC thresholds.</p>
+                    <div class="cap-card-footer">
+                        <div>
+                            <span class="cap-metric-label">Avg. ROAS Target</span>
+                            <div class="cap-metric-val">6.8x Return</div>
+                        </div>
+                        <a href="service-ppc.html" class="cap-arrow" aria-label="Learn more about PPC Bidding"><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 5. Funnel Optimization -->
+                <div class="cap-card glass-card" data-reveal data-delay="5">
+                    <div class="cap-card-header">
+                        <div class="cap-icon"><i class="fa-solid fa-filter"></i></div>
+                        <span class="cap-tag">Conversion Max</span>
+                    </div>
+                    <h3>Conversion Funnel Optimization</h3>
+                    <p>Repair leakage paths along checkouts and capture pages with micro-interactive styling and high-performance design heuristics.</p>
+                    <div class="cap-card-footer">
+                        <div>
+                            <span class="cap-metric-label">Pipeline Efficiency</span>
+                            <div class="cap-metric-val">-42% CPA Threshold</div>
+                        </div>
+                        <a href="service-funnel.html" class="cap-arrow" aria-label="Learn more about Funnel Optimization"><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+
+                <!-- 6. Real-time Analytics -->
+                <div class="cap-card glass-card" data-reveal data-delay="6">
+                    <div class="cap-card-header">
+                        <div class="cap-icon"><i class="fa-solid fa-chart-pie"></i></div>
+                        <span class="cap-tag">API Driven</span>
+                    </div>
+                    <h3>Real-time BI Reporting</h3>
+                    <p>Never wait for late monthly reports. Access direct pipelines tracking campaign conversion vectors on live glassmorphism analytics portals.</p>
+                    <div class="cap-card-footer">
+                        <div>
+                            <span class="cap-metric-label">Sync Latency</span>
+                            <div class="cap-metric-val">&lt; 3.2s Global Push</div>
+                        </div>
+                        <a href="service-analytics.html" class="cap-arrow" aria-label="Learn more about BI Reporting"><i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Analytics Dashboard Mockup (Why Us alternate) -->
+    <section class="inner-section" id="why-us">
+        <div class="container">
+            <div class="optimizer-container">
+                <div data-reveal>
+                    <span class="badge">Next-Gen Analytics</span>
+                    <h2 class="section-title">Real-Time Performance <span class="text-gradient">Dashboards</span></h2>
+                    <p style="color:var(--text-muted); margin-bottom:2rem;">Unlike old agencies relying on slow monthly report emails, we engineer real-time reporting metrics tracking conversion funnels, CPC metrics, and landing page speeds on live dashboards.</p>
+                    
+                    <!-- Interactive Core Tabs -->
+                    <div class="opt-tabs">
+                        <button class="opt-tab-btn active" id="tabSEO">
+                            <i class="fa-solid fa-arrow-trend-up"></i>
+                            <div class="opt-tab-info">
+                                <h4>SEO Shield Mode</h4>
+                                <p>Automating crawl indexing limits and content-speed validations.</p>
+                            </div>
+                        </button>
+                        <button class="opt-tab-btn" id="tabSocial">
+                            <i class="fa-solid fa-hashtag"></i>
+                            <div class="opt-tab-info">
+                                <h4>Social Viral Mode</h4>
+                                <p>Tracking media sentiment shifts and buzz spikes instantly.</p>
+                            </div>
+                        </button>
+                        <button class="opt-tab-btn" id="tabPPC">
+                            <i class="fa-solid fa-bullseye"></i>
+                            <div class="opt-tab-info">
+                                <h4>PPC Optimizations</h4>
+                                <p>Adjusting spend distribution curves based on ROAS yields.</p>
+                            </div>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Live Operations Mockup Graphic -->
+                <div data-reveal data-delay="2">
+                    <div class="ops-dashboard glass-card glowing-border">
+                        <div class="ops-status-bar">
+                            <div>
+                                <h4 style="font-size: 1.1rem; font-family: var(--font-heading);" id="opsDashboardTitle">SEO Performance Engine</h4>
+                                <p style="font-size: 0.72rem; color: var(--text-muted); margin: 0;">Config ID: core_shield_v5.2</p>
+                            </div>
+                            <span class="status-pill">
+                                <span class="status-dot"></span> Active Shield
+                            </span>
+                        </div>
+
+                        <!-- Conic Circular Indicators -->
+                        <div class="ops-indicators-row">
+                            <div class="metric-dial-box">
+                                <div class="progress-dial" id="dial1" style="background: conic-gradient(var(--neon-blue) 0% 95%, rgba(255,255,255,0.05) 95% 100%);">
+                                    <div class="dial-track-circle" style="background: var(--glass-bg);"></div>
+                                    <span class="dial-percentage" id="valPercent1">99%</span>
+                                </div>
+                                <h5 id="dialLabel1">Core Web Vitals</h5>
+                            </div>
+                            <div class="metric-dial-box">
+                                <div class="progress-dial" id="dial2" style="background: conic-gradient(var(--neon-purple) 0% 88%, rgba(255,255,255,0.05) 88% 100%);">
+                                    <div class="dial-track-circle" style="background: var(--glass-bg);"></div>
+                                    <span class="dial-percentage" id="valPercent2">88%</span>
+                                </div>
+                                <h5 id="dialLabel2">Crawl Speed Index</h5>
+                            </div>
+                        </div>
+
+                        <!-- Live Traffic Wave graph SVG -->
+                        <div class="live-wave-card">
+                            <div class="live-wave-header">
+                                <span class="live-wave-title">
+                                    <i class="fa-solid fa-wave-square"></i> Real-time Traffic Pipeline
+                                </span>
+                                <span class="live-ping-val" id="livePing">0.4ms ping</span>
+                            </div>
+                            <div class="svg-container">
+                                <svg width="100%" height="100%" viewBox="0 0 400 70" preserveAspectRatio="none">
+                                    <!-- Background grid lines -->
+                                    <line x1="0" y1="10" x2="400" y2="10" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                                    <line x1="0" y1="35" x2="400" y2="35" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                                    <line x1="0" y1="60" x2="400" y2="60" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
+                                    <!-- Animated Wave Curve -->
+                                    <path class="wave-path" id="trafficPath" d="M 0,35 Q 25,10 50,35 T 100,35 T 150,35 T 200,55 T 250,15 T 300,35 T 350,20 T 400,35" fill="none" stroke="url(#waveGradient)" stroke-width="3" />
+                                    <!-- Gradient definition -->
+                                    <defs>
+                                        <linearGradient id="waveGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+                                            <stop offset="0%" stop-color="var(--neon-blue)" />
+                                            <stop offset="100%" stop-color="var(--neon-purple)" />
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Calculator Section -->
+    <section class="inner-section bg-alt" id="calculator">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">Dynamic ROI Calculator</span>
+                <h2 class="section-title">Configure Your Retainer <span class="text-gradient">Pricing</span></h2>
+                <p class="section-desc">Drag the slider to select your monthly target reach metrics and choose your speed shield add-ons to instantly calculate estimated ROI yields.</p>
+            </div>
+            
+            <!-- Interactive pricing component -->
+            <div class="calculator-card glass-card glowing-border" data-reveal>
+                <div class="calc-grid">
+                    <div class="calc-controls">
+                        <h3>Nexus Retainer Engine</h3>
+                        
+                        <!-- Slider Traffic range -->
+                        <div class="slider-group">
+                            <div class="slider-labels">
+                                <span class="slider-label-title">Target Monthly Reach</span>
+                                <span class="slider-val-badge" id="trafficBadge">100k views</span>
+                            </div>
+                            <input type="range" id="calcSlider" class="custom-range" min="1" max="5" value="3" aria-label="Target monthly traffic reach">
+                            <div class="slider-ticks">
+                                <span class="slider-tick" onclick="setSlider(1)">10k</span>
+                                <span class="slider-tick" onclick="setSlider(2)">50k</span>
+                                <span class="slider-tick" onclick="setSlider(3)">100k</span>
+                                <span class="slider-tick" onclick="setSlider(4)">500k</span>
+                                <span class="slider-tick" onclick="setSlider(5)">1M+</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Toggle Add-ons check boxes -->
+                        <div class="calculator-toggles-grid">
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <i class="fa-solid fa-shield-halved"></i>
+                                    <div class="toggle-text">
+                                        <h4>Deploy SEO Speed Shield</h4>
+                                        <p>Secure sub-0.5s mobile rendering setups (+ $250/mo)</p>
+                                    </div>
+                                </div>
+                                <label class="switch" aria-label="Deploy SEO Speed Shield toggle">
+                                    <input type="checkbox" id="addShield" checked>
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <i class="fa-solid fa-robot"></i>
+                                    <div class="toggle-text">
+                                        <h4>Activate AI Ad Bidder</h4>
+                                        <p>Mathematical scripts targeting CPA optimizations (+ $450/mo)</p>
+                                    </div>
+                                </div>
+                                <label class="switch" aria-label="Activate AI Ad Bidder toggle">
+                                    <input type="checkbox" id="addBidder">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                            
+                            <div class="toggle-row">
+                                <div class="toggle-info">
+                                    <i class="fa-solid fa-chart-line"></i>
+                                    <div class="toggle-text">
+                                        <h4>Enable 24/7 BI Dashboard</h4>
+                                        <p>Live metrics updates pushing analytics maps (+ $190/mo)</p>
+                                    </div>
+                                </div>
+                                <label class="switch" aria-label="Enable 24/7 BI Dashboard toggle">
+                                    <input type="checkbox" id="addDashboard">
+                                    <span class="switch-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Calculated Outputs -->
+                    <div class="calc-summary-panel">
+                        <div class="summary-header">
+                            <p>Estimated Retainer Rate</p>
+                            <div class="price-output-wrap">
+                                <span class="calc-price" id="calcPriceDisplay">$2,249</span>
+                                <span class="price-period">/mo</span>
+                            </div>
+                        </div>
+                        
+                        <div class="summary-divider"></div>
+                        
+                        <!-- Projected performance yields -->
+                        <div class="roi-outputs-grid">
+                            <div class="roi-stat-box">
+                                <p>Est. Conversion Rate</p>
+                                <h4 id="calcCR">4.8% CR</h4>
+                            </div>
+                            <div class="roi-stat-box">
+                                <p>Calculated ROI Yield</p>
+                                <h4 id="calcROI">8.2x ROAS</h4>
+                            </div>
+                        </div>
+                        
+                        <a href="contact.html" class="btn btn-primary glow-btn calculator-cta-btn">Lock In Analytics Plan <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tech stack integration showcases -->
+            <div class="integrations-wrapper glass-card glowing-border" data-reveal>
+                <div class="integrations-title">Seamless Integrations Configured Out-of-the-Box</div>
+                <div class="integrations-flex">
+                    <div class="integration-badge"><i class="fa-brands fa-google"></i> Google Analytics 4</div>
+                    <div class="integration-badge"><i class="fa-brands fa-hubspot"></i> HubSpot Core</div>
+                    <div class="integration-badge"><i class="fa-brands fa-aws"></i> AWS Lambda</div>
+                    <div class="integration-badge"><i class="fa-brands fa-stripe"></i> Stripe Billing</div>
+                    <div class="integration-badge"><i class="fa-brands fa-shopify"></i> Shopify Plus</div>
+                    <div class="integration-badge"><i class="fa-brands fa-slack"></i> Slack Channels</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Retainers Section -->
+    <section class="services section bg-darker" id="faq">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">Client Queries</span>
+                <h2 class="section-title">Frequently Asked <span class="text-gradient">Questions</span></h2>
+            </div>
+            
+            <div class="faq-accordion" style="max-width: 800px; margin: 0 auto;" data-reveal>
+                <div class="accordion-item glass-card active">
+                    <div class="accordion-header">
+                        <h4>How long does it take to see results with SEO?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>SEO is a long-term strategy. Typically, you can expect to see noticeable improvements in rankings and organic traffic within 3 to 6 months, depending on the competitiveness of your industry and the current state of your website.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card">
+                    <div class="accordion-header">
+                        <h4>Do you provide custom marketing packages?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes, absolutely. While our Retainer pricing slider offers standard ranges as a starting point, we often tailor our digital services to meet the specific requirements, scale parameters, and tech budgets of each individual firm to ensure maximum ROI.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card">
+                    <div class="accordion-header">
+                        <h4>What metrics do you track for campaigns?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We track various KPIs depending on the campaign goals, including conversion rate, cost per acquisition (CPA), return on ad spend (ROAS), organic traffic growth, bounce rate, and overall engagement metrics.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card">
+                    <div class="accordion-header">
+                        <h4>Will I have a dedicated point of contact?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes, clients on our Retainer plans are assigned a dedicated Account Manager. They will be your main point of contact, providing regular updates and ensuring your campaigns align with your business goals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-strip">
+        <div class="container" data-reveal>
+            <span class="badge">Accelerate Retainers</span>
+            <h2>Let's Scale Your Brand <span class="text-gradient">To New Coordinates</span></h2>
+            <p>Our collaborative dynamic product strategy brings brands into the digital future with premium visuals and engineering.</p>
+            <div class="btn-group">
+                <a href="contact.html" class="btn btn-primary glow-btn">Launch Campaign</a>
+                <a href="services.html" class="btn btn-outline">Review Capabilities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Social Media</a></li>
+                        <li><a href="services.html">PPC Advertising</a></li>
+                        <li><a href="services.html">Content Creation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required aria-label="Email Address">
+                        <button type="submit" aria-label="Subscribe"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to Top"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+    
+    <!-- Home 2 Page-Specific Dynamic Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            /* ==========================================================================
+               1. Terminal Output Stream Loop Simulation
+               ========================================================================== */
+            const terminalStream = document.getElementById('terminalStream');
+            if (terminalStream) {
+                const logs = [
+                    { type: 'cyan', text: 'SYS_INIT_LINK... SUCCESS' },
+                    { type: 'green', text: 'Parsing Organic Indexing shield... OK' },
+                    { type: 'yellow', text: 'Calculated conversion score: 6.8x ROAS' },
+                    { type: 'purple', text: 'CORE_SHIELD_VITAL config loaded successfully.' },
+                    { type: 'green', text: 'Updating crawler maps for organic indexing... done' },
+                    { type: 'cyan', text: 'Ping received from GA4 connector: latency <1.4ms' },
+                    { type: 'yellow', text: 'Adjusting PPC bidding coefficients: +0.12 target' },
+                    { type: 'purple', text: 'Automated conversion shield: active and defensive' },
+                    { type: 'green', text: 'Database query load speed validation score: 100/100' },
+                    { type: 'cyan', text: 'Parsing social sentiments metrics... neutral-high ratio' }
+                ];
+                
+                let logIdx = 4;
+                setInterval(() => {
+                    const nextLog = logs[logIdx];
+                    const time = new Date().toTimeString().split(' ')[0];
+                    const line = document.createElement('div');
+                    line.className = `terminal-line ${nextLog.type}`;
+                    line.innerHTML = `<span style="color:#64748b;">[${time}]</span> ${nextLog.text}`;
+                    
+                    terminalStream.appendChild(line);
+                    terminalStream.scrollTop = terminalStream.scrollHeight;
+                    
+                    if (terminalStream.children.length > 8) {
+                        terminalStream.removeChild(terminalStream.firstChild);
+                    }
+                    
+                    logIdx = (logIdx + 1) % logs.length;
+                }, 3500);
+            }
+
+            /* ==========================================================================
+               2. Interactive Core Tabs (SEO, Social, PPC Optimizer simulator)
+               ========================================================================== */
+            const tabSEO = document.getElementById('tabSEO');
+            const tabSocial = document.getElementById('tabSocial');
+            const tabPPC = document.getElementById('tabPPC');
+
+            const opsDashboardTitle = document.getElementById('opsDashboardTitle');
+            const valPercent1 = document.getElementById('valPercent1');
+            const valPercent2 = document.getElementById('valPercent2');
+            const dialLabel1 = document.getElementById('dialLabel1');
+            const dialLabel2 = document.getElementById('dialLabel2');
+            const dial1 = document.getElementById('dial1');
+            const dial2 = document.getElementById('dial2');
+            const livePing = document.getElementById('livePing');
+            const trafficPath = document.getElementById('trafficPath');
+
+            const heroROAS = document.getElementById('heroROAS');
+            const heroCPA = document.getElementById('heroCPA');
+            const chartLegend = document.getElementById('chartLegend');
+            const heroChartContainer = document.getElementById('heroChartContainer');
+
+            const triggerTabChange = (mode) => {
+                // Remove active classes
+                document.querySelectorAll('.opt-tab-btn').forEach(btn => btn.classList.remove('active'));
+
+                // Set styles, texts, and circle dials depending on selection
+                if (mode === 'seo') {
+                    tabSEO.classList.add('active');
+                    opsDashboardTitle.textContent = 'SEO Performance Engine';
+                    valPercent1.textContent = '99%';
+                    valPercent2.textContent = '88%';
+                    dialLabel1.textContent = 'Core Web Vitals';
+                    dialLabel2.textContent = 'Crawl Speed Index';
+                    dial1.style.background = 'conic-gradient(var(--neon-blue) 0% 99%, rgba(255,255,255,0.05) 99% 100%)';
+                    dial2.style.background = 'conic-gradient(var(--neon-purple) 0% 88%, rgba(255,255,255,0.05) 88% 100%)';
+                    livePing.textContent = '0.4ms latency';
+                    trafficPath.setAttribute('d', 'M 0,35 Q 25,10 50,35 T 100,35 T 150,35 T 200,55 T 250,15 T 300,35 T 350,20 T 400,35');
+                    
+                    // Update Hero mockup badges in real time too!
+                    heroROAS.textContent = '6.8x ROAS';
+                    heroCPA.textContent = '-42% CPA';
+                    chartLegend.textContent = '+328% YoY Scale';
+                    updateHeroChart([40, 60, 75, 90, 100]);
+                } 
+                else if (mode === 'social') {
+                    tabSocial.classList.add('active');
+                    opsDashboardTitle.textContent = 'Social Sentiment Engine';
+                    valPercent1.textContent = '94%';
+                    valPercent2.textContent = '96%';
+                    dialLabel1.textContent = 'Positive Sentiment';
+                    dialLabel2.textContent = 'Active Monitoring';
+                    dial1.style.background = 'conic-gradient(var(--neon-blue) 0% 94%, rgba(255,255,255,0.05) 94% 100%)';
+                    dial2.style.background = 'conic-gradient(var(--neon-purple) 0% 96%, rgba(255,255,255,0.05) 96% 100%)';
+                    livePing.textContent = '1.2ms latency';
+                    trafficPath.setAttribute('d', 'M 0,35 Q 20,40 40,20 T 80,45 T 120,10 T 160,55 T 200,20 T 240,40 T 280,15 T 320,50 T 360,25 T 400,35');
+                    
+                    heroROAS.textContent = '5.4x ROAS';
+                    heroCPA.textContent = '12.4% CTR';
+                    chartLegend.textContent = '+580k Reach Pulse';
+                    updateHeroChart([30, 45, 60, 85, 95]);
+                } 
+                else if (mode === 'ppc') {
+                    tabPPC.classList.add('active');
+                    opsDashboardTitle.textContent = 'PPC Conversions Engine';
+                    valPercent1.textContent = '95%';
+                    valPercent2.textContent = '91%';
+                    dialLabel1.textContent = 'Ad Bid Optimization';
+                    dialLabel2.textContent = 'Budget Allocation';
+                    dial1.style.background = 'conic-gradient(var(--neon-blue) 0% 95%, rgba(255,255,255,0.05) 95% 100%)';
+                    dial2.style.background = 'conic-gradient(var(--neon-purple) 0% 91%, rgba(255,255,255,0.05) 91% 100%)';
+                    livePing.textContent = '0.8ms latency';
+                    trafficPath.setAttribute('d', 'M 0,35 Q 30,15 60,35 T 120,45 T 180,25 T 240,55 T 300,20 T 360,40 T 400,35');
+                    
+                    heroROAS.textContent = '8.4x ROAS';
+                    heroCPA.textContent = '-54% CPA';
+                    chartLegend.textContent = '+420% Conversions';
+                    updateHeroChart([50, 70, 80, 95, 100]);
+                }
+            };
+
+            const updateHeroChart = (heights) => {
+                const progressBars = heroChartContainer.querySelectorAll('.bar-progress');
+                progressBars.forEach((bar, idx) => {
+                    bar.style.height = `${heights[idx]}%`;
+                });
+            };
+
+            if (tabSEO) tabSEO.addEventListener('click', () => triggerTabChange('seo'));
+            if (tabSocial) tabSocial.addEventListener('click', () => triggerTabChange('social'));
+            if (tabPPC) tabPPC.addEventListener('click', () => triggerTabChange('ppc'));
+
+            // Set initial chart height styles with transition delay
+            setTimeout(() => {
+                updateHeroChart([40, 60, 75, 90, 100]);
+            }, 600);
+
+
+            /* ==========================================================================
+               3. Interactive Retainer Pricing Calculator Widget logic
+               ========================================================================== */
+            const calcSlider = document.getElementById('calcSlider');
+            const addShield = document.getElementById('addShield');
+            const addBidder = document.getElementById('addBidder');
+            const addDashboard = document.getElementById('addDashboard');
+
+            const trafficBadge = document.getElementById('trafficBadge');
+            const calcPriceDisplay = document.getElementById('calcPriceDisplay');
+            const calcCR = document.getElementById('calcCR');
+            const calcROI = document.getElementById('calcROI');
+
+            // Calculation maps
+            const tierMap = {
+                1: { views: '10k views', basePrice: 999, cr: '3.4% CR', roi: '5.2x ROAS' },
+                2: { views: '50k views', basePrice: 1499, cr: '4.2% CR', roi: '6.8x ROAS' },
+                3: { views: '100k views', basePrice: 1999, cr: '4.8% CR', roi: '8.2x ROAS' },
+                4: { views: '500k views', basePrice: 3499, cr: '5.2% CR', roi: '9.4x ROAS' },
+                5: { views: '1M+ views', basePrice: 4999, cr: '5.8% CR', roi: '10.5x ROAS' }
+            };
+
+            const updatePricing = () => {
+                const tier = parseInt(calcSlider.value);
+                const config = tierMap[tier];
+                
+                // Add-on math
+                let price = config.basePrice;
+                if (addShield.checked) price += 250;
+                if (addBidder.checked) price += 450;
+                if (addDashboard.checked) price += 190;
+                
+                // Render inputs
+                trafficBadge.textContent = config.views;
+                
+                // Animate Price Output Count-Up
+                animatePriceText(price);
+                
+                // Render rates
+                calcCR.textContent = config.cr;
+                calcROI.textContent = config.roi;
+            };
+
+            let currentPriceValue = 1999 + 250; // Starter value mapped to default checked shield
+            const animatePriceText = (targetPrice) => {
+                clearInterval(window.priceInterval);
+                const duration = 400; // ms
+                const steps = 20;
+                const stepVal = (targetPrice - currentPriceValue) / steps;
+                let stepCount = 0;
+                
+                window.priceInterval = setInterval(() => {
+                    currentPriceValue += stepVal;
+                    stepCount++;
+                    
+                    calcPriceDisplay.textContent = `$${Math.round(currentPriceValue).toLocaleString()}`;
+                    
+                    if (stepCount >= steps) {
+                        currentPriceValue = targetPrice;
+                        calcPriceDisplay.textContent = `$${targetPrice.toLocaleString()}`;
+                        clearInterval(window.priceInterval);
+                    }
+                }, duration / steps);
+            };
+
+            // Global slider quick jumps
+            window.setSlider = (val) => {
+                calcSlider.value = val;
+                updatePricing();
+            };
+
+            if (calcSlider) calcSlider.addEventListener('input', updatePricing);
+            if (addShield) addShield.addEventListener('change', updatePricing);
+            if (addBidder) addBidder.addEventListener('change', updatePricing);
+            if (addDashboard) addDashboard.addEventListener('change', updatePricing);
+
+            // Initial calc run
+            updatePricing();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | NexusDigital</title>
+    <meta name="description"
+        content="Browse through NexusDigital's latest work, e-commerce, web development, and digital marketing case studies.">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Light Mode Fixes: Portfolio Page -->
+    <!-- Modern Redesign Styles: Portfolio Page -->
+    <style>
+        /* ── Portfolio Layout & Filters Redesign ── */
+        .portfolio-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 3.5rem;
+            position: relative;
+            z-index: 5;
+        }
+
+        .filter-btn {
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--widget-border);
+            color: var(--text-muted);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .filter-btn:hover {
+            color: var(--text-main);
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-2px);
+            border-color: rgba(0, 225, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(0, 225, 255, 0.1);
+        }
+
+        .filter-btn.active {
+            background: var(--gradient-primary);
+            border-color: transparent !important;
+            color: #ffffff !important;
+            box-shadow: 0 8px 25px rgba(124, 58, 237, 0.35), 0 0 15px rgba(0, 225, 255, 0.2);
+        }
+
+        /* Light theme overrides for filters */
+        [data-theme="light"] .filter-btn {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            color: #475569;
+        }
+
+        [data-theme="light"] .filter-btn:hover {
+            color: #0f172a;
+            background: rgba(0, 0, 0, 0.06);
+            border-color: rgba(37, 99, 235, 0.2);
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.08);
+        }
+
+        [data-theme="light"] .filter-btn.active {
+            background: #2563eb !important;
+            color: #ffffff !important;
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.3) !important;
+        }
+
+        /* ── Portfolio Grid & Card Redesign ── */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 1rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 225, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(0, 225, 255, 0.15);
+        }
+
+        .portfolio-img {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            width: 100%;
+        }
+
+        .portfolio-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-item:hover .portfolio-img img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.9));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-link {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: var(--gradient-primary);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.3rem;
+            transform: scale(0.7);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+        }
+
+        .portfolio-link:hover {
+            background: #00e1ff;
+            color: #020617;
+            box-shadow: 0 0 15px #00e1ff;
+            transform: scale(1.1) rotate(45deg);
+        }
+
+        .portfolio-item:hover .portfolio-link {
+            transform: scale(1);
+        }
+
+        .portfolio-info {
+            padding: 1.8rem 1.6rem;
+            position: relative;
+            background: rgba(0, 0, 0, 0.2);
+            border-top: 1px solid var(--glass-border);
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .portfolio-info h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.6rem;
+            font-family: var(--font-heading);
+            transition: color 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-info h3 {
+            color: #00e1ff;
+        }
+
+        .portfolio-info p {
+            color: var(--primary);
+            font-size: 0.82rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin: 0;
+        }
+
+        /* Light theme overrides for portfolio grid */
+        [data-theme="light"] .portfolio-item {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="light"] .portfolio-item:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 0 15px rgba(37, 99, 235, 0.1);
+        }
+
+        [data-theme="light"] .portfolio-info {
+            background: #ffffff;
+            border-top: 1px solid rgba(0, 0, 0, 0.06);
+        }
+
+        [data-theme="light"] .portfolio-info h3 {
+            color: #0f172a;
+        }
+
+        [data-theme="light"] .portfolio-item:hover .portfolio-info h3 {
+            color: #2563eb;
+        }
+
+        [data-theme="light"] .portfolio-info p {
+            color: #2563eb;
+        }
+
+        /* ── ROI Statistics Section Redesign ── */
+        .counters-section.bg-alt {
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.2)) !important;
+            border-top: 1px solid var(--widget-border);
+            border-bottom: 1px solid var(--widget-border);
+            position: relative;
+        }
+
+        [data-theme="light"] .counters-section.bg-alt {
+            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%) !important;
+            border-top: 1px solid #e2e8f0 !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            margin-top: 3.5rem;
+        }
+
+        .stat-item {
+            padding: 2.5rem 2rem;
+            border-radius: 24px;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            text-align: center;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at top right, rgba(0, 225, 255, 0.05), transparent 60%);
+            pointer-events: none;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            border-color: rgba(124, 58, 237, 0.3);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3), 0 0 15px rgba(124, 58, 237, 0.1);
+        }
+
+        .stat-item h3 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 0.8rem;
+            color: var(--text-main);
+            background: linear-gradient(135deg, #00e1ff 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: var(--font-heading);
+            letter-spacing: -0.02em;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* Light theme overrides for ROI stats */
+        [data-theme="light"] .stat-item {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.02);
+        }
+
+        [data-theme="light"] .stat-item:hover {
+            border-color: rgba(37, 99, 235, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        [data-theme="light"] .stat-item h3 {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .stat-item p {
+            color: #64748b;
+        }
+
+        /* Responsive overrides for portfolio grids */
+        @media (max-width: 992px) {
+            .stats-container {
+                grid-template-columns: repeat(2, 1fr) !important;
+                gap: 1.5rem !important;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .stats-container {
+                grid-template-columns: 1fr !important;
+                gap: 1.25rem !important;
+            }
+            .stat-item {
+                padding: 2rem 1.5rem !important;
+            }
+            .stat-item h3 {
+                font-size: 2.3rem !important;
+            }
+        }
+    </style>
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header sticky" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- Mobile-only CTA inside nav panel -->
+                <a href="contact.html" class="header-cta mobile-nav-cta" style="display:none">
+                    <i class="fa-solid fa-bolt"></i> Get Started
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <!-- Profile / Account Button -->
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> User Dashboard</a>
+                        <a href="admin-dashboard.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i
+                        class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-orb banner-orb-1"></div>
+        <div class="banner-orb banner-orb-2"></div>
+        <div class="container">
+            <div class="page-banner-content" data-reveal>
+                <span class="badge">Our Masterpieces</span>
+                <h1>Creative <span class="text-gradient">Portfolio Showcase</span></h1>
+                <p>Delivering aesthetic digital excellence and industry-leading performance parameters for clients worldwide.</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span>Portfolio</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Grid Section -->
+    <section class="inner-section">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">Our Successes</span>
+                <h2 class="section-title">Explore Our <span class="text-gradient">Featured Work</span></h2>
+            </div>
+
+            <!-- Portfolio Filter Buttons -->
+            <div class="portfolio-filters" data-reveal>
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+
+            <!-- Grid -->
+            <div class="portfolio-grid" data-reveal>
+                <!-- Project 1 -->
+                <div class="portfolio-item glass-card mix web" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tech Startup Redesign">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Tech Startup Redesign</h3>
+                        <p>Web Design</p>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="portfolio-item glass-card mix marketing" data-category="marketing">
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Social Media Campaign">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Social Media Campaign</h3>
+                        <p>Marketing</p>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="portfolio-item glass-card mix branding" data-category="branding">
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Corporate Identity">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Corporate Identity</h3>
+                        <p>Branding</p>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="portfolio-item glass-card mix web" data-category="web">
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="E-Commerce Platform">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Web Design</p>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="portfolio-item glass-card mix marketing" data-category="marketing">
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="SEO Optimization Plan">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>SEO Optimization Plan</h3>
+                        <p>Marketing</p>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="portfolio-item glass-card mix branding" data-category="branding">
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Brand Identity Refresh">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Brand Identity Refresh</h3>
+                        <p>Branding</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies / Success Metrics Slider -->
+    <section class="inner-section bg-alt counters-section">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">Client ROI Metrics</span>
+                <h2 class="section-title">We Deliver Outstanding <span class="text-gradient">Results</span></h2>
+                <p class="section-desc">Average metrics recorded across our entire portfolio projects in the last 12 months.</p>
+            </div>
+
+            <div class="stats-container" data-reveal>
+                <div class="stat-item glass-card">
+                    <h3>+<span class="counter" data-target="145">0</span>%</h3>
+                    <p>Avg Conversion Boost</p>
+                </div>
+                <div class="stat-item glass-card">
+                    <h3><span class="counter" data-target="320">0</span>%</h3>
+                    <p>Average ROI Boost</p>
+                </div>
+                <div class="stat-item glass-card">
+                    <h3>+<span class="counter" data-target="200">0</span>%</h3>
+                    <p>Avg Organic Growth</p>
+                </div>
+                <div class="stat-item glass-card">
+                    <h3><span class="counter" data-target="98">0</span>%</h3>
+                    <p>Customer Retention Rate</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-strip">
+        <div class="container" data-reveal>
+            <span class="badge">Work With Us</span>
+            <h2>Let's Build Your <span class="text-gradient">Growth Engine Today</span></h2>
+            <p>Our collaborative dynamic product strategy brings brands into the digital future with premium visuals and engineering.</p>
+            <div class="btn-group">
+                <a href="contact.html" class="btn btn-primary glow-btn">Start Your Campaign</a>
+                <a href="services.html" class="btn btn-outline">Explore Our Capabilities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Social Media</a></li>
+                        <li><a href="services.html">PPC Advertising</a></li>
+                        <li><a href="services.html">Content Creation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+</body>
+</html>

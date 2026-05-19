@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Team | NexusDigital</title>
+    <meta name="description"
+        content="Meet the high-performing dynamic digital marketing experts and leaders driving success at NexusDigital.">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Modern Redesign Styles: Team Page -->
+    <style>
+        /* ── Team Grid & Cards Redesign ── */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .team-card {
+            border-radius: 24px;
+            overflow: hidden;
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .team-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            padding: 1px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.02) 50%, rgba(0, 225, 255, 0.2) 100%);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            pointer-events: none;
+            transition: opacity 0.4s ease;
+            opacity: 0.8;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(124, 58, 237, 0.35);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.45), 0 0 25px rgba(124, 58, 237, 0.2);
+        }
+
+        .team-card:hover::after {
+            background: linear-gradient(135deg, rgba(124, 58, 237, 0.4), rgba(0, 225, 255, 0.4));
+            opacity: 1;
+        }
+
+        .team-img {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 1/1;
+            margin: 1.25rem 1.25rem 0.5rem;
+            border-radius: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .team-card:hover .team-img img {
+            transform: scale(1.06);
+        }
+
+        /* Sleek Socials Overlay overlaying image bottom half */
+        .team-socials {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            background: linear-gradient(to top, rgba(2, 6, 23, 0.9) 20%, transparent 100%);
+            padding: 1.5rem 1rem 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            transform: translateY(100%);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .team-card:hover .team-socials {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .team-socials a {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+
+        .team-socials a:hover {
+            background: #00e1ff;
+            border-color: #00e1ff;
+            color: #020617;
+            box-shadow: 0 0 10px rgba(0, 225, 255, 0.5);
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .team-info {
+            padding: 1.25rem 1.6rem 1.8rem;
+            text-align: center;
+        }
+
+        .team-info h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 0.3rem;
+            font-family: var(--font-heading);
+            transition: color 0.3s ease;
+        }
+
+        .team-card:hover .team-info h3 {
+            color: #00e1ff;
+        }
+
+        .team-info p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* Light theme overrides for team grid */
+        [data-theme="light"] .team-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+        }
+
+        [data-theme="light"] .team-card::after {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.05), rgba(0, 0, 0, 0.02) 50%, rgba(37, 99, 235, 0.1) 100%);
+        }
+
+        [data-theme="light"] .team-card:hover {
+            border-color: rgba(37, 99, 235, 0.3);
+            box-shadow: 0 20px 45px rgba(0, 0, 0, 0.08), 0 0 20px rgba(37, 99, 235, 0.1);
+        }
+
+        [data-theme="light"] .team-card:hover::after {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.3), rgba(124, 58, 237, 0.3));
+        }
+
+        [data-theme="light"] .team-img {
+            background: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        [data-theme="light"] .team-socials {
+            background: linear-gradient(to top, rgba(255, 255, 255, 0.95) 20%, transparent 100%);
+        }
+
+        [data-theme="light"] .team-socials a {
+            background: rgba(0, 0, 0, 0.04);
+            border: 1px solid rgba(0, 0, 0, 0.06);
+            color: #475569;
+        }
+
+        [data-theme="light"] .team-socials a:hover {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+        }
+
+        [data-theme="light"] .team-info h3 {
+            color: #0f172a;
+        }
+
+        [data-theme="light"] .team-card:hover .team-info h3 {
+            color: #2563eb;
+        }
+
+        [data-theme="light"] .team-info p {
+            color: #64748b;
+        }
+
+        /* ── Unified Strength Profile Redesign ── */
+        .skills-section.bg-alt {
+            background: linear-gradient(to bottom, rgba(2, 6, 23, 0.4), rgba(2, 6, 23, 0.2)) !important;
+            border-top: 1px solid var(--widget-border);
+            border-bottom: 1px solid var(--widget-border);
+        }
+
+        [data-theme="light"] .skills-section.bg-alt {
+            background: #f8fafc !important;
+            border-top: 1px solid #e2e8f0 !important;
+            border-bottom: 1px solid #e2e8f0 !important;
+        }
+
+        .why-container {
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .skill-bar {
+            margin-bottom: 1.8rem;
+        }
+
+        .skill-bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.6rem;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-main);
+        }
+
+        [data-theme="light"] .skill-bar-label {
+            color: #0f172a;
+        }
+
+        [data-theme="light"] .skill-bar-label span:last-child {
+            color: #2563eb !important;
+        }
+
+        .skill-track {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+            position: relative;
+        }
+
+        [data-theme="light"] .skill-track {
+            background: #e2e8f0;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .skill-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #7c3aed 0%, #00e1ff 100%);
+            border-radius: 10px;
+            width: 0;
+            box-shadow: 0 0 10px rgba(0, 225, 255, 0.3);
+            transition: width 1.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        [data-theme="light"] .skill-fill {
+            background: linear-gradient(90deg, #7c3aed 0%, #2563eb 100%);
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.2);
+        }
+
+        /* Career Join Card Redesign */
+        .skills-section .glass-card {
+            border-radius: 24px;
+            padding: 2.8rem 2.5rem !important;
+            background: rgba(2, 6, 23, 0.4);
+            border: 1px solid var(--glass-border);
+            box-shadow: var(--glass-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        [data-theme="light"] .skills-section .glass-card {
+            background: #ffffff;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+        }
+
+        .skills-section .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0; width: 120px; height: 120px;
+            background: radial-gradient(circle at top right, rgba(0, 225, 255, 0.08), transparent 60%);
+            pointer-events: none;
+        }
+
+        .skills-section .glass-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--text-main);
+            margin-bottom: 1.2rem;
+            font-family: var(--font-heading);
+        }
+
+        [data-theme="light"] .skills-section .glass-card h3 {
+            color: #0f172a;
+        }
+
+        .skills-section .glass-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        [data-theme="light"] .skills-section .glass-card p {
+            color: #475569;
+        }
+
+        /* Responsive overrides for team skills section */
+        @media (max-width: 992px) {
+            .why-container {
+                grid-template-columns: 1fr !important;
+                gap: 3rem !important;
+            }
+        }
+    </style>
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header sticky" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- Mobile-only CTA inside nav panel -->
+                <a href="contact.html" class="header-cta mobile-nav-cta" style="display:none">
+                    <i class="fa-solid fa-bolt"></i> Get Started
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <!-- Profile / Account Button -->
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> User Dashboard</a>
+                        <a href="admin-dashboard.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i
+                        class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-orb banner-orb-1"></div>
+        <div class="banner-orb banner-orb-2"></div>
+        <div class="container">
+            <div class="page-banner-content" data-reveal>
+                <span class="badge">The Innovators</span>
+                <h1>Meet Our <span class="text-gradient">Professional Squad</span></h1>
+                <p>An award-winning team of data analysts, UI/UX engineers, and creative content strategists.</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span>Team Members</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section Grid -->
+    <section class="inner-section">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">Team Members</span>
+                <h2 class="section-title">The Minds Behind <span class="text-gradient">Your Success</span></h2>
+                <p class="section-desc">We combine our skillsets to deliver unified brand identity and technical excellence.</p>
+            </div>
+
+            <div class="team-grid" data-reveal>
+                <!-- David Miller -->
+                <div class="team-card glass-card">
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="David Miller">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>David Miller</h3>
+                        <p>CEO & Co-Founder</p>
+                    </div>
+                </div>
+
+                <!-- Sarah Johnson -->
+                <div class="team-card glass-card">
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sarah Johnson">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>Marketing Director</p>
+                    </div>
+                </div>
+
+                <!-- Michael Chen -->
+                <div class="team-card glass-card">
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Michael Chen">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Chen</h3>
+                        <p>Lead Web Developer</p>
+                    </div>
+                </div>
+
+                <!-- Emily Davis -->
+                <div class="team-card glass-card">
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Emily Davis">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Emily Davis</h3>
+                        <p>SEO Specialist</p>
+                    </div>
+                </div>
+
+                <!-- Jessica Taylor -->
+                <div class="team-card glass-card">
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Jessica Taylor">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Jessica Taylor</h3>
+                        <p>Creative Director</p>
+                    </div>
+                </div>
+
+                <!-- Robert Thompson -->
+                <div class="team-card glass-card">
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Robert Thompson">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Robert Thompson</h3>
+                        <p>Backend Architect</p>
+                    </div>
+                </div>
+
+                <!-- Ashley Martinez -->
+                <div class="team-card glass-card">
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/women/62.jpg" alt="Ashley Martinez">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Ashley Martinez</h3>
+                        <p>Social Media Strategist</p>
+                    </div>
+                </div>
+
+                <!-- James Anderson -->
+                <div class="team-card glass-card">
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/men/52.jpg" alt="James Anderson">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>James Anderson</h3>
+                        <p>Relations Specialist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills and Values (skills-section is target in common.js to fill width automatically) -->
+    <section class="inner-section bg-alt skills-section">
+        <div class="container">
+            <div class="why-container">
+                <div data-reveal>
+                    <span class="badge">Team Competencies</span>
+                    <h2 class="section-title">Our Unified <span class="text-gradient">Strength Profile</span></h2>
+                    <p class="section-desc">Every squad is cross-functional, combining deep analytical modeling with bold design philosophies to assure client success.</p>
+                    
+                    <div class="skill-bar">
+                        <div class="skill-bar-label">
+                            <span>Creative Design & Branding</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-label">
+                            <span>SEO & Performance Optimization</span>
+                            <span>88%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="88%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-label">
+                            <span>Technical Engineering & Core Systems</span>
+                            <span>92%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="92%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="skill-bar-label">
+                            <span>Copywriting & Narrative Development</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-track">
+                            <div class="skill-fill" data-width="90%"></div>
+                        </div>
+                    </div>
+                </div>
+                <div data-reveal data-delay="2">
+                    <div class="glass-card">
+                        <h3>Why Join NexusDigital?</h3>
+                        <p>We're always looking for brilliant designers, detail-obsessed software developers, and forward-thinking digital marketers to push coordinates farther.</p>
+                        <p>Enjoy competitive health coverage, remote flexibility, ongoing education credits, and working on state of the art products.</p>
+                        <a href="contact.html" class="btn btn-primary glow-btn w-100">Browse Open Roles</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-strip">
+        <div class="container" data-reveal>
+            <span class="badge">Accelerate Growth</span>
+            <h2>Let's Do Great Things <span class="text-gradient">Together</span></h2>
+            <p>Our collaborative dynamic product strategy brings brands into the digital future with premium visuals and engineering.</p>
+            <div class="btn-group">
+                <a href="contact.html" class="btn btn-primary glow-btn">Talk To An Expert</a>
+                <a href="services.html" class="btn btn-outline">Explore Our Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Social Media</a></li>
+                        <li><a href="services.html">PPC Advertising</a></li>
+                        <li><a href="services.html">Content Creation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,281 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions | NexusDigital</title>
+    <meta name="description"
+        content="Get instant answers regarding our premium digital marketing retainers, Web design cycles, and SEO strategies.">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header sticky" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- Mobile-only CTA inside nav panel -->
+                <a href="contact.html" class="header-cta mobile-nav-cta" style="display:none">
+                    <i class="fa-solid fa-bolt"></i> Get Started
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <!-- Profile / Account Button -->
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> User Dashboard</a>
+                        <a href="admin-dashboard.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i
+                        class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-orb banner-orb-1"></div>
+        <div class="banner-orb banner-orb-2"></div>
+        <div class="container">
+            <div class="page-banner-content" data-reveal>
+                <span class="badge">FAQ Center</span>
+                <h1>Frequently Asked <span class="text-gradient">Questions</span></h1>
+                <p>Have inquiries regarding retainers, project delivery, or metrics? Examine our helpful matrices below.</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span>FAQ Center</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Accordion Section with Columns -->
+    <section class="inner-section bg-alt">
+        <div class="container">
+            <div style="display:grid; grid-template-columns: 1fr 2fr; gap: 4rem;" class="faq-layout-grid">
+                <!-- Left Details Box -->
+                <div data-reveal style="display:flex; flex-direction:column; gap:1.5rem;">
+                    <div>
+                        <span class="badge">Help Desk</span>
+                        <h2 style="font-size:2.2rem; margin-bottom:1rem; font-family:'Outfit',sans-serif;">Clear Answers For <span class="text-gradient">Every Retainer</span></h2>
+                        <p style="color:#94a3b8; font-size:0.95rem; line-height:1.6; margin-bottom:2rem;">Browse our categorized FAQ lists. If you still have questions or require a custom proposal, our managers are available for instant chats.</p>
+                        
+                        <div class="glass-card" style="padding:1.8rem; border-color:rgba(0,225,255,0.15);">
+                            <h4 style="margin-bottom:0.8rem; font-family:'Outfit',sans-serif;">Still Need Help?</h4>
+                            <p style="color:#94a3b8; font-size:0.88rem; margin-bottom:1.5rem;">Our client relations squad is online to outline bespoke deliverables.</p>
+                            <a href="contact.html" class="btn btn-primary glow-btn w-100" style="padding:10px 20px; font-size:0.88rem;">Open Support Ticket</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Accordion Blocks -->
+                <div data-reveal class="faq-accordion" style="display:flex; flex-direction:column; gap:1.2rem;">
+                    <!-- FAQ 1 -->
+                    <div class="accordion-item glass-card active">
+                        <div class="accordion-header" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+                            <h4 style="font-family:'Outfit',sans-serif; margin:0; font-size:1.1rem;">How long does it take to see results with SEO?</h4>
+                            <i class="fa-solid fa-plus icon"></i>
+                        </div>
+                        <div class="accordion-content" style="padding: 0 1.5rem 1.5rem; display:block;">
+                            <p style="color:#94a3b8; font-size:0.95rem; margin:0; padding-top:1rem;">SEO is a long-term organic strategy. Typically, you can expect to see noticeable improvements in organic search rankings and landing page traffic within 3 to 6 months, depending on industry competitiveness and historical domain parameters.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 2 -->
+                    <div class="accordion-item glass-card">
+                        <div class="accordion-header" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+                            <h4 style="font-family:'Outfit',sans-serif; margin:0; font-size:1.1rem;">Do you provide custom marketing packages?</h4>
+                            <i class="fa-solid fa-plus icon"></i>
+                        </div>
+                        <div class="accordion-content" style="padding: 0 1.5rem 1.5rem; display:none;">
+                            <p style="color:#94a3b8; font-size:0.95rem; margin:0; padding-top:1rem;">Yes, absolutely. While we offer structured monthly starter packages as benchmark outlines, we regularly construct customized retainer architectures to align exactly with your operational channels, budgets, and targeted conversion numbers.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 3 -->
+                    <div class="accordion-item glass-card">
+                        <div class="accordion-header" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+                            <h4 style="font-family:'Outfit',sans-serif; margin:0; font-size:1.1rem;">What specific metrics do you track for campaigns?</h4>
+                            <i class="fa-solid fa-plus icon"></i>
+                        </div>
+                        <div class="accordion-content" style="padding: 0 1.5rem 1.5rem; display:none;">
+                            <p style="color:#94a3b8; font-size:0.95rem; margin:0; padding-top:1rem;">We model and report on key performance indicators (KPIs) customized to each project goal, including: Organic search visibility shifts, Cost Per Lead (CPL), Return on Ad Spend (ROAS), interactive scroll parameters, and overall pipeline lead volumes.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 4 -->
+                    <div class="accordion-item glass-card">
+                        <div class="accordion-header" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+                            <h4 style="font-family:'Outfit',sans-serif; margin:0; font-size:1.1rem;">Will I have a dedicated point of contact?</h4>
+                            <i class="fa-solid fa-plus icon"></i>
+                        </div>
+                        <div class="accordion-content" style="padding: 0 1.5rem 1.5rem; display:none;">
+                            <p style="color:#94a3b8; font-size:0.95rem; margin:0; padding-top:1rem;">Yes. Every client retaining our Professional or Enterprise plans is assigned a dedicated Account Manager, who facilitates real-time Slack channels, conducts bi-weekly audits, and structures ongoing sprints.</p>
+                        </div>
+                    </div>
+
+                    <!-- FAQ 5 -->
+                    <div class="accordion-item glass-card">
+                        <div class="accordion-header" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+                            <h4 style="font-family:'Outfit',sans-serif; margin:0; font-size:1.1rem;">How is technical site optimization carried out?</h4>
+                            <i class="fa-solid fa-plus icon"></i>
+                        </div>
+                        <div class="accordion-content" style="padding: 0 1.5rem 1.5rem; display:none;">
+                            <p style="color:#94a3b8; font-size:0.95rem; margin:0; padding-top:1rem;">Our UI/UX engineers partner with SEO analysts to repair structural crawlers, improve Core Web Vitals (LCP, FID, CLS), optimize media sizes, design smooth caching networks, and clean codebases to score highly on PageSpeed tools.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-strip">
+        <div class="container" data-reveal>
+            <span class="badge">Direct Help</span>
+            <h2>Have Questions Not Listed in Our FAQ?</h2>
+            <p>Get in touch with our live engineering or marketing squads to receive a direct answer within a couple of hours.</p>
+            <div class="btn-group">
+                <a href="contact.html" class="btn btn-primary glow-btn">Ask a Question Now</a>
+                <a href="services.html" class="btn btn-outline">Review Capabilities</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Social Media</a></li>
+                        <li><a href="services.html">PPC Advertising</a></li>
+                        <li><a href="services.html">Content Creation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+    <style>
+        @media (max-width:992px) {
+            .faq-layout-grid {
+                grid-template-columns: 1fr !important;
+                gap: 2.5rem !important;
+            }
+        }
+    </style>
+</body>
+
+</html>

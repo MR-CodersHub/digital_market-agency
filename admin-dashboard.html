@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Executive Console | NexusDigital</title>
+    <meta name="description"
+        content="NexusDigital administrative platform performance metrics and account controllers.">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <style>
+        .dashboard-container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            min-height: 100vh;
+            background: var(--gradient-bg);
+        }
+
+        /* Sidebar Styling */
+        .sidebar {
+            background: rgba(255, 255, 255, 0.45);
+            backdrop-filter: blur(16px);
+            border-right: 1px solid var(--glass-border);
+            padding: 2.2rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            z-index: 100;
+        }
+
+        .sidebar-menu {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            border-radius: 12px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: var(--transition);
+        }
+
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            color: var(--primary);
+            background: rgba(124, 58, 237, 0.08);
+        }
+
+        .sidebar-link.active {
+            box-shadow: inset 0 0 0 1px rgba(124, 58, 237, 0.15);
+        }
+
+        /* Main Content Area */
+        .dashboard-content {
+            padding: 2.5rem 3rem;
+            overflow-y: auto;
+            max-width: 100%;
+        }
+
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2.5rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+
+        /* KPI Cards */
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .kpi-card {
+            padding: 1.5rem;
+            border-radius: 20px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 140px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .kpi-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .kpi-icon {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1rem;
+        }
+
+        /* Layout Grid */
+        .dashboard-layout-grid {
+            display: grid;
+            grid-template-columns: 2fr 1.1fr;
+            gap: 2rem;
+        }
+
+        .chart-box {
+            padding: 2rem;
+            border-radius: 24px;
+            margin-bottom: 2rem;
+        }
+
+        .mock-bar {
+            height: 140px;
+            width: 28px;
+            background: rgba(124, 58, 237, 0.08);
+            border-radius: 6px;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            overflow: hidden;
+        }
+
+        .mock-bar-fill {
+            width: 100%;
+            background: var(--gradient-primary);
+            border-radius: 6px;
+            transition: height 1s ease-out;
+        }
+
+        /* Interactive inputs */
+        .admin-form input,
+        .admin-form select,
+        .admin-form textarea {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--glass-border);
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: var(--text-main);
+            font-weight: 600;
+            margin-top: 6px;
+        }
+
+        html[data-theme="dark"] .admin-form input,
+        html[data-theme="dark"] .admin-form select,
+        html[data-theme="dark"] .admin-form textarea {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Media Queries */
+        @media (max-width: 1200px) {
+            .kpi-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-layout-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-content {
+                padding: 1.5rem;
+            }
+
+            .kpi-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body>
+    <!-- Sidebar Overlay for Mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="dashboard-container">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar" id="dashSidebar">
+            <div>
+                <a href="index.html" class="logo">
+                    <div class="logo-icon-wrap">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                    <span class="logo-text">Nexus<span>Digital</span></span>
+                </a>
+
+                <div class="sidebar-menu">
+                    <a href="#" class="sidebar-link active" data-section="overview">
+                        <i class="fa-solid fa-gauge-high"></i> <span class="link-label">Console Overview</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="clients">
+                        <i class="fa-solid fa-users"></i> <span class="link-label">Client Management</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="campaign-mgmt">
+                        <i class="fa-solid fa-chart-simple"></i> <span class="link-label">Campaign Management</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="users">
+                        <i class="fa-solid fa-user-gear"></i> <span class="link-label">User Management</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="leads">
+                        <i class="fa-solid fa-list-check"></i> <span class="link-label">Platform Leads</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="revenue">
+                        <i class="fa-solid fa-coins"></i> <span class="link-label">Revenue Analytics</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="support">
+                        <i class="fa-solid fa-circle-question"></i> <span class="link-label">Support Tickets</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="approvals">
+                        <i class="fa-solid fa-signature"></i> <span class="link-label">Content Approvals</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="blog-mgmt">
+                        <i class="fa-solid fa-pen-nib"></i> <span class="link-label">Blog Management</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="reports">
+                        <i class="fa-solid fa-file-invoice"></i> <span class="link-label">System Reports</span>
+                    </a>
+                    <a href="#" class="sidebar-link" data-section="settings">
+                        <i class="fa-solid fa-sliders"></i> <span class="link-label">System Settings</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Profile Info Widget -->
+            <div
+                style="background: rgba(255, 255, 255, 0.7); border-radius: 16px; padding: 12px; border: 1px solid var(--glass-border); display:flex; align-items:center; gap:12px;">
+                <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
+                    alt="Admin User" style="width:38px; height:38px; border-radius:50%; object-fit:cover;">
+                <div>
+                    <h5 style="font-size:0.85rem; margin:0;">Marcus Vance</h5>
+                    <p style="font-size:0.72rem; color:var(--text-muted); margin:0;">Administrator</p>
+                </div>
+                <a href="login.html" style="margin-left:auto; color:var(--text-muted);"><i
+                        class="fa-solid fa-arrow-right-from-bracket"></i></a>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <main class="dashboard-content">
+            <!-- Top bar -->
+            <div class="dashboard-header">
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <button class="dash-hamburger" id="dash-hamburger"
+                        style="font-size:1.5rem; background:transparent; border:none; cursor:pointer; color:var(--text-main); display:none; padding:8px;">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                    <div>
+                        <span class="badge">Systems Executive Console</span>
+                        <h1 style="font-size: 2.2rem; margin-top: 0.2rem;" id="dash-page-title">Nexus Admin Manager</h1>
+                    </div>
+                </div>
+
+                <div style="display:flex; align-items:center; gap:12px;">
+                    <button class="btn btn-outline" id="dash-theme-toggle"
+                        style="width:42px; height:42px; padding:0; border-radius:12px; display:flex; justify-content:center; align-items:center; font-size:1.1rem; color:var(--text-main);">
+                        <i class="fa-solid fa-sun"></i>
+                    </button>
+                    <a href="user-dashboard.html" class="btn btn-outline"
+                        style="padding: 8px 16px; font-size: 0.82rem; border-radius: 12px;"><i
+                            class="fa-solid fa-user"></i> Switch to Client</a>
+                    <div
+                        style="width:42px; height:42px; border-radius:12px; background:rgba(255,255,255,0.7); border:1px solid var(--glass-border); display:flex; justify-content:center; align-items:center; font-size:1.1rem; color:var(--text-main); position:relative; cursor:pointer;">
+                        <i class="fa-regular fa-bell"></i>
+                        <span
+                            style="position:absolute; top:8px; right:8px; width:8px; height:8px; background:#ef4444; border-radius:50%;"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: OVERVIEW ================= -->
+            <div class="dash-section active-section" id="sec-overview">
+                <!-- KPI Summary Strip -->
+                <div class="kpi-grid">
+                    <!-- KPI 1 -->
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-header">
+                            <span style="font-size: 0.8rem; font-weight:700; color:var(--text-muted);">Platform
+                                ARR</span>
+                            <div class="kpi-icon" style="background: rgba(124, 58, 237, 0.1); color: var(--primary);"><i
+                                    class="fa-solid fa-coins"></i></div>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.6rem; margin-bottom: 0.2rem;">$1.24M</h3>
+                            <p style="font-size:0.75rem; color:#10b981; margin:0;"><i class="fa-solid fa-arrow-up"></i>
+                                +15.2% ARR sprint</p>
+                        </div>
+                    </div>
+
+                    <!-- KPI 2 -->
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-header">
+                            <span style="font-size: 0.8rem; font-weight:700; color:var(--text-muted);">Active
+                                Accounts</span>
+                            <div class="kpi-icon" style="background: rgba(37, 99, 235, 0.1); color: var(--secondary);">
+                                <i class="fa-solid fa-users"></i>
+                            </div>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.6rem; margin-bottom: 0.2rem;">142 Clients</h3>
+                            <p style="font-size:0.75rem; color:#10b981; margin:0;"><i class="fa-solid fa-arrow-up"></i>
+                                +4 new signs this week</p>
+                        </div>
+                    </div>
+
+                    <!-- KPI 3 -->
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-header">
+                            <span style="font-size: 0.8rem; font-weight:700; color:var(--text-muted);">Platform CPU
+                                Load</span>
+                            <div class="kpi-icon" style="background: rgba(16, 185, 129, 0.1); color: #10b981;"><i
+                                    class="fa-solid fa-microchip"></i></div>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.6rem; margin-bottom: 0.2rem;">14% Load</h3>
+                            <p style="font-size:0.75rem; color:#10b981; margin:0;">Server latency: 45ms</p>
+                        </div>
+                    </div>
+
+                    <!-- KPI 4 -->
+                    <div class="kpi-card glass-card">
+                        <div class="kpi-header">
+                            <span style="font-size: 0.8rem; font-weight:700; color:var(--text-muted);">Pending
+                                Approvals</span>
+                            <div class="kpi-icon" style="background: rgba(245, 158, 11, 0.1); color: #f59e0b;"><i
+                                    class="fa-solid fa-signature"></i></div>
+                        </div>
+                        <div>
+                            <h3 style="font-size: 1.6rem; margin-bottom: 0.2rem;">18 Items</h3>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">Require specialist audit
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-layout-grid">
+                    <!-- Left: Metrics -->
+                    <div>
+                        <div class="chart-box glass-card">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 2rem;">
+                                <div>
+                                    <h4 style="margin: 0; font-size:1.15rem;">Global Campaign Hit Metrics</h4>
+                                    <p style="font-size:0.8rem; color:var(--text-muted); margin:0;">Platform analytics
+                                        tracking search volume</p>
+                                </div>
+                                <span
+                                    style="font-size: 0.85rem; font-weight:700; color:var(--primary); cursor:pointer;">Platform
+                                    Metrics <i class="fa-solid fa-chevron-right"></i></span>
+                            </div>
+
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:flex-end; padding-top: 1rem;">
+                                <div>
+                                    <div class="mock-bar" style="height: 120px;">
+                                        <div class="mock-bar-fill" style="height: 70%;"></div>
+                                    </div>
+                                    <span
+                                        style="font-size:0.72rem; color:var(--text-muted); display:block; text-align:center; margin-top:8px;">Q1</span>
+                                </div>
+                                <div>
+                                    <div class="mock-bar" style="height: 120px;">
+                                        <div class="mock-bar-fill" style="height: 85%;"></div>
+                                    </div>
+                                    <span
+                                        style="font-size:0.72rem; color:var(--text-muted); display:block; text-align:center; margin-top:8px;">Q2</span>
+                                </div>
+                                <div>
+                                    <div class="mock-bar" style="height: 120px;">
+                                        <div class="mock-bar-fill" style="height: 60%;"></div>
+                                    </div>
+                                    <span
+                                        style="font-size:0.72rem; color:var(--text-muted); display:block; text-align:center; margin-top:8px;">Q3</span>
+                                </div>
+                                <div>
+                                    <div class="mock-bar" style="height: 120px;">
+                                        <div class="mock-bar-fill" style="height: 95%;"></div>
+                                    </div>
+                                    <span
+                                        style="font-size:0.72rem; color:var(--text-muted); display:block; text-align:center; margin-top:8px;">Q4</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Global Client List -->
+                        <div class="glass-card" style="padding: 2rem;">
+                            <h4 style="margin-bottom:1.5rem; font-size:1.15rem;">Global Client List & Actions</h4>
+                            <div style="display:flex; flex-direction:column; gap:1.2rem;">
+                                <div
+                                    style="display:grid; grid-template-columns: 2fr 1.2fr 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,0.03); padding-bottom:12px;">
+                                    <div style="display:flex; align-items:center; gap:12px;">
+                                        <div
+                                            style="width: 32px; height:32px; border-radius:50%; background:var(--primary-glow); color:var(--primary); display:flex; justify-content:center; align-items:center; font-weight:700; font-size:0.8rem;">
+                                            AC</div>
+                                        <div>
+                                            <h5 style="font-size:0.9rem; margin:0;">Acme Corporation</h5>
+                                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">Enterprise
+                                                Plan</p>
+                                        </div>
+                                    </div>
+                                    <span
+                                        style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; text-align:center; width:fit-content; font-weight:700;">Account
+                                        Green</span>
+                                    <span
+                                        style="text-align:right; font-weight:700; font-size:0.9rem; color:var(--primary); cursor:pointer;"
+                                        onclick="document.querySelector('[data-section=clients]').click();">Configure <i
+                                            class="fa-solid fa-gear"></i></span>
+                                </div>
+                                <div
+                                    style="display:grid; grid-template-columns: 2fr 1.2fr 1fr; align-items:center; border-bottom:1px solid rgba(0,0,0,0.03); padding-bottom:12px;">
+                                    <div style="display:flex; align-items:center; gap:12px;">
+                                        <div
+                                            style="width: 32px; height:32px; border-radius:50%; background:rgba(37,99,235,0.1); color:var(--secondary); display:flex; justify-content:center; align-items:center; font-weight:700; font-size:0.8rem;">
+                                            GS</div>
+                                        <div>
+                                            <h5 style="font-size:0.9rem; margin:0;">Global Spares Ltd</h5>
+                                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0;">
+                                                Professional Plan</p>
+                                        </div>
+                                    </div>
+                                    <span
+                                        style="background: rgba(16, 185, 129, 0.1); color: #10b981; padding: 4px 10px; border-radius: 20px; font-size: 0.78rem; text-align:center; width:fit-content; font-weight:700;">Account
+                                        Green</span>
+                                    <span
+                                        style="text-align:right; font-weight:700; font-size:0.9rem; color:var(--primary); cursor:pointer;"
+                                        onclick="document.querySelector('[data-section=clients]').click();">Configure <i
+                                            class="fa-solid fa-gear"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right: Quick controls -->
+                    <div style="display:flex; flex-direction:column; gap:2rem;">
+                        <div class="glass-card" style="padding:2rem;">
+                            <h4 style="margin-bottom:1.5rem; font-size:1.1rem;">Quick Controls</h4>
+                            <div style="display:flex; flex-direction:column; gap:0.8rem;">
+                                <button class="btn btn-primary glow-btn"
+                                    onclick="document.querySelector('[data-section=campaign-mgmt]').click();"
+                                    style="padding:12px; font-size:0.82rem; border-radius:10px; width:100%; border:none; cursor:pointer;"><i
+                                        class="fa-solid fa-chart-line" style="margin-right:6px;"></i> Edit Active
+                                    Campaigns</button>
+                                <button class="btn btn-outline"
+                                    onclick="document.querySelector('[data-section=approvals]').click();"
+                                    style="padding:12px; font-size:0.82rem; border-radius:10px; width:100%;"><i
+                                        class="fa-solid fa-signature" style="margin-right:6px;"></i> Audit approvals
+                                    (18)</button>
+                            </div>
+                        </div>
+
+                        <div class="glass-card" style="padding:2rem; text-align:center;">
+                            <span class="badge" style="margin-bottom:1rem;">Server Location</span>
+                            <div style="font-size:2.5rem; color:var(--primary); margin-bottom:1rem;"><i
+                                    class="fa-solid fa-server"></i></div>
+                            <h4 style="margin:0; font-size:0.98rem;">US-East-Primary</h4>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:0.2rem 0 1rem;">N. Virginia
+                                Cluster</p>
+                            <button class="btn btn-outline"
+                                onclick="document.querySelector('[data-section=reports]').click();"
+                                style="padding: 8px 16px; font-size: 0.8rem; border-radius: 10px; width:100%;"><i
+                                    class="fa-solid fa-clipboard-list"></i> Systems logs</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: CLIENTS ================= -->
+            <div class="dash-section" id="sec-clients">
+                <div class="dashboard-layout-grid">
+                    <div class="glass-card" style="padding:2rem;">
+                        <h4 style="margin-bottom:1.5rem;">Registered Client Base</h4>
+                        <div style="overflow-x:auto;">
+                            <table style="width:100%; border-collapse:collapse;">
+                                <thead>
+                                    <tr style="border-bottom:1px solid var(--glass-border); text-align:left;">
+                                        <th style="padding:12px;">Company</th>
+                                        <th style="padding:12px;">Active Service Tier</th>
+                                        <th style="padding:12px;">Monthly Billing</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr style="border-bottom:1px solid rgba(0,0,0,0.03);">
+                                        <td style="padding:12px; font-weight:700;">Acme Corporation</td>
+                                        <td style="padding:12px;">Enterprise Retainer</td>
+                                        <td style="padding:12px;">$4,500/mo</td>
+                                    </tr>
+                                    <tr style="border-bottom:1px solid rgba(0,0,0,0.03);">
+                                        <td style="padding:12px; font-weight:700;">Global Spares Ltd</td>
+                                        <td style="padding:12px;">Professional Retainer</td>
+                                        <td style="padding:12px;">$3,200/mo</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="glass-card admin-form" style="padding:2rem;">
+                        <h4 style="margin-bottom:1.2rem;">Register New Client</h4>
+                        <form style="display:flex; flex-direction:column; gap:1rem;"
+                            onsubmit="event.preventDefault(); alert('New client record generated.'); this.reset();">
+                            <div>
+                                <label style="font-size:0.8rem; font-weight:700;">Company Name</label>
+                                <input type="text" required placeholder="e.g. Initech Corp">
+                            </div>
+                            <div>
+                                <label style="font-size:0.8rem; font-weight:700;">Service Subscription</label>
+                                <select>
+                                    <option>Enterprise Retainer ($4,500/mo)</option>
+                                    <option>Professional Plan ($3,200/mo)</option>
+                                    <option>SEO Growth Setup ($1,500/mo)</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary glow-btn"
+                                style="border:none; cursor:pointer; margin-top:8px;">Provision Account</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: CAMPAIGN MANAGEMENT ================= -->
+            <div class="dash-section" id="sec-campaign-mgmt">
+                <div class="glass-card" style="padding:2rem;">
+                    <h4 style="margin-bottom:1.5rem;">Sitewide Client Ad Pipelines</h4>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; min-width:600px;">
+                            <thead>
+                                <tr style="border-bottom:1px solid var(--glass-border); text-align:left;">
+                                    <th style="padding:12px;">Client</th>
+                                    <th style="padding:12px;">Target Channel</th>
+                                    <th style="padding:12px;">Monthly Budget</th>
+                                    <th style="padding:12px;">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid rgba(0,0,0,0.03);">
+                                    <td style="padding:12px; font-weight:700;">Acme Corp</td>
+                                    <td style="padding:12px;">Google PPC Ads</td>
+                                    <td style="padding:12px;">$6,000</td>
+                                    <td style="padding:12px;"><span
+                                            style="background:rgba(16,185,129,0.1); color:#10b981; padding:4px 8px; border-radius:12px; font-size:0.75rem; font-weight:700;">Delivering</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:12px; font-weight:700;">Global Spares</td>
+                                    <td style="padding:12px;">Local SEO Setup</td>
+                                    <td style="padding:12px;">$3,200</td>
+                                    <td style="padding:12px;"><span
+                                            style="background:rgba(245,158,11,0.1); color:#f59e0b; padding:4px 8px; border-radius:12px; font-size:0.75rem; font-weight:700;">Audit
+                                            Required</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: USER MANAGEMENT ================= -->
+            <div class="dash-section" id="sec-users">
+                <div class="dashboard-layout-grid">
+                    <div class="glass-card" style="padding:2rem;">
+                        <h4 style="margin-bottom:1.5rem;">Agency Specialist Roster</h4>
+                        <div style="display:flex; flex-direction:column; gap:1rem;">
+                            <div
+                                style="display:flex; align-items:center; gap:12px; border-bottom:1px solid rgba(0,0,0,0.03); padding-bottom:10px;">
+                                <div
+                                    style="width:36px; height:36px; border-radius:50%; background:var(--primary-glow); display:flex; justify-content:center; align-items:center; font-weight:700; color:var(--primary);">
+                                    MV</div>
+                                <div>
+                                    <h5 style="margin:0;">Marcus Vance</h5>
+                                    <span style="font-size:0.72rem; color:var(--text-muted);">Platform
+                                        Administrator</span>
+                                </div>
+                            </div>
+                            <div style="display:flex; align-items:center; gap:12px;">
+                                <div
+                                    style="width:36px; height:36px; border-radius:50%; background:rgba(37,99,235,0.1); display:flex; justify-content:center; align-items:center; font-weight:700; color:var(--secondary);">
+                                    SJ</div>
+                                <div>
+                                    <h5 style="margin:0;">Sarah Jenkins</h5>
+                                    <span style="font-size:0.72rem; color:var(--text-muted);">Lead SEO Specialist</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card admin-form" style="padding:2rem;">
+                        <h4 style="margin-bottom:1.2rem;">Invite Specialist</h4>
+                        <form style="display:flex; flex-direction:column; gap:1rem;"
+                            onsubmit="event.preventDefault(); alert('Specialist invitation sent.'); this.reset();">
+                            <div>
+                                <label style="font-size:0.8rem; font-weight:700;">Specialist Email</label>
+                                <input type="email" required placeholder="e.g. jenny@nexusdigital.com">
+                            </div>
+                            <div>
+                                <label style="font-size:0.8rem; font-weight:700;">Assigned Role</label>
+                                <select>
+                                    <option>SEO Specialist</option>
+                                    <option>PPC Ad Analyst</option>
+                                    <option>Copywriter Executive</option>
+                                </select>
+                            </div>
+                            <button type="submit" class="btn btn-primary glow-btn"
+                                style="border:none; cursor:pointer;">Send Invitation</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: PLATFORM LEADS ================= -->
+            <div class="dash-section" id="sec-leads">
+                <div class="glass-card" style="padding:2rem;">
+                    <h4 style="margin-bottom:1.5rem;">Intake Inquiries Feed</h4>
+                    <div style="overflow-x:auto;">
+                        <table style="width:100%; border-collapse:collapse; min-width:550px;">
+                            <thead>
+                                <tr style="border-bottom:1px solid var(--glass-border); text-align:left;">
+                                    <th style="padding:12px;">Lead Name</th>
+                                    <th style="padding:12px;">Email Address</th>
+                                    <th style="padding:12px;">Requested Domain</th>
+                                    <th style="padding:12px;">Intake Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr style="border-bottom:1px solid rgba(0,0,0,0.03);">
+                                    <td style="padding:12px; font-weight:700;">Hanna Miller</td>
+                                    <td style="padding:12px;">hanna@millerdev.com</td>
+                                    <td style="padding:12px;">Enterprise SEO Retainer</td>
+                                    <td style="padding:12px;">May 18, 2026</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding:12px; font-weight:700;">Thomas King</td>
+                                    <td style="padding:12px;">t.king@saasflow.io</td>
+                                    <td style="padding:12px;">Google Paid Media Ads</td>
+                                    <td style="padding:12px;">May 17, 2026</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: REVENUE ANALYTICS ================= -->
+            <div class="dash-section" id="sec-revenue">
+                <div class="kpi-grid">
+                    <div class="kpi-card glass-card">
+                        <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">Annual Recurring
+                            Revenue</span>
+                        <h2 style="margin:0;">$1,248,000</h2>
+                        <span style="font-size:0.7rem; color:#10b981;"><i class="fa-solid fa-arrow-up"></i> +14% ARR vs
+                            Q1</span>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">MRR Average</span>
+                        <h2 style="margin:0;">$104,000</h2>
+                        <span style="font-size:0.7rem; color:var(--text-muted);">Consolidated monthly billing</span>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">Outstanding
+                            Retainers</span>
+                        <h2 style="margin:0;">$8,400</h2>
+                        <span style="font-size:0.7rem; color:#f59e0b;">Due within 5 days</span>
+                    </div>
+                    <div class="kpi-card glass-card">
+                        <span style="font-size:0.75rem; font-weight:700; color:var(--text-muted);">Platform LTV
+                            Avg</span>
+                        <h2 style="margin:0;">$24,800</h2>
+                        <span style="font-size:0.7rem; color:#10b981;">Highly secure LTV curves</span>
+                    </div>
+                </div>
+
+                <div class="glass-card admin-form" style="padding:2rem; max-width:600px; margin:0 auto;">
+                    <h4 style="margin-bottom:0.5rem; text-align:center;">Interactive Revenue Growth Forecaster</h4>
+                    <p style="font-size:0.85rem; color:var(--text-muted); text-align:center; margin-bottom:1.5rem;">
+                        Simulate MRR progression by projecting new retainer closures.</p>
+
+                    <div style="display:flex; flex-direction:column; gap:1.2rem;">
+                        <div>
+                            <label style="font-weight:700; font-size:0.85rem;">Current MRR ($)</label>
+                            <input type="number" id="rev-base" value="104000" oninput="calcAdminRev()">
+                        </div>
+                        <div>
+                            <label style="font-weight:700; font-size:0.85rem;">Expected New Clients closed per
+                                month</label>
+                            <input type="number" id="rev-closed" value="4" oninput="calcAdminRev()">
+                        </div>
+                        <div>
+                            <label style="font-weight:700; font-size:0.85rem;">Average Retainer Value ($)</label>
+                            <input type="number" id="rev-val" value="3800" oninput="calcAdminRev()">
+                        </div>
+
+                        <div
+                            style="background:var(--primary-glow); padding:1.5rem; border-radius:16px; border:1px solid var(--primary-border); margin-top:1rem; text-align:center;">
+                            <span
+                                style="font-size:0.8rem; font-weight:700; text-transform:uppercase; color:var(--primary);">Estimated
+                                Monthly Revenue in 6 Months</span>
+                            <h2 style="margin:0.4rem 0 0; font-size:2rem; color:var(--primary);" id="rev-output">
+                                $195,200</h2>
+                            <p style="font-size:0.75rem; color:var(--text-muted); margin:4px 0 0;" id="rev-annual">
+                                Estimated ARR: $2,342,400</p>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    function calcAdminRev() {
+                        const base = parseFloat(document.getElementById('rev-base').value) || 0;
+                        const closed = parseFloat(document.getElementById('rev-closed').value) || 0;
+                        const val = parseFloat(document.getElementById('rev-val').value) || 0;
+
+                        const sixMonthMRR = base + (closed * val * 6);
+                        document.getElementById('rev-output').innerText = '$' + sixMonthMRR.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+
+                        const annual = sixMonthMRR * 12;
+                        document.getElementById('rev-annual').innerText = 'Estimated ARR: $' + annual.toLocaleString(undefined, { minimumFractionDigits: 0, maximumFractionDigits: 0 });
+                    }
+                </script>
+            </div>
+
+            <!-- ================= SECTION: SUPPORT TICKETS ================= -->
+            <div class="dash-section" id="sec-support">
+                <div class="dashboard-layout-grid">
+                    <div class="glass-card" style="padding:2rem;">
+                        <h4 style="margin-bottom:1.5rem;">Assigned Service Requests</h4>
+                        <div style="display:flex; flex-direction:column; gap:1.2rem;">
+                            <div
+                                style="padding:12px; border-radius:10px; background:rgba(239,68,68,0.05); border:1px solid rgba(239,68,68,0.15); display:flex; justify-content:space-between; align-items:center;">
+                                <div>
+                                    <h5 style="margin:0; font-weight:700; color:#ef4444;">TKT-510: Analytics Delay</h5>
+                                    <p style="font-size:0.75rem; color:var(--text-muted); margin:4px 0 0;">Reported by
+                                        Acme Corp Specialist</p>
+                                </div>
+                                <span
+                                    style="background:#ef4444; color:#ffffff; font-size:0.7rem; padding:4px 8px; border-radius:6px; font-weight:700;">Urgent</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card" style="padding:2rem;">
+                        <h4 style="margin-bottom:1.2rem;">Specialist Live Chat</h4>
+                        <div
+                            style="height:150px; background:rgba(0,0,0,0.02); border-radius:8px; border:1px solid var(--glass-border); padding:10px; font-size:0.8rem; overflow-y:auto; margin-bottom:10px;">
+                            <div style="margin-bottom:8px;"><strong>[Sarah J.]</strong> Marcus, can you provision Acme's
+                                new tracking container?</div>
+                        </div>
+                        <form style="display:flex; gap:8px;"
+                            onsubmit="event.preventDefault(); alert('Message broadcasted.'); this.reset();">
+                            <input type="text" required placeholder="Type chat message..."
+                                style="flex:1; padding:8px; border-radius:6px; border:1px solid var(--glass-border); background:transparent; color:var(--text-main); font-size:0.8rem;">
+                            <button type="submit" class="btn btn-primary"
+                                style="padding:8px 16px; font-size:0.8rem; border-radius:6px; border:none; cursor:pointer;">Send</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: CONTENT APPROVALS ================= -->
+            <div class="dash-section" id="sec-approvals">
+                <div class="glass-card" style="padding:2rem;">
+                    <h4 style="margin-bottom:1.5rem;">Creative Content Pipeline Audit</h4>
+                    <div style="display:flex; flex-direction:column; gap:1.5rem;">
+                        <!-- Post Audit 1 -->
+                        <div style="padding:1.5rem; border-radius:12px; border:1px solid var(--glass-border); background:rgba(0,0,0,0.02);"
+                            id="appr-card-1">
+                            <div
+                                style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+                                <h5 style="margin:0; font-size:0.95rem;">"The Architecture of High-Converting Landing
+                                    Funnels"</h5>
+                                <span class="badge">LinkedIn Post</span>
+                            </div>
+                            <p style="font-size:0.8rem; color:var(--text-muted); margin:0 0 1.2rem;">Submitted by Sarah
+                                Jenkins | Target Release: May 26, 2026</p>
+                            <div style="display:flex; gap:10px;">
+                                <button class="btn btn-primary"
+                                    onclick="alert('Post draft approved for scheduling.'); document.getElementById('appr-card-1').style.display='none';"
+                                    style="padding:6px 12px; font-size:0.78rem; border-radius:6px; border:none; cursor:pointer;">Approve
+                                    Post</button>
+                                <button class="btn btn-outline"
+                                    onclick="alert('Revision notice transmitted to Sarah.');"
+                                    style="padding:6px 12px; font-size:0.78rem; border-radius:6px; cursor:pointer;">Request
+                                    Revision</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: BLOG MANAGEMENT ================= -->
+            <div class="dash-section" id="sec-blog-mgmt">
+                <div class="glass-card admin-form" style="padding:2.5rem; max-width:700px; margin:0 auto;">
+                    <h4 style="margin-bottom:1.5rem;">Compose Platform Article</h4>
+                    <form style="display:flex; flex-direction:column; gap:1.2rem;"
+                        onsubmit="event.preventDefault(); alert('Post successfully added to pending review registry.'); this.reset();">
+                        <div>
+                            <label style="font-size:0.85rem; font-weight:700;">Article Title</label>
+                            <input type="text" required
+                                placeholder="e.g. Standardizing Premium Glassmorphism UI styles">
+                        </div>
+                        <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+                            <div>
+                                <label style="font-size:0.85rem; font-weight:700;">Category</label>
+                                <select>
+                                    <option>SEO Strategy</option>
+                                    <option>Paid Media Advertising</option>
+                                    <option>Branding</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label style="font-size:0.85rem; font-weight:700;">Keywords Tagged</label>
+                                <input type="text" placeholder="e.g. UI, CSS, SaaS">
+                            </div>
+                        </div>
+                        <div>
+                            <label style="font-size:0.85rem; font-weight:700;">Content Body</label>
+                            <textarea rows="6" required placeholder="Draft markup content details..."
+                                style="resize:none;"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary glow-btn"
+                            style="border:none; cursor:pointer; margin-top:8px;">Publish Article</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: SYSTEM REPORTS ================= -->
+            <div class="dash-section" id="sec-reports">
+                <div class="glass-card admin-form" style="padding:2rem; max-width:600px; margin:0 auto;">
+                    <h4 style="margin-bottom:1rem; text-align:center;">Request Administrative Performance Report</h4>
+                    <p style="font-size:0.85rem; color:var(--text-muted); text-align:center; margin-bottom:1.5rem;">
+                        Compile a certified analytics report package.</p>
+
+                    <form style="display:flex; flex-direction:column; gap:1.2rem;"
+                        onsubmit="event.preventDefault(); alert('Report requested and will compile asynchronously in US-East cluster.');">
+                        <div>
+                            <label style="font-size:0.8rem; font-weight:700;">Target Period</label>
+                            <select>
+                                <option>Current Active Month (May 2026)</option>
+                                <option>Full Q1 2026 Analytics</option>
+                                <option>Consolidated Annual ARR Ledger</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary glow-btn"
+                            style="border:none; cursor:pointer;">Generate PDF Document Package</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- ================= SECTION: SYSTEM SETTINGS ================= -->
+            <div class="dash-section" id="sec-settings">
+                <div class="glass-card" style="padding:2rem; max-width:600px; margin:0 auto;">
+                    <h4 style="margin-bottom:1.5rem;">Administrative Console Settings</h4>
+                    <form style="display:flex; flex-direction:column; gap:1.2rem;"
+                        onsubmit="event.preventDefault(); alert('System configuration parameters refreshed.');">
+                        <div>
+                            <label style="font-size:0.85rem; font-weight:700;">Intake API Token Credentials</label>
+                            <input type="text" readonly value="nd_secret_token_1848ff093bb28e7e101a"
+                                style="width:100%; padding:10px; border-radius:8px; border:1px solid var(--glass-border); background:rgba(0,0,0,0.05); color:var(--text-muted); font-family:monospace; margin-top:6px;">
+                        </div>
+                        <div>
+                            <label style="font-size:0.85rem; font-weight:700;">Platform Maintenance Notification
+                                Trigger</label>
+                            <div style="display:flex; align-items:center; gap:10px; margin-top:8px;">
+                                <input type="checkbox" checked style="width:auto; margin:0;">
+                                <span style="font-size:0.8rem; color:var(--text-muted);">Receive SMS alerts if US-East
+                                    container latency rises above 100ms</span>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary glow-btn"
+                            style="border:none; cursor:pointer;">Refactor Core Parameters</button>
+                    </form>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/dashboard.js"></script>
+    <script src="js/common.js"></script>
+</body>
+
+</html>

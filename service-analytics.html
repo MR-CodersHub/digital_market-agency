@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics & BI Reporting | NexusDigital</title>
+    <meta name="description" content="Access direct pipelines tracking campaign conversion vectors on live glassmorphism analytics portals.">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header sticky" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Banner -->
+    <section class="page-banner">
+        <div class="banner-orb banner-orb-1"></div>
+        <div class="banner-orb banner-orb-2"></div>
+        <div class="container">
+            <div class="page-banner-content" data-reveal>
+                <span class="badge">API Driven Infrastructure</span>
+                <h1>Real-Time <span class="text-gradient">BI Reporting</span></h1>
+                <p>Never wait for late monthly reports. Access live pipelines tracking campaign conversions across a centralized, custom-built dashboard.</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <a href="services.html">Services</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span>Real-time Analytics</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview Section -->
+    <section class="inner-section">
+        <div class="container">
+            <div class="why-container" style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:4rem; align-items:flex-start;">
+                <div data-reveal>
+                    <span class="badge">Overview</span>
+                    <h2 class="section-title">Data Visibility <span class="text-gradient">Without Delay</span></h2>
+                    <p style="color:var(--text-muted); margin-bottom:1.5rem;">Old agencies obscure their data, sending you static PDFs 15 days after the month ends. In modern digital markets, a 15-day delay in data visibility is a death sentence for your budget.</p>
+                    <p style="color:var(--text-muted); margin-bottom:2rem;">We build custom API-driven Business Intelligence (BI) dashboards. You get a secure login to view live, interactive charts tracking everything from Google Ads CPC to Shopify checkout completions, all synced with less than 3.2 seconds of latency.</p>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2rem;">
+                        <div class="glass-card" style="padding:1.5rem; border-color:rgba(255,255,255,0.05);">
+                            <div style="width:40px; height:40px; border-radius:8px; background:rgba(0,225,255,0.1); color:#00e1ff; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; font-size:1.2rem;">
+                                <i class="fa-solid fa-server"></i>
+                            </div>
+                            <h4 style="font-family:'Outfit',sans-serif; margin-bottom:6px;">Cross-Channel Sync</h4>
+                            <p style="color:var(--text-muted); font-size:0.85rem; margin:0;">Aggregating Meta, Google, Stripe, and CRM data into one view.</p>
+                        </div>
+                        <div class="glass-card" style="padding:1.5rem; border-color:rgba(255,255,255,0.05);">
+                            <div style="width:40px; height:40px; border-radius:8px; background:rgba(124,58,237,0.1); color:#7c3aed; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; font-size:1.2rem;">
+                                <i class="fa-solid fa-shield-halved"></i>
+                            </div>
+                            <h4 style="font-family:'Outfit',sans-serif; margin-bottom:6px;">100% Transparency</h4>
+                            <p style="color:var(--text-muted); font-size:0.85rem; margin:0;">No hidden markups. You see exactly what you spend and what you earn.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-reveal data-delay="2" style="position:sticky; top:120px;">
+                    <div class="glass-card glowing-border" style="padding:2rem;">
+                        <h3 style="font-family:'Outfit',sans-serif; margin-bottom:1.5rem;">Key Performance Metrics</h3>
+                        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.88rem; font-weight:500; margin-bottom:6px;">
+                                    <span>Sync Latency Global Push</span>
+                                    <span style="color:#00e1ff;">&lt; 3.2 Seconds</span>
+                                </div>
+                                <div style="height:6px; background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+                                    <div style="height:100%; background:linear-gradient(90deg, #00e1ff, #0051ff); width:98%; border-radius:10px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.88rem; font-weight:500; margin-bottom:6px;">
+                                    <span>Data Transparency</span>
+                                    <span style="color:#7c3aed;">100% Guaranteed</span>
+                                </div>
+                                <div style="height:6px; background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+                                    <div style="height:100%; background:linear-gradient(90deg, #7c3aed, #00e1ff); width:100%; border-radius:10px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.88rem; font-weight:500; margin-bottom:6px;">
+                                    <span>Uptime Reliability</span>
+                                    <span style="color:#00e1ff;">99.9% Active</span>
+                                </div>
+                                <div style="height:6px; background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+                                    <div style="height:100%; background:linear-gradient(90deg, #00e1ff, #0051ff); width:99%; border-radius:10px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:2rem; padding:1rem; border-radius:10px; background:rgba(0,225,255,0.03); border:1px dashed rgba(0,225,255,0.2); text-align:center;">
+                            <p style="color:#00e1ff; font-family:'Outfit',sans-serif; font-weight:700; margin:0 0 4px 0; font-size:1.1rem;">Nexus Secure Hub</p>
+                            <span style="font-size:0.75rem; color:var(--text-muted);">SOC 2 Compliant Data Architecture</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specific Workflow Steps -->
+    <section class="inner-section bg-alt">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">The Workflow</span>
+                <h2 class="section-title">Our Analytics <span class="text-gradient">Implementation</span></h2>
+                <p class="section-desc">We build enterprise-grade data pipelines specifically for your marketing stacks.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:4rem; align-items:center;">
+                <div data-reveal>
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="BI Dashboards" style="border-radius:16px; width:100%;">
+                </div>
+
+                <div data-reveal data-delay="2">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-num">Phase 01</div>
+                            <h4>Data Source Auditing</h4>
+                            <p>We review your current analytics setups (GA4 setup, Meta Pixels, CRM webhooks) and ensure tagging is accurate and not double-counting conversions.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-num">Phase 02</div>
+                            <h4>API Integration Hub</h4>
+                            <p>We connect the authenticated APIs of all your platforms into a central data warehouse, ensuring seamless communication across services.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-num">Phase 03</div>
+                            <h4>Custom Dashboard Engineering</h4>
+                            <p>Building the visual front-end using Looker Studio or custom React applications, tailored to show exactly the KPIs your executive team cares about.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-num">Phase 04</div>
+                            <h4>Live Monitoring & Adjustments</h4>
+                            <p>Ongoing maintenance to ensure APIs don't break during platform updates and adding new modules as your business scales.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing/CTA Specific -->
+    <section class="cta-strip">
+        <div class="container" data-reveal>
+            <span class="badge">Data Visibility</span>
+            <h2>Take Control of <span class="text-gradient">Your Metrics</span></h2>
+            <p>Schedule a demo to see our live tracking dashboards in action and discover how real-time data transforms decision making.</p>
+            <div class="btn-group">
+                <a href="contact.html" class="btn btn-primary glow-btn">Request Dashboard Demo</a>
+                <a href="services.html" class="btn btn-outline">Back to Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="service-seo.html">SEO Optimization</a></li>
+                        <li><a href="service-web-dev.html">Web Development</a></li>
+                        <li><a href="service-social.html">Social Media</a></li>
+                        <li><a href="service-ppc.html">PPC Advertising</a></li>
+                        <li><a href="service-analytics.html">Analytics Reporting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+</body>
+
+</html>

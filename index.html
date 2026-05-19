@@ -1,0 +1,876 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexusDigital | Premium Marketing Agency</title>
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function () {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="#home" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- Mobile-only CTA inside nav panel -->
+                <a href="contact.html" class="header-cta mobile-nav-cta" style="display:none">
+                    <i class="fa-solid fa-bolt"></i> Get Started
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <!-- Profile / Account Button -->
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i>
+                                Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign
+                                Up</a>
+                        </div>
+
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> User
+                            Dashboard</a>
+                        <a href="admin-dashboard.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i>
+                            Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i
+                        class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <!-- Animated background elements -->
+        <div class="glow-effect"></div>
+        <div class="glow-effect-2"></div>
+        <div class="glow-effect-3"></div>
+        <div class="container hero-container">
+            <div class="hero-content" data-scroll>
+                <div class="badge">🚀 #1 Digital Marketing Agency</div>
+                <h1>Smart Ideas For Your <br><span class="text-gradient">Brand Growth</span></h1>
+                <p>We combine data-driven strategies with creative excellence to deliver unmatched digital experiences
+                    that elevate your brand and maximize your ROI.</p>
+                <div class="hero-buttons">
+                    <a href="#services" class="btn btn-primary glow-btn">Get Started</a>
+                    <a href="#about" class="btn btn-outline play-btn"><i class="fa-solid fa-play"></i> Watch Video</a>
+                </div>
+            </div>
+            <div class="hero-image" data-scroll>
+                <div class="image-wrapper">
+                    <img src="images/hero-businessman.png" alt="Professional Businessman">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trusted Companies -->
+    <section class="trusted-brands">
+        <div class="container">
+            <p class="section-subtitle text-center">Trusted by innovative companies worldwide</p>
+            <div class="brands-grid">
+                <i class="fa-brands fa-aws"></i>
+                <i class="fa-brands fa-google"></i>
+                <i class="fa-brands fa-microsoft"></i>
+                <i class="fa-brands fa-spotify"></i>
+                <i class="fa-brands fa-stripe"></i>
+                <i class="fa-brands fa-slack"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about section">
+        <div class="container about-container">
+            <div class="about-image" data-scroll>
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                    alt="About Us">
+                <div class="experience-badge glass-card glowing-border">
+                    <h3>10+</h3>
+                    <p>Years Experience</p>
+                </div>
+            </div>
+            <div class="about-content" data-scroll>
+                <span class="badge">About Us</span>
+                <h2 class="section-title">We Are The Best <span class="text-gradient">Digital Agency</span> For Your
+                    Business</h2>
+                <p>We're a team of passionate digital marketers, designers, and developers dedicated to delivering
+                    exceptional results. Our approach combines data-driven insights with creative innovation to ensure
+                    your brand stands out in the crowded digital landscape.</p>
+
+                <div class="about-features">
+                    <div class="feature-box glass-card">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <div>
+                            <h4>Data-Driven Approach</h4>
+                            <p>We rely on analytics, not guesswork.</p>
+                        </div>
+                    </div>
+                    <div class="feature-box glass-card">
+                        <i class="fa-solid fa-check-circle"></i>
+                        <div>
+                            <h4>Creative Excellence</h4>
+                            <p>Award-winning designs and campaigns.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stat-item glass-card">
+                        <h3><span class="counter" data-target="450">0</span>+</h3>
+                        <p>Live Websites</p>
+                    </div>
+                    <div class="stat-item glass-card">
+                        <h3><span class="counter" data-target="750">0</span>+</h3>
+                        <p>Happy Clients</p>
+                    </div>
+                    <div class="stat-item glass-card">
+                        <h3><span class="counter" data-target="120">0</span>+</h3>
+                        <p>Team Members</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services section bg-darker">
+        <div class="container">
+            <div class="section-header text-center" data-scroll>
+                <span class="badge">Our Services</span>
+                <h2 class="section-title">High-Impact <span class="text-gradient">Digital Services</span></h2>
+                <p class="section-desc">We provide a comprehensive suite of digital marketing services designed to grow
+                    your business, increase your reach, and boost your revenue.</p>
+            </div>
+
+            <div class="services-grid">
+                <a href="service-seo.html" class="service-card glass-card" data-scroll
+                    style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
+                    <div class="service-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <h3>SEO Optimization</h3>
+                    <p>Rank higher on search engines and attract targeted organic traffic to your website through proven
+                        optimization techniques.</p>
+                    <span class="service-link"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="service-social.html" class="service-card glass-card" data-scroll
+                    style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
+                    <div class="service-icon"><i class="fa-solid fa-share-nodes"></i></div>
+                    <h3>Social Media Marketing</h3>
+                    <p>Build a strong brand presence and engage with your audience across all major social media
+                        platforms effectively.</p>
+                    <span class="service-link"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="service-content.html" class="service-card glass-card" data-scroll
+                    style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
+                    <div class="service-icon"><i class="fa-solid fa-bullhorn"></i></div>
+                    <h3>Content Marketing</h3>
+                    <p>Create compelling, valuable content that resonates with your target audience and drives
+                        profitable customer action.</p>
+                    <span class="service-link"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="service-branding.html" class="service-card glass-card" data-scroll
+                    style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
+                    <div class="service-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3>Branding Strategy</h3>
+                    <p>Develop a unique, memorable brand identity that sets you apart from your competitors and builds
+                        lasting trust.</p>
+                    <span class="service-link"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="service-ppc.html" class="service-card glass-card" data-scroll
+                    style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
+                    <div class="service-icon"><i class="fa-solid fa-rectangle-ad"></i></div>
+                    <h3>PPC Advertising</h3>
+                    <p>Maximize your ROI with highly targeted ad campaigns on Google Ads, Facebook Ads, and other
+                        advertising networks.</p>
+                    <span class="service-link"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="service-web-dev.html" class="service-card glass-card" data-scroll
+                    style="display:block; text-decoration:none; color:inherit; cursor:pointer;">
+                    <div class="service-icon"><i class="fa-solid fa-laptop-code"></i></div>
+                    <h3>Web Development</h3>
+                    <p>Build stunning, lightning-fast, and high-converting modern websites optimized for all screen
+                        sizes and devices.</p>
+                    <span class="service-link"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us -->
+    <section id="why-us" class="why-us section">
+        <div class="container why-container">
+            <div class="why-content" data-scroll>
+                <span class="badge">Why Choose Us</span>
+                <h2 class="section-title">We Deliver Outstanding <span class="text-gradient">Results</span></h2>
+                <p>Our strategies are designed to deliver measurable results and provide you with a clear return on
+                    investment. We don't just build campaigns; we build growth engines.</p>
+
+                <div class="progress-wrapper">
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <h4>Digital Strategy</h4>
+                            <span>95%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="95%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <h4>SEO & Marketing</h4>
+                            <span>88%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="88%"></div>
+                        </div>
+                    </div>
+                    <div class="progress-item">
+                        <div class="progress-info">
+                            <h4>Web Development</h4>
+                            <span>92%</span>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress" data-width="92%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="why-image" data-scroll>
+                <div class="chart-card glass-card floating">
+                    <h4>Marketing Performance</h4>
+                    <div class="chart-bars">
+                        <div class="bar-col" style="height: 40%"></div>
+                        <div class="bar-col" style="height: 60%"></div>
+                        <div class="bar-col" style="height: 35%"></div>
+                        <div class="bar-col" style="height: 80%"></div>
+                        <div class="bar-col active" style="height: 100%"></div>
+                    </div>
+                    <div class="chart-info">
+                        <span>+48% Growth</span>
+                    </div>
+                </div>
+                <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&auto=format&fit=crop&w=1000&q=80"
+                    alt="Analytics Dashboard">
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="portfolio section bg-darker">
+        <div class="container">
+            <div class="section-header text-center" data-scroll>
+                <span class="badge">Our Work</span>
+                <h2 class="section-title">Explore Our <span class="text-gradient">Latest Projects</span></h2>
+            </div>
+
+            <div class="portfolio-filters" data-scroll>
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Design</button>
+                <button class="filter-btn" data-filter="marketing">Marketing</button>
+                <button class="filter-btn" data-filter="branding">Branding</button>
+            </div>
+
+            <div class="portfolio-grid">
+                <div class="portfolio-item glass-card mix web" data-category="web" data-scroll>
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 1">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Tech Startup Redesign</h3>
+                        <p>Web Design</p>
+                    </div>
+                </div>
+                <div class="portfolio-item glass-card mix marketing" data-category="marketing" data-scroll>
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1533750516457-a7f992034fec?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 2">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Social Media Campaign</h3>
+                        <p>Marketing</p>
+                    </div>
+                </div>
+                <div class="portfolio-item glass-card mix branding" data-category="branding" data-scroll>
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 3">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Corporate Identity</h3>
+                        <p>Branding</p>
+                    </div>
+                </div>
+                <div class="portfolio-item glass-card mix web" data-category="web" data-scroll>
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 4">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>E-Commerce Platform</h3>
+                        <p>Web Design</p>
+                    </div>
+                </div>
+                <div class="portfolio-item glass-card mix marketing" data-category="marketing" data-scroll>
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 5">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>SEO Optimization Plan</h3>
+                        <p>Marketing</p>
+                    </div>
+                </div>
+                <div class="portfolio-item glass-card mix branding" data-category="branding" data-scroll>
+                    <div class="portfolio-img">
+                        <img src="https://images.unsplash.com/photo-1558655146-d09347e92766?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Project 6">
+                        <div class="portfolio-overlay">
+                            <a href="#" class="portfolio-link"><i
+                                    class="fa-solid fa-arrow-up-right-from-square"></i></a>
+                        </div>
+                    </div>
+                    <div class="portfolio-info">
+                        <h3>Brand Identity Refresh</h3>
+                        <p>Branding</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section id="team" class="team section">
+        <div class="container">
+            <div class="section-header text-center" data-scroll>
+                <span class="badge">Our Experts</span>
+                <h2 class="section-title">Meet Our <span class="text-gradient">Professional Team</span></h2>
+            </div>
+
+            <div class="team-grid">
+                <div class="team-card glass-card" data-scroll>
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Team Member">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>David Miller</h3>
+                        <p>CEO & Founder</p>
+                    </div>
+                </div>
+                <div class="team-card glass-card" data-scroll>
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Team Member">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Sarah Johnson</h3>
+                        <p>Marketing Director</p>
+                    </div>
+                </div>
+                <div class="team-card glass-card" data-scroll>
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/men/65.jpg" alt="Team Member">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Michael Chen</h3>
+                        <p>Lead Developer</p>
+                    </div>
+                </div>
+                <div class="team-card glass-card" data-scroll>
+                    <div class="team-img">
+                        <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Team Member">
+                        <div class="team-socials">
+                            <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                            <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                            <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        </div>
+                    </div>
+                    <div class="team-info">
+                        <h3>Emily Davis</h3>
+                        <p>SEO Specialist</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="testimonials section bg-darker">
+        <div class="container">
+            <div class="section-header text-center" data-scroll>
+                <span class="badge">Testimonials</span>
+                <h2 class="section-title">What Our <span class="text-gradient">Clients Say</span></h2>
+            </div>
+
+            <div class="testimonial-wrapper" data-scroll>
+                <div class="testimonial-slider" id="testimonialSlider">
+                    <div class="testimonial-slide active glass-card">
+                        <div class="quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+                        <p class="testimonial-text">"NexusDigital completely transformed our online presence. Our
+                            organic traffic increased by 200% within the first 6 months. Highly recommended for any
+                            business looking to scale!"</p>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/men/91.jpg" alt="Client">
+                            <div>
+                                <h4>James Wilson</h4>
+                                <p>CEO, TechFlow</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide glass-card">
+                        <div class="quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+                        <p class="testimonial-text">"The team's creativity and attention to detail are unmatched. The
+                            new website they built for us is stunning, fast, and converts incredibly well. They
+                            understood our vision perfectly."</p>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/women/22.jpg" alt="Client">
+                            <div>
+                                <h4>Laura Martinez</h4>
+                                <p>Founder, ElevateBrand</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-slide glass-card">
+                        <div class="quote-icon"><i class="fa-solid fa-quote-right"></i></div>
+                        <p class="testimonial-text">"Their PPC campaigns yielded an ROI we didn't think was possible.
+                            The transparent reporting and clear communication make them a perfect partner for our
+                            ongoing digital strategy."</p>
+                        <div class="client-info">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Client">
+                            <div>
+                                <h4>Robert Taylor</h4>
+                                <p>Marketing VP, GlobalCore</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="slider-dots" id="sliderDots">
+                    <!-- Dots generated by JS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing section">
+        <div class="container">
+            <div class="section-header text-center" data-scroll>
+                <span class="badge">Pricing Plans</span>
+                <h2 class="section-title">Choose The Best <span class="text-gradient">Plan</span></h2>
+            </div>
+
+            <div class="pricing-grid">
+                <div class="pricing-card glass-card" data-scroll>
+                    <div class="pricing-header">
+                        <h3>Starter</h3>
+                        <div class="price"><span>$</span>999<span>/mo</span></div>
+                        <p>Perfect for small businesses looking to establish a presence.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Basic SEO Optimization</li>
+                        <li><i class="fa-solid fa-check"></i> 2 Social Media Profiles</li>
+                        <li><i class="fa-solid fa-check"></i> Monthly Analytics Report</li>
+                        <li class="disabled"><i class="fa-solid fa-xmark"></i> PPC Management</li>
+                        <li class="disabled"><i class="fa-solid fa-xmark"></i> Dedicated Account Manager</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline w-100">Choose Plan</a>
+                </div>
+
+                <div class="pricing-card glass-card featured glowing-border" data-scroll>
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Professional</h3>
+                        <div class="price"><span>$</span>1,999<span>/mo</span></div>
+                        <p>Comprehensive marketing for growing companies.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Advanced SEO Strategies</li>
+                        <li><i class="fa-solid fa-check"></i> 5 Social Media Profiles</li>
+                        <li><i class="fa-solid fa-check"></i> Weekly Analytics Report</li>
+                        <li><i class="fa-solid fa-check"></i> PPC Management (Up to $5k)</li>
+                        <li class="disabled"><i class="fa-solid fa-xmark"></i> Dedicated Account Manager</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary glow-btn w-100">Choose Plan</a>
+                </div>
+
+                <div class="pricing-card glass-card" data-scroll>
+                    <div class="pricing-header">
+                        <h3>Enterprise</h3>
+                        <div class="price"><span>$</span>4,999<span>/mo</span></div>
+                        <p>Full-service marketing for large organizations.</p>
+                    </div>
+                    <ul class="pricing-features">
+                        <li><i class="fa-solid fa-check"></i> Enterprise SEO & Content</li>
+                        <li><i class="fa-solid fa-check"></i> All Social Media Platforms</li>
+                        <li><i class="fa-solid fa-check"></i> Real-time Dashboard</li>
+                        <li><i class="fa-solid fa-check"></i> Unlimited PPC Management</li>
+                        <li><i class="fa-solid fa-check"></i> Dedicated Account Manager</li>
+                    </ul>
+                    <a href="#" class="btn btn-outline w-100">Choose Plan</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section id="faq" class="faq section bg-darker">
+        <div class="container faq-container">
+            <div class="faq-content" data-scroll>
+                <span class="badge">FAQ</span>
+                <h2 class="section-title">Frequently Asked <span class="text-gradient">Questions</span></h2>
+                <p>Find answers to common questions about our digital marketing services. Can't find what you're looking
+                    for? Reach out to our team.</p>
+            </div>
+
+            <div class="faq-accordion" data-scroll>
+                <div class="accordion-item glass-card active">
+                    <div class="accordion-header">
+                        <h4>How long does it take to see results with SEO?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>SEO is a long-term strategy. Typically, you can expect to see noticeable improvements in
+                            rankings and organic traffic within 3 to 6 months, depending on the competitiveness of your
+                            industry and the current state of your website.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card">
+                    <div class="accordion-header">
+                        <h4>Do you provide custom marketing packages?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes, absolutely. While we offer standard plans as a starting point, we often tailor our
+                            services to meet the specific needs, goals, and budget constraints of each individual client
+                            to ensure maximum ROI.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card">
+                    <div class="accordion-header">
+                        <h4>What metrics do you track for campaigns?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We track various KPIs depending on the campaign goals, including conversion rate, cost per
+                            acquisition (CPA), return on ad spend (ROAS), organic traffic growth, bounce rate, and
+                            overall engagement metrics.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card">
+                    <div class="accordion-header">
+                        <h4>Will I have a dedicated point of contact?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes, clients on our Professional and Enterprise plans are assigned a dedicated Account
+                            Manager. They will be your main point of contact, providing regular updates and ensuring
+                            your campaigns align with your business goals.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="blog section">
+        <div class="container">
+            <div class="section-header text-center" data-scroll>
+                <span class="badge">Our Blog</span>
+                <h2 class="section-title">Latest <span class="text-gradient">News & Articles</span></h2>
+            </div>
+
+            <div class="blog-grid">
+                <article class="blog-card glass-card" data-scroll>
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Blog 1">
+                        <span class="blog-tag">SEO Strategy</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fa-regular fa-calendar"></i> May 15, 2026</span>
+                            <span><i class="fa-regular fa-user"></i> Admin</span>
+                        </div>
+                        <h3><a href="blog-seo-guide.html">The Ultimate Guide to SEO in 2026</a></h3>
+                        <p>Discover the latest search engine optimization techniques that are driving real results today
+                            and how to implement them.</p>
+                        <a href="blog-seo-guide.html" class="read-more">Read More <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card glass-card" data-scroll>
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Blog 2">
+                        <span class="blog-tag">Social Media</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fa-regular fa-calendar"></i> May 10, 2026</span>
+                            <span><i class="fa-regular fa-user"></i> Admin</span>
+                        </div>
+                        <h3><a href="blog-viral-marketing.html">Building a Viral Marketing Campaign</a></h3>
+                        <p>Learn the psychological secrets behind creating content that gets shared thousands of times
+                            across social platforms.</p>
+                        <a href="blog-viral-marketing.html" class="read-more">Read More <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+                <article class="blog-card glass-card" data-scroll>
+                    <div class="blog-img">
+                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                            alt="Blog 3">
+                        <span class="blog-tag">Analytics</span>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <span><i class="fa-regular fa-calendar"></i> May 05, 2026</span>
+                            <span><i class="fa-regular fa-user"></i> Admin</span>
+                        </div>
+                        <h3><a href="blog-web-vitals.html">Understanding Core Web Vitals</a></h3>
+                        <p>A comprehensive breakdown of Core Web Vitals and why they matter for your website's search
+                            performance and UX.</p>
+                        <a href="blog-web-vitals.html" class="read-more">Read More <i
+                                class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact section bg-darker">
+        <div class="container contact-container">
+            <div class="contact-info-wrapper" data-scroll>
+                <span class="badge">Contact Us</span>
+                <h2 class="section-title">Let's Discuss Your <span class="text-gradient">Next Project</span></h2>
+                <p>Ready to take your digital presence to the next level? Get in touch with our team today for a free
+                    consultation.</p>
+
+                <div class="contact-cards">
+                    <div class="contact-card glass-card">
+                        <div class="icon"><i class="fa-solid fa-location-dot"></i></div>
+                        <div>
+                            <h4>Our Location</h4>
+                            <p>123 Digital Avenue, NY 10001</p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass-card">
+                        <div class="icon"><i class="fa-solid fa-phone"></i></div>
+                        <div>
+                            <h4>Phone Number</h4>
+                            <p>+1 (555) 123-4567</p>
+                        </div>
+                    </div>
+                    <div class="contact-card glass-card">
+                        <div class="icon"><i class="fa-solid fa-envelope"></i></div>
+                        <div>
+                            <h4>Email Address</h4>
+                            <p>hello@nexusdigital.com</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper glass-card" data-scroll>
+                <h3>Send Us a Message</h3>
+                <form id="contact-form" class="contact-form">
+                    <div class="form-group">
+                        <input type="text" id="name" placeholder="Your Name">
+                        <span class="error-msg" id="name-error">Name is required</span>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="email" placeholder="Your Email">
+                        <span class="error-msg" id="email-error">Please enter a valid email</span>
+                    </div>
+                    <div class="form-group">
+                        <select id="subject">
+                            <option value="" disabled selected>Select Subject</option>
+                            <option value="seo">SEO Optimization</option>
+                            <option value="web">Web Development</option>
+                            <option value="marketing">Digital Marketing</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="error-msg" id="subject-error">Please select a subject</span>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="message" rows="5" placeholder="Your Message"></textarea>
+                        <span class="error-msg" id="message-error">Message is required</span>
+                    </div>
+                    <button type="submit" class="btn btn-primary glow-btn w-100">Send Message <i
+                            class="fa-solid fa-paper-plane"></i></button>
+                    <div class="success-msg" id="success-msg">Message sent successfully! We'll get back to you soon.
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Map Overlay Area (visual representation) -->
+        <div class="map-area" data-scroll>
+            <div class="map-placeholder">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <p>Interactive Map Area</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="#" class="logo">
+                        <i class="fa-solid fa-chart-line"></i> Nexus<span>Digital</span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and
+                        creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#services">Our Services</a></li>
+                        <li><a href="#portfolio">Portfolio</a></li>
+                        <li><a href="#pricing">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="#">SEO Optimization</a></li>
+                        <li><a href="#">Web Development</a></li>
+                        <li><a href="#">Social Media Marketing</a></li>
+                        <li><a href="#">PPC Advertising</a></li>
+                        <li><a href="#">Content Creation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe to our newsletter to receive the latest updates and digital marketing tips.</p>
+                    <form class="newsletter-form" id="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <a href="#" class="back-to-top" id="backToTop" aria-label="Back to Top">
+        <i class="fa-solid fa-arrow-up"></i>
+    </a>
+
+    <!-- Scripts -->
+    <script src="js/script.js"></script>
+    <script src="js/common.js"></script>
+</body>
+
+</html>

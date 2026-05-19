@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Understanding Core Web Vitals | NexusDigital Insights</title>
+    <meta name="description"
+        content="Dive into our technical breakdown of Core Web Vitals (LCP, CLS, INP) and learn how site speed influences your organic keyword conversions.">
+    <!-- Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Custom styling for rich article presentation -->
+    <style>
+        .article-hero {
+            position: relative;
+            padding: 160px 0 80px;
+            background: radial-gradient(circle at 50% 0%, rgba(0, 225, 255, 0.08) 0%, transparent 60%);
+            overflow: hidden;
+        }
+        .article-badge {
+            background: rgba(0, 225, 255, 0.1);
+            border: 1px solid rgba(0, 225, 255, 0.2);
+            color: #00e1ff;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 1.5rem;
+        }
+        .article-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+        }
+        .article-meta-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: center;
+            color: #94a3b8;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+            padding-bottom: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .article-meta-row img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00e1ff;
+        }
+        .article-meta-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .article-meta-item i {
+            color: #00e1ff;
+        }
+        .featured-img-container {
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        .featured-img-container img {
+            width: 100%;
+            height: auto;
+            max-height: 550px;
+            object-fit: cover;
+        }
+        .article-rich-body {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #cbd5e1;
+        }
+        .article-rich-body h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.8rem;
+            color: #fff;
+            margin: 2.5rem 0 1.2rem;
+            font-weight: 700;
+        }
+        .article-rich-body h3 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.4rem;
+            color: #fff;
+            margin: 2rem 0 1rem;
+        }
+        .article-rich-body p {
+            margin-bottom: 1.5rem;
+        }
+        .article-blockquote {
+            background: linear-gradient(90deg, rgba(0, 225, 255, 0.08) 0%, transparent 100%);
+            border-left: 4px solid #00e1ff;
+            padding: 1.5rem 2rem;
+            margin: 2rem 0;
+            border-radius: 0 16px 16px 0;
+            font-style: italic;
+            color: #f1f5f9;
+        }
+        .article-stat-strip {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 2.5rem 0;
+        }
+        .article-stat-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+        }
+        .article-stat-num {
+            font-family: 'Outfit', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: #00e1ff;
+            margin-bottom: 4px;
+            text-shadow: 0 0 15px rgba(0, 225, 255, 0.3);
+        }
+        .social-share-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .share-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: #fff;
+            transition: all 0.3s ease;
+        }
+        .share-btn:hover {
+            background: #00e1ff;
+            color: #000;
+            transform: translateY(-2px);
+        }
+        .article-comment-section {
+            margin-top: 4rem;
+        }
+        .comment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 1.5rem;
+        }
+        .comment-input-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+        }
+        .comment-field {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            padding: 14px 18px;
+            color: #fff;
+            outline: none;
+            font-family: 'Inter', sans-serif;
+            transition: all 0.3s ease;
+        }
+        .comment-field:focus {
+            border-color: #00e1ff;
+            box-shadow: 0 0 10px rgba(0, 225, 255, 0.1);
+        }
+        [data-theme="light"] .article-title { color: #0f172a !important; }
+        [data-theme="light"] .article-rich-body { color: #334155 !important; }
+        [data-theme="light"] .article-rich-body h2,
+        [data-theme="light"] .article-rich-body h3 { color: #0f172a !important; }
+        [data-theme="light"] .article-blockquote { color: #334155 !important; }
+        [data-theme="light"] .article-stat-card {
+            background: #f8fafc !important;
+            border-color: #e2e8f0 !important;
+        }
+        [data-theme="light"] .comment-field {
+            background: #f8fafc !important;
+            border-color: #cbd5e1 !important;
+            color: #0f172a !important;
+        }
+        [data-theme="light"] .sidebar-widget {
+            background: #ffffff !important;
+            border: 1px solid #e2e8f0 !important;
+        }
+        [data-theme="light"] .category-list li,
+        [data-theme="light"] .tag-item {
+            color: #475569 !important;
+        }
+    </style>
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header sticky" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <!-- Mobile-only CTA inside nav panel -->
+                <a href="contact.html" class="header-cta mobile-nav-cta" style="display:none">
+                    <i class="fa-solid fa-bolt"></i> Get Started
+                </a>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+
+                <!-- Profile / Account Button -->
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> User Dashboard</a>
+                        <a href="admin-dashboard.html" class="dropdown-item"><i class="fa-solid fa-user-shield"></i> Admin Dashboard</a>
+                    </div>
+                </div>
+
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i
+                        class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <article class="article-hero">
+        <div class="container">
+            <nav class="breadcrumb" style="margin-bottom: 2rem;">
+                <a href="index.html">Home</a>
+                <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                <a href="blog.html">Insights</a>
+                <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                <span>Web Performance</span>
+            </nav>
+
+            <span class="article-badge">Analytics</span>
+            <h1 class="article-title">Understanding Core Web Vitals: Technical Performance for High-End Platforms</h1>
+
+            <div class="article-meta-row">
+                <div class="article-meta-item">
+                    <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Author">
+                    <span>By <strong>Julian Vance</strong></span>
+                </div>
+                <div class="article-meta-item">
+                    <i class="fa-regular fa-calendar"></i>
+                    <span>May 05, 2026</span>
+                </div>
+                <div class="article-meta-item">
+                    <i class="fa-regular fa-clock"></i>
+                    <span>7 Min Read</span>
+                </div>
+                <div class="article-meta-item">
+                    <i class="fa-regular fa-eye"></i>
+                    <span>1,902 Views</span>
+                </div>
+            </div>
+
+            <!-- Featured Image -->
+            <div class="featured-img-container">
+                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80" alt="Core Web Vitals">
+            </div>
+
+            <!-- Page Grid Layout -->
+            <div style="display:grid; grid-template-columns: 2fr 1fr; gap: 3rem;" class="blog-layout-grid">
+                <!-- Left: Rich Content Block -->
+                <div>
+                    <div class="article-rich-body">
+                        <p>User experience indices are now directly responsible for determining search engine positioning parameters. With Google incorporating user-centric speed indexes as mandatory organic filters, achieving perfect Core Web Vitals ratings is no longer optional. It has become a prerequisite to protecting your organic advertising margins.</p>
+
+                        <h2>1. The Core Web Vitals Metric Suite: LCP, FID, and CLS</h2>
+                        <p>Web optimization depends on three core technical aspects: loading speed, interactivity delays, and layout stability. The three parameters that measure these dimensions are:</p>
+                        <ul>
+                            <li><strong>Largest Contentful Paint (LCP):</strong> Measures loading speed. The primary page media block must render in less than 2.5 seconds to pass audits.</li>
+                            <li><strong>First Input Delay (FID):</strong> Tracks responsiveness. Measures interactive latencies after a customer interacts with elements like buttons or menus.</li>
+                            <li><strong>Cumulative Layout Shift (CLS):</strong> Measures visual alignment stability. Keeps track of unexpected layout changes that cause elements to shift during parsing.</li>
+                        </ul>
+
+                        <div class="article-blockquote">
+                            "Speed is the absolute ultimate metric. Every 100ms decrease in server response latency directly increases platform conversion margins by up to 1.5%."
+                        </div>
+
+                        <h2>2. The Crucial Benchmark: Interaction to Next Paint (INP)</h2>
+                        <p>As web platforms become increasingly dynamic, Google has integrated Interaction to Next Paint (INP) to replace standard First Input Delay. INP evaluates the latency of *all* click, tap, and keyboard interactions throughout a user's entire visit duration. Achieving a good score requires optimizing script execution times and reducing browser thread bottlenecks.</p>
+
+                        <div class="article-stat-strip">
+                            <div class="article-stat-card">
+                                <div class="article-stat-num">65%</div>
+                                <div style="color:var(--text-muted); font-size:0.85rem; font-weight:700;">Faster Loading Speeds</div>
+                            </div>
+                            <div class="article-stat-card">
+                                <div class="article-stat-num">99.8%</div>
+                                <div style="color:var(--text-muted); font-size:0.85rem; font-weight:700;">Perfect Core Vitals Pass</div>
+                            </div>
+                        </div>
+
+                        <h2>3. SaaS Platform Speed Optimizations: Real Performance Cases</h2>
+                        <p>Optimizing assets for SaaS consoles and websites requires a modern approach:
+                        <ul>
+                            <li>Minify and consolidate heavy external framework imports.</li>
+                            <li>Configure responsive visual layouts with native sizing parameters to resolve layout shifts.</li>
+                            <li>Implement modern browser caching rules alongside CDN edge routing to serve assets instantly.</li>
+                        </ul>
+                        </p>
+
+                        <h2>4. Technical Dev Workflow to Secure Sub-Second Loads</h2>
+                        <p>Ensure your engineering teams implement these development practices immediately:
+                        <ol>
+                            <li>Audit the main thread stack and defer JavaScript imports that are not critical to the initial viewport.</li>
+                            <li>Replace heavy legacy elements with modern formats to compress asset sizes.</li>
+                            <li>Establish automated performance regression checks within your continuous integration pipelines.</li>
+                        </ol>
+                        </p>
+                    </div>
+
+                    <!-- Social Sharing -->
+                    <div class="social-share-wrap">
+                        <span style="font-weight:700; color:#fff;">Share This Article:</span>
+                        <a href="#" class="share-btn"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#" class="share-btn"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#" class="share-btn"><i class="fa-brands fa-linkedin-in"></i></a>
+                        <a href="#" class="share-btn"><i class="fa-regular fa-envelope"></i></a>
+                    </div>
+
+                    <!-- Comment Section -->
+                    <div class="article-comment-section">
+                        <h3 style="font-size:1.6rem; color:#fff; font-family:'Outfit',sans-serif; margin-bottom:1.5rem;">Leave a Reply</h3>
+                        <p style="color:var(--text-muted); font-size:0.95rem; margin-bottom:1.5rem;">Your email address will not be published. Required fields are marked *</p>
+                        <form class="comment-form">
+                            <textarea class="comment-field" rows="6" placeholder="Your Comment*" required></textarea>
+                            <div class="comment-input-grid">
+                                <input type="text" class="comment-field" placeholder="Your Name*" required>
+                                <input type="email" class="comment-field" placeholder="Your Email*" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary glow-btn" style="align-self:flex-start; margin-top:1rem;">Submit Comment <i class="fa-regular fa-paper-plane"></i></button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Right: Sidebar Widgets -->
+                <div>
+                    <!-- Widget 1: Search -->
+                    <div class="sidebar-widget">
+                        <h4>Search Articles</h4>
+                        <div class="sidebar-search">
+                            <input type="text" placeholder="Type keyword...">
+                            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                        </div>
+                    </div>
+
+                    <!-- Widget 2: Categories -->
+                    <div class="sidebar-widget">
+                        <h4>Categories</h4>
+                        <ul class="category-list" style="padding-left:0; list-style:none;">
+                            <li><a href="blog.html" style="color:inherit;">SEO Retainers <span>(12)</span></a></li>
+                            <li><a href="blog.html" style="color:inherit;">Web Optimization <span>(8)</span></a></li>
+                            <li><a href="blog.html" style="color:inherit;">Paid Media (PPC) <span>(15)</span></a></li>
+                            <li><a href="blog.html" style="color:inherit;">Social Media Campaigns <span>(22)</span></a></li>
+                            <li><a href="blog.html" style="color:inherit;">Branding Guidelines <span>(5)</span></a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Widget 3: Recent Posts -->
+                    <div class="sidebar-widget">
+                        <h4>Recent Posts</h4>
+                        <div class="recent-post">
+                            <img src="https://images.unsplash.com/photo-1432888498266-38ffec3eaf0a?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="SEO Post">
+                            <div class="recent-post-info">
+                                <h5><a href="blog-seo-guide.html">The Ultimate Guide to SEO in 2026</a></h5>
+                                <span>May 15, 2026</span>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Viral Campaign">
+                            <div class="recent-post-info">
+                                <h5><a href="blog-viral-marketing.html">Building a Viral Campaign</a></h5>
+                                <span>May 10, 2026</span>
+                            </div>
+                        </div>
+                        <div class="recent-post">
+                            <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=150&q=80" alt="Core Web Vitals">
+                            <div class="recent-post-info">
+                                <h5><a href="blog-web-vitals.html">Understanding Core Web Vitals</a></h5>
+                                <span>May 05, 2026</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Widget 4: CTA Banner -->
+                    <div class="sidebar-widget" style="background:linear-gradient(135deg, rgba(0,225,255,0.15) 0%, rgba(0,0,0,0.5) 100%); border:1px solid rgba(0,225,255,0.2); border-radius:24px; padding:30px; text-align:center; position:relative; overflow:hidden;">
+                        <div style="position:absolute; top:-20px; right:-20px; width:80px; height:80px; background:rgba(0,225,255,0.1); border-radius:50%; filter:blur(20px);"></div>
+                        <h4 style="color:#fff; font-size:1.4rem; margin-bottom:1rem; font-family:'Outfit',sans-serif;">Is Your Site Slow?</h4>
+                        <p style="color:#cbd5e1; font-size:0.88rem; margin-bottom:1.5rem; line-height:1.5;">Achieve instantaneous layout responses. Book a detailed technical web audit with our senior engineering team.</p>
+                        <a href="contact.html" class="btn btn-primary glow-btn" style="width:100%; border-radius:30px;">Start Your Campaign <i class="fa-solid fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="services.html">SEO Optimization</a></li>
+                        <li><a href="services.html">Web Development</a></li>
+                        <li><a href="services.html">Social Media</a></li>
+                        <li><a href="services.html">PPC Advertising</a></li>
+                        <li><a href="services.html">Content Creation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+    <style>
+        @media (max-width:992px) {
+            .blog-layout-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
+</body>
+
+</html>

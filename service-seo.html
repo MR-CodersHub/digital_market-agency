@@ -1,0 +1,538 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SEO Optimization | Predictive SEO Modeling | NexusDigital</title>
+    <meta name="description" content="Deep-dive into NexusDigital's Predictive SEO Campaign management: keywords strategy, local SEO, technical crawler shielding, and backlink engines.">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/components.css">
+    <!-- Theme Switcher Flicker Fix -->
+    <script>
+        (function() {
+            const saved = localStorage.getItem('ndTheme') || 'dark';
+            document.documentElement.setAttribute('data-theme', saved);
+        })();
+    </script>
+</head>
+
+<body class="dark-theme">
+    <!-- Loader -->
+    <div class="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header sticky" id="header">
+        <div class="header-inner">
+            <!-- Logo -->
+            <a href="index.html" class="logo">
+                <div class="logo-icon-wrap">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <span class="logo-text">Nexus<span>Digital</span></span>
+            </a>
+
+            <!-- Centre Nav -->
+            <nav class="nav" id="mainNav">
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index-2.html">Home 2</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="portfolio.html">Portfolio</a></li>
+                    <li><a href="team.html">Team</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Right Actions -->
+            <div class="header-actions">
+                <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+                    <i class="fa-solid fa-sun"></i>
+                </button>
+                <div class="profile-dropdown-wrapper">
+                    <button id="profile-toggle" class="profile-btn" aria-label="Account Settings">
+                        <i class="fa-regular fa-user"></i>
+                    </button>
+                    <div class="profile-dropdown-menu" id="profileDropdown">
+                        <!-- Premium Dual-Button Section -->
+                        <div class="dropdown-auth-section">
+                            <a href="login.html" class="auth-btn login-btn"><i class="fa-solid fa-right-to-bracket"></i> Login</a>
+                            <a href="signup.html" class="auth-btn signup-btn"><i class="fa-solid fa-user-plus"></i> Sign Up</a>
+                        </div>
+                        
+                        <!-- Dashboard Menu Items -->
+                        <div class="dropdown-menu-divider"></div>
+                        <a href="user-dashboard.html" class="dropdown-item"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                    </div>
+                </div>
+                <a href="contact.html" class="header-cta d-none-mobile">Get Started <i class="fa-solid fa-arrow-right"></i></a>
+                <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- SEO Hero specific styles -->
+    <style>
+        /* Base SEO Hero Styles */
+        .seo-hero {
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+            padding-top: 120px;
+            padding-bottom: 60px;
+            background: linear-gradient(135deg, #020617 0%, #0a192f 100%);
+            z-index: 1;
+        }
+
+        /* Dark Mode SEO Hero */
+        [data-theme="dark"] .seo-hero {
+            background: linear-gradient(135deg, #020617 0%, #0a192f 50%, #1e1b4b 100%);
+        }
+
+        [data-theme="dark"] .seo-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 50% 50%, rgba(0, 225, 255, 0.12) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.15) 0%, transparent 50%);
+            z-index: -1;
+            animation: gradientMove 15s ease-in-out infinite alternate;
+        }
+
+        [data-theme="dark"] .seo-hero .badge {
+            background: rgba(0, 225, 255, 0.15);
+            border: 1px solid rgba(0, 225, 255, 0.4);
+            color: #80f0ff;
+            box-shadow: 0 0 15px rgba(0, 225, 255, 0.2);
+            backdrop-filter: blur(8px);
+        }
+
+        [data-theme="dark"] .seo-hero h1 {
+            color: #ffffff;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+            font-size: 3.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        [data-theme="dark"] .seo-hero h1 .text-gradient {
+            background: linear-gradient(135deg, #00e1ff 0%, #a78bfa 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: none;
+        }
+
+        [data-theme="dark"] .seo-hero p {
+            color: #f1f5f9;
+            font-weight: 500;
+            font-size: 1.15rem;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        [data-theme="dark"] .seo-hero .breadcrumb {
+            background: rgba(15, 23, 42, 0.65);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #e2e8f0;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(12px);
+        }
+
+        [data-theme="dark"] .seo-hero .breadcrumb a {
+            color: #80f0ff;
+            font-weight: 600;
+        }
+
+        [data-theme="dark"] .seo-hero .breadcrumb .sep {
+            color: #94a3b8;
+            opacity: 0.8;
+        }
+
+        /* Light Mode SEO Hero */
+        [data-theme="light"] .seo-hero {
+            background: linear-gradient(135deg, #f8fafc 0%, #eff6ff 50%, #eef2ff 100%);
+        }
+
+        [data-theme="light"] .seo-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 20% 80%, rgba(37, 99, 235, 0.08) 0%, transparent 60%),
+                        radial-gradient(circle at 80% 20%, rgba(124, 58, 237, 0.08) 0%, transparent 50%);
+            z-index: -1;
+            animation: gradientMove 15s ease-in-out infinite alternate;
+        }
+
+        [data-theme="light"] .seo-hero .badge {
+            background: rgba(124, 58, 237, 0.1);
+            border: 1px solid rgba(124, 58, 237, 0.3);
+            color: #6d28d9;
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.15);
+            backdrop-filter: blur(8px);
+        }
+
+        [data-theme="light"] .seo-hero h1 {
+            color: #0f172a;
+            font-size: 3.5rem;
+            margin-bottom: 1.2rem;
+        }
+
+        [data-theme="light"] .seo-hero h1 .text-gradient {
+            background: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        [data-theme="light"] .seo-hero p {
+            color: #334155;
+            font-weight: 500;
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto 2rem;
+        }
+
+        [data-theme="light"] .seo-hero .breadcrumb {
+            background: rgba(255, 255, 255, 0.75);
+            border: 1px solid rgba(0, 0, 0, 0.12);
+            color: #475569;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+            backdrop-filter: blur(12px);
+        }
+
+        [data-theme="light"] .seo-hero .breadcrumb a {
+            color: #2563eb;
+            font-weight: 700;
+        }
+
+        [data-theme="light"] .seo-hero .breadcrumb .sep {
+            color: #94a3b8;
+            opacity: 0.8;
+        }
+
+        /* Animations & Particles */
+        .seo-particles {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            background-image: radial-gradient(circle at center, rgba(255,255,255,0.12) 1px, transparent 1px);
+            background-size: 40px 40px;
+            animation: particleFloat 20s linear infinite;
+            opacity: 0.6;
+        }
+
+        [data-theme="light"] .seo-particles {
+            background-image: radial-gradient(circle at center, rgba(0,0,0,0.06) 1px, transparent 1px);
+        }
+
+        .seo-hero-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+            animation: fadeUpReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        @keyframes fadeUpReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes gradientMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(40px); }
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 768px) {
+            .seo-hero h1 { font-size: 2.6rem; }
+            .seo-hero { padding-top: 110px; min-height: 380px; }
+            .seo-hero p { font-size: 1.05rem; }
+        }
+        @media (max-width: 576px) {
+            .seo-hero h1 { font-size: 2.2rem; }
+            .seo-hero p { font-size: 0.95rem; }
+            .seo-hero { min-height: auto; padding-bottom: 50px; }
+            .seo-hero .breadcrumb { font-size: 0.8rem; padding: 6px 14px; }
+        }
+    </style>
+
+    <!-- Page Banner -->
+    <section class="seo-hero">
+        <div class="seo-particles"></div>
+        <div class="container">
+            <div class="seo-hero-content">
+                <span class="badge">Predictive SEO Modeling</span>
+                <h1>SEO & <span class="text-gradient">Search Dominance</span></h1>
+                <p>Increase search rankings, capture highly targeted organic traffic, and secure long-term digital authority.</p>
+                <nav class="breadcrumb">
+                    <a href="index.html">Home</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <a href="services.html">Services</a>
+                    <span class="sep"><i class="fa-solid fa-chevron-right"></i></span>
+                    <span style="font-weight:600;">SEO Optimization</span>
+                </nav>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Overview Section -->
+    <section class="inner-section">
+        <div class="container">
+            <div class="why-container" style="display:grid; grid-template-columns: 1.1fr 0.9fr; gap:4rem; align-items:flex-start;">
+                <div data-reveal>
+                    <span class="badge">Overview</span>
+                    <h2 class="section-title">Why Organic Search <span class="text-gradient">Determines Business Scale</span></h2>
+                    <p style="color:var(--text-muted); margin-bottom:1.5rem;">Over 93% of online experiences start with a search engine. If your site isn't featured prominently on Page 1, you're actively handing traffic, leads, and market authority directly to your direct sector rivals.</p>
+                    <p style="color:var(--text-muted); margin-bottom:2rem;">Our organic campaign methodology isn't just about packing keywords or generating slow links. We construct a multi-dimensional strategy analyzing site crawlers, schema configurations, conversion tunnels, content architecture, and search intent clusters to maximize your search real estate.</p>
+
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2rem;">
+                        <div class="glass-card" style="padding:1.5rem; border-color:rgba(255,255,255,0.05);">
+                            <div style="width:40px; height:40px; border-radius:8px; background:rgba(0,225,255,0.1); color:#00e1ff; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; font-size:1.2rem;">
+                                <i class="fa-solid fa-magnifying-glass"></i>
+                            </div>
+                            <h4 style="font-family:'Outfit',sans-serif; margin-bottom:6px;">Intent Clustering</h4>
+                            <p style="color:var(--text-muted); font-size:0.85rem; margin:0;">Target buyer intent keywords with high transactional likelihood.</p>
+                        </div>
+                        <div class="glass-card" style="padding:1.5rem; border-color:rgba(255,255,255,0.05);">
+                            <div style="width:40px; height:40px; border-radius:8px; background:rgba(124,58,237,0.1); color:#7c3aed; display:flex; align-items:center; justify-content:center; margin-bottom:1rem; font-size:1.2rem;">
+                                <i class="fa-solid fa-laptop-code"></i>
+                            </div>
+                            <h4 style="font-family:'Outfit',sans-serif; margin-bottom:6px;">Technical Auditing</h4>
+                            <p style="color:var(--text-muted); font-size:0.85rem; margin:0;">Optimize Core Web Vitals, site indexes, and structural crawling elements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-reveal data-delay="2" style="position:sticky; top:120px;">
+                    <div class="glass-card glowing-border" style="padding:2rem;">
+                        <h3 style="font-family:'Outfit',sans-serif; margin-bottom:1.5rem;">Key Performance Metrics</h3>
+                        <div style="display:flex; flex-direction:column; gap:1.5rem;">
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.88rem; font-weight:500; margin-bottom:6px;">
+                                    <span>Average Traffic Multiplier</span>
+                                    <span style="color:#00e1ff;">+315% Increase</span>
+                                </div>
+                                <div style="height:6px; background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+                                    <div style="height:100%; background:linear-gradient(90deg, #00e1ff, #0051ff); width:85%; border-radius:10px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.88rem; font-weight:500; margin-bottom:6px;">
+                                    <span>CPA Reduction Rate</span>
+                                    <span style="color:#7c3aed;">-48% Average</span>
+                                </div>
+                                <div style="height:6px; background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+                                    <div style="height:100%; background:linear-gradient(90deg, #7c3aed, #00e1ff); width:92%; border-radius:10px;"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <div style="display:flex; justify-content:space-between; font-size:0.88rem; font-weight:500; margin-bottom:6px;">
+                                    <span>First Page Rankings Secured</span>
+                                    <span style="color:#00e1ff;">84% of Targets</span>
+                                </div>
+                                <div style="height:6px; background:rgba(255,255,255,0.06); border-radius:10px; overflow:hidden;">
+                                    <div style="height:100%; background:linear-gradient(90deg, #00e1ff, #0051ff); width:84%; border-radius:10px;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-top:2rem; padding:1rem; border-radius:10px; background:rgba(0,225,255,0.03); border:1px dashed rgba(0,225,255,0.2); text-align:center;">
+                            <p style="color:#00e1ff; font-family:'Outfit',sans-serif; font-weight:700; margin:0 0 4px 0; font-size:1.1rem;">NexusAI Search Engine Integrated</p>
+                            <span style="font-size:0.75rem; color:var(--text-muted);">Proprietary index analysis platform online</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specific Workflow Steps -->
+    <section class="inner-section bg-alt">
+        <div class="container">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">The Workflow</span>
+                <h2 class="section-title">Our SEO <span class="text-gradient">Delivery Blueprint</span></h2>
+                <p class="section-desc">How we transform your search presence systematically from ground zero to peak authority.</p>
+            </div>
+
+            <div style="display:grid; grid-template-columns: 1fr 1fr; gap:4rem; align-items:center;">
+                <div data-reveal>
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                        alt="SEO Auditing" style="border-radius:16px; width:100%;">
+                </div>
+
+                <div data-reveal data-delay="2">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-num">Phase 01</div>
+                            <h4>Technical Crawl & Remediation</h4>
+                            <p>We analyze redirects, canonical configurations, Core Web Vitals performance benchmarks, and index structure errors to establish a flawless technical base.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-num">Phase 02</div>
+                            <h4>Commercial Keyword Mapping</h4>
+                            <p>We search for intent clusters, mapping commercial and high-intent semantic terminology specifically matching your transaction tunnels.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-num">Phase 03</div>
+                            <h4>Semantic Content Development</h4>
+                            <p>Our copywriters construct highly comprehensive, expert-level resource materials designed to satisfy search algorithms and capture rankings.</p>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-num">Phase 04</div>
+                            <h4>Authority Backlink Shield</h4>
+                            <p>We deploy bespoke white-hat digital PR campaigns, acquiring organic high-authority link connections to build sitewide domain metrics.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specific Service FAQs -->
+    <section class="inner-section">
+        <div class="container" style="max-width: 800px;">
+            <div class="section-header text-center" data-reveal>
+                <span class="badge">FAQ</span>
+                <h2 class="section-title">SEO Campaign <span class="text-gradient">FAQs</span></h2>
+            </div>
+
+            <div class="faq-accordion" data-reveal>
+                <div class="accordion-item glass-card active">
+                    <div class="accordion-header" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+                        <h4 style="font-family:'Outfit',sans-serif; margin:0;">How long does it take to see rankings change?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content" style="padding: 0 1.5rem 1.5rem; display:block;">
+                        <p style="color:var(--text-muted); font-size:0.95rem; margin:0; padding-top:1rem;">SEO is a long-term compound asset. While initial technical fixes can trigger changes within 30-45 days, substantial first-page growth for competitive commercial terms usually emerges in 3 to 6 months.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card">
+                    <div class="accordion-header" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+                        <h4 style="font-family:'Outfit',sans-serif; margin:0;">Do you focus on local SEO as well?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content" style="padding: 0 1.5rem 1.5rem; display:none;">
+                        <p style="color:var(--text-muted); font-size:0.95rem; margin:0; padding-top:1rem;">Yes, absolutely. We configure Maps optimization, Google Business profile tunnels, local citation arrays, and localized review generation as standard elements of local/regional campaigns.</p>
+                    </div>
+                </div>
+                <div class="accordion-item glass-card">
+                    <div class="accordion-header" style="padding: 1.5rem; display:flex; justify-content:space-between; align-items:center; cursor:pointer;">
+                        <h4 style="font-family:'Outfit',sans-serif; margin:0;">How do you measure SEO campaign ROI?</h4>
+                        <i class="fa-solid fa-plus icon"></i>
+                    </div>
+                    <div class="accordion-content" style="padding: 0 1.5rem 1.5rem; display:none;">
+                        <p style="color:var(--text-muted); font-size:0.95rem; margin:0; padding-top:1rem;">We sync analytics platforms directly to lead forms and payment tunnels, enabling us to match keyword organic entries directly with final conversion metrics and customer lifetime values.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing/CTA Specific -->
+    <section class="cta-strip">
+        <div class="container" data-reveal>
+            <span class="badge">SEO Strategy Session</span>
+            <h2>Get a Free Technical <span class="text-gradient">Crawl Audit</span></h2>
+            <p>Our team will run a diagnostic crawling model across your website and deliver a comprehensive video report pointing out ranking issues entirely free.</p>
+            <div class="btn-group">
+                <a href="contact.html" class="btn btn-primary glow-btn">Request Free Site Audit</a>
+                <a href="services.html" class="btn btn-outline">Back to Services</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-top">
+                <div class="footer-col brand-col">
+                    <a href="index.html" class="logo" style="margin-bottom:1rem; display:inline-flex;">
+                        <div class="logo-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
+                        <span class="logo-text">Nexus<span>Digital</span></span>
+                    </a>
+                    <p>Award-winning digital marketing agency helping brands grow through innovative strategies and creative excellence.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Our Services</a></li>
+                        <li><a href="portfolio.html">Portfolio</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Services</h4>
+                    <ul>
+                        <li><a href="service-seo.html">SEO Optimization</a></li>
+                        <li><a href="service-web-dev.html">Web Development</a></li>
+                        <li><a href="service-social.html">Social Media</a></li>
+                        <li><a href="service-ppc.html">PPC Advertising</a></li>
+                        <li><a href="service-analytics.html">Analytics Reporting</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col newsletter-col">
+                    <h4>Newsletter</h4>
+                    <p>Subscribe for the latest digital marketing tips and insights.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email Address" required>
+                        <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 NexusDigital. All rights reserved.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top -->
+    <a href="#" class="back-to-top" id="backToTop"><i class="fa-solid fa-arrow-up"></i></a>
+
+    <!-- Scripts -->
+    <script src="js/common.js"></script>
+</body>
+
+</html>
